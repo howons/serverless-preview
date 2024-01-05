@@ -20,5 +20,4 @@ functions:
           method: any
 
 plugins:
-  - serverless-plugin-monorepo
   - serverless-offline
