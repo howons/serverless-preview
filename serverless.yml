@@ -13,7 +13,7 @@ provider:
 
 functions:
   api:
-    handler: dist/server/handler.handler
+    handler: server/handler.handler
     events:
       - http:
           path: /{proxy+}
@@ -21,3 +21,4 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-plugin-typescript

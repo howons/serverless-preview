@@ -5,8 +5,8 @@
   "main": "main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && serverless offline",
-    "deploy": "tsc && serverless deploy"
+    "start": "serverless offline start --reloadHandler",
+    "deploy": "serverless deploy"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "@types/aws-serverless-express": "^3.3.9",
     "@types/express": "^4.17.21",
     "serverless-offline": "^13.3.2",
+    "serverless-plugin-typescript": "^2.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
