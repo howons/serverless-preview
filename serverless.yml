@@ -13,7 +13,7 @@ provider:
 
 functions:
   api:
-    handler: dist/handler.handler
+    handler: dist/server/handler.handler
     events:
       - http:
           path: /{proxy+}
