@@ -1,6 +1,14 @@
 service: portfolio
 
+plugins:  
+  - serverless-webpack
+  - serverless-offline
+
 custom:
+  webpack:
+    webpackConfig: "webpack.config.js"
+    includeModules: true
+    packager: "npm"
   serverless-offline:
     httpPort: 4000
     lambdaPort: 4001
@@ -18,7 +26,3 @@ functions:
       - http:
           path: /{proxy+}
           method: any
-
-plugins:
-  - serverless-offline
-  - serverless-plugin-typescript
