@@ -11,18 +11,13 @@ app.use('/src', express.static('../src'));
 app.use('/', routes);
 
 app.use(
-  (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  (req, res, next) => {
     res.status(404).send();
   },
 );
 
 app.use(
-  (
-    err: any,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-  ) => {
+  (err, req, res, next) => {
     res.status(err.status || 500).send();
   },
 );

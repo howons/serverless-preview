@@ -1,6 +1,6 @@
 import { sidebar } from './sidebar';
 
-export const generateHTML = (title: string, main: string) => `
+export const generateHTML = (title, main) => `
   <!DOCTYPE html>
   <html lang="kr">
     <head>
@@ -12,6 +12,7 @@ export const generateHTML = (title: string, main: string) => `
         ${sidebar}
         ${main}
       </div>
+      <script src="./src/main.js" type="module"></script>
     </body>
   </html>
 `;
