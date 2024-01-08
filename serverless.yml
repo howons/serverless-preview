@@ -1,14 +1,14 @@
 service: portfolio
 
-plugins:  
+plugins:
   - serverless-webpack
   - serverless-offline
 
 custom:
   webpack:
-    webpackConfig: "webpack.config.js"
+    webpackConfig: 'webpack.config.js'
     includeModules: true
-    packager: "npm"
+    packager: 'npm'
   serverless-offline:
     httpPort: 4000
     lambdaPort: 4001
