@@ -6,6 +6,7 @@ export const generateHTML = (title, main) => `
     <head>
       <meta charset="UTF-8">
       <title>${title}</title>
+      <link rel="stylesheet" href="./src/style.css"/>
     </head>
     <body>
       <div id="app">

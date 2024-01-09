@@ -5,7 +5,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // entry를 따로 설정하지 않아도 됨
-  entry: serverlessWebpack.lib.entries,
+  entry: {
+    ...serverlessWebpack.lib.entries,
+    'server/src/main': './server/src/main.js',
+  },
   target: 'node',
   mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
   // webpack의 critical warning 메시지를 피하기 위한 용도
@@ -15,7 +18,7 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: './server/src', to: 'server/src' }],
+      patterns: [{ from: './server/src/*.css', to: '.' }],
     }),
   ],
   module: {
@@ -26,6 +29,9 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
           },
         ],
       },
