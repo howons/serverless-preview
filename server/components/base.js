@@ -9,7 +9,7 @@ export const generateHTML = (title, main) => `
       <link rel="stylesheet" href="./src/style.css"/>
     </head>
     <body>
-      <div id="app">
+      <div id="app" class="app">
         ${sidebar}
         ${main}
       </div>
