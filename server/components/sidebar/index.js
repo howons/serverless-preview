@@ -1,5 +1,7 @@
+import { sidebarItems } from '../../models/sideItems';
+
 export const sidebar = `
   <aside class="sidebar">
-    side
+    ${sidebarItems.map(({ name, icon }) => `<a>${name} ${icon}</a>`).join('')}
   </aside>
 `;
