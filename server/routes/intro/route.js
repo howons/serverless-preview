@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { generateHTML } from '../../components/base';
-import { intro } from '../../components/intro';
+import { generateHTML } from '../../components/baseModel';
+import { intro } from '../../components/intro/model';
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-import { sidebar } from './sidebar';
+import { sidebar } from './sidebar/model';
 
 export const generateHTML = (title, main) => `
   <!DOCTYPE html>
