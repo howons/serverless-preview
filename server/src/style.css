@@ -11,3 +11,41 @@
   display: flex;
   flex-direction: column;
 }
+
+.sidebar > a {
+  font-size: 2rem;
+}
+
+.close-box {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 3rem;
+  height: 3rem;
+  background-color: #92b9ea;
+}
+
+.close-box__slash {
+  position: absolute;
+  width: 2rem;
+  height: 0;
+  border-bottom: 1px solid black;
+}
+
+.close-box__upper-slash {
+  top: 0.75rem;
+  left: 0.5rem;
+}
+.close-box__middle-slash {
+  top: 1.5rem;
+  left: 0.5rem;
+}
+.close-box__bottom-slash {
+  top: 2.25rem;
+  left: 0.5rem;
+}
+
+.main {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
