@@ -1,5 +1,7 @@
+import Sidebar from '../components/sidebar/Sidebar';
+
 function main() {
-  console.log('test');
+  new Sidebar('#sidebar');
 }
 
 main();

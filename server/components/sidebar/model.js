@@ -5,7 +5,7 @@ const sidebarItems = [
 ];
 
 export const sidebar = `
-  <aside class="sidebar">
+  <aside id="sidebar" class="sidebar">
     <div class="close-box">
       <div class="close-box__slash close-box__upper-slash"></div>
       <div class="close-box__slash close-box__middle-slash"></div>

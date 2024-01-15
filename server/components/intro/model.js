@@ -1,5 +1,5 @@
 export const intro = `
-  <div class="main">
+  <div id="main" class="main">
     <h1>Intro</h1>
   </div>
 `;
