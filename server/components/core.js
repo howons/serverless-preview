@@ -25,26 +25,29 @@ export default class Component {
   }
 
   setup() {}
-  mounted() {}
+  render() {
+    this.mounted();
+  }
+  mounted() {
+    /**@note children 추가 작업 위치*/
+    this.setEvent();
+  }
   setEvent() {
     if (root) return;
 
-    for (const [eventType, { selector, callbacks }] of Object.entries(
+    for (const [eventType, targetList] of Object.entries(
       eventCallbacks[this.$target.id],
     )) {
       this.$target.addEventListener(eventType, (event) => {
-        if (!event.target.closest(selector)) return false;
+        targetList.forEach(({ selector, callback }) => {
+          if (!event.target.closest(selector)) return false;
 
-        callbacks.forEach((callback) => {
           callback(event);
         });
       });
     }
   }
 
-  render() {
-    this.mounted();
-  }
   setState(nextState) {
     this.state = { ...this.state, ...nextState };
     this.render();
@@ -59,5 +62,12 @@ export default class Component {
       };
     }
   }
-  addEvent() {}
+  addEvent(eventType, selector, callback) {
+    if (!eventCallbacks[root]) return;
+
+    eventCallbacks[root][eventType]?.push({
+      selector,
+      callback,
+    });
+  }
 }
