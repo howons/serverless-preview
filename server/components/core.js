@@ -23,8 +23,6 @@ export default class Component {
 
     this.setup();
     this.hydrate();
-
-    console.log(singleton);
   }
 
   /* lifecycle methods */
@@ -53,9 +51,7 @@ export default class Component {
       eventCallbacks[this.$target.id],
     )) {
       this.$target.addEventListener(eventType, (event) => {
-        console.log(eventType, 'event triggered');
         targetList.forEach(({ selector, callback }) => {
-          console.log(selector, event.target, event.target.closest(selector));
           if (!event.target.closest(selector)) return false;
 
           callback(event);
