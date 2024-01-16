@@ -23,34 +23,39 @@ export default class Component {
 
     this.setup();
     this.hydrate();
+
+    console.log(singleton);
   }
 
+  /* lifecycle methods */
   setup() {
-    if (this.isRoot()) {
+    if (this.isRoot) {
       eventCallbacks[this.$target.id] = {
         click: [],
       };
     }
   }
   hydrate() {
+    /**@note addEvent 추가 위치 */
     this.mounted();
-    this.setEvent();
+    if (this.isRoot) this.setEventDeligation();
   }
-
   render() {
     this.mounted();
   }
   mounted() {
     /**@note children 추가 작업 위치*/
   }
-  setEvent() {
-    if (!this.isRoot()) return;
+  setEventDeligation() {
+    if (!this.isRoot) return;
 
     for (const [eventType, targetList] of Object.entries(
       eventCallbacks[this.$target.id],
     )) {
       this.$target.addEventListener(eventType, (event) => {
+        console.log(eventType, 'event triggered');
         targetList.forEach(({ selector, callback }) => {
+          console.log(selector, event.target, event.target.closest(selector));
           if (!event.target.closest(selector)) return false;
 
           callback(event);
@@ -59,24 +64,28 @@ export default class Component {
     }
   }
 
+  /* trigger methods */
   setState(nextState) {
     this.state = { ...this.state, ...nextState };
     this.render();
   }
-
   addChild(Child, selector, props) {
-    new Child(selector, props, this.$target.id);
+    new Child(selector, props, this.root);
   }
   addEvent(eventType, selector, callback) {
-    if (!eventCallbacks[root]) return;
+    if (!eventCallbacks[this.root]) return;
 
-    eventCallbacks[root][eventType]?.push({
+    eventCallbacks[this.root][eventType]?.push({
       selector,
       callback,
     });
   }
 
-  isRoot() {
+  /* util methods */
+  get isRoot() {
     return this.root === this.$target.id;
+  }
+  get idSelector() {
+    return `#${this.$target.id}`;
   }
 }
