@@ -19,21 +19,32 @@ export default class Component {
 
     singleton[selector] = this;
     this.props = props;
-    this.root = root;
+    this.root = root || this.$target.id;
 
     this.setup();
+    this.hydrate();
   }
 
-  setup() {}
+  setup() {
+    if (this.isRoot()) {
+      eventCallbacks[this.$target.id] = {
+        click: [],
+      };
+    }
+  }
+  hydrate() {
+    this.mounted();
+    this.setEvent();
+  }
+
   render() {
     this.mounted();
   }
   mounted() {
     /**@note children 추가 작업 위치*/
-    this.setEvent();
   }
   setEvent() {
-    if (root) return;
+    if (!this.isRoot()) return;
 
     for (const [eventType, targetList] of Object.entries(
       eventCallbacks[this.$target.id],
@@ -55,12 +66,6 @@ export default class Component {
 
   addChild(Child, selector, props) {
     new Child(selector, props, this.$target.id);
-
-    if (!root && !eventCallbacks[this.$target.id]) {
-      eventCallbacks[this.$target.id] = {
-        click: [],
-      };
-    }
   }
   addEvent(eventType, selector, callback) {
     if (!eventCallbacks[root]) return;
@@ -69,5 +74,9 @@ export default class Component {
       selector,
       callback,
     });
+  }
+
+  isRoot() {
+    return this.root === this.$target.id;
   }
 }
