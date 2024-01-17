@@ -22,27 +22,40 @@
   left: 0px;
   width: 3rem;
   height: 3rem;
-  background-color: #92b9ea;
+  background-color: rgb(146, 185, 234);
 }
 
 .close-box__slash {
   position: absolute;
-  width: 2rem;
+  width: 1.7rem;
   height: 0;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid rgb(47, 74, 107);
+  transition: all 0.2s ease;
 }
 
 .close-box__upper-slash {
-  top: 0.75rem;
-  left: 0.5rem;
+  top: 0.85rem;
+  left: 0.65rem;
+  transform-origin: 10.5% 0;
 }
 .close-box__middle-slash {
   top: 1.5rem;
-  left: 0.5rem;
+  left: 0.65rem;
 }
 .close-box__bottom-slash {
-  top: 2.25rem;
-  left: 0.5rem;
+  top: 2.15rem;
+  left: 0.65rem;
+  transform-origin: 10.5% 0;
+}
+
+.close-box.open > .close-box__upper-slash {
+  transform: rotate(45deg) scaleX(1.41);
+}
+.close-box.open > .close-box__middle-slash {
+  transform: rotate(-45deg) scaleX(1.41);
+}
+.close-box.open > .close-box__bottom-slash {
+  transform: rotate(-45deg) scaleX(1.41);
 }
 
 .main {
