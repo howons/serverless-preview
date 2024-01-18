@@ -11,13 +11,35 @@ export default class Sidebar extends Component {
       isOpen: false,
     };
 
+    this.refs = {
+      items: [],
+    };
+
+    super.setup();
+  }
+
+  hydrate() {
     this.interObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
-        console.log(entry);
+        if (entry.intersectionRatio >= 1) return;
+
+        this.refs.items.forEach((item) => {
+          const indexClass = item.$target.classList.item(1);
+          const [prefix, index] = indexClass.split('__');
+          const indexNumber = Number(index) + (entry.isIntersecting ? 1 : -1);
+          console.log(indexClass, indexNumber);
+
+          item.$target.classList.replace(
+            indexClass,
+            `${prefix}__${indexNumber}`,
+          );
+        });
       });
     }, {});
 
-    super.setup();
+    this.addEvent('scroll', this.idSelector, () => {});
+
+    super.hydrate();
   }
 
   mounted() {
@@ -33,7 +55,13 @@ export default class Sidebar extends Component {
       isOpen: this.state.isOpen,
     };
     sidebarItems.forEach(({ id }) => {
-      this.addChild(SidebarItem, `#${id}`, sidebarItemsProp);
+      const sidebarItem = this.addChild(
+        SidebarItem,
+        `#${id}`,
+        sidebarItemsProp,
+      );
+      this.interObserver.observe(sidebarItem.$target);
+      this.refs.items.push(sidebarItem);
     });
   }
 }

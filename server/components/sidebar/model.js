@@ -2,6 +2,7 @@ export const sidebarItems = [
   { id: 'side-intro', name: '인트로', icon: 'H' },
   { id: 'side-profile', name: '프로필', icon: 'P' },
   { id: 'side-project-list', name: '프로젝트 목록', icon: 'L' },
+  { id: 'side-project-portfolio', name: '포트폴리오', icon: 'F' },
 ];
 
 export const sidebar = `
@@ -14,8 +15,8 @@ export const sidebar = `
     <div class="sidebar__inner">
       ${sidebarItems
         .map(
-          ({ id, name, icon }) =>
-            `<a id="${id}" class="sidebar-item">${name} ${icon}</a>`,
+          ({ id, name, icon }, index) =>
+            `<a id="${id}" class="sidebar-item item__${index}">${name} ${icon}</a>`,
         )
         .join('')}
       <div class="sidebar__scroll-helper"></div>

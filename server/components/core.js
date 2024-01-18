@@ -6,6 +6,7 @@ export default class Component {
   root;
   state;
   props;
+  refs;
   constructor(selector, props, root) {
     if (singleton[selector]) {
       singleton[selector].props = { ...props };
@@ -31,6 +32,7 @@ export default class Component {
     if (this.isRoot) {
       eventCallbacks[this.$target.id] = {
         click: [],
+        scroll: [],
       };
     }
   }
@@ -68,7 +70,7 @@ export default class Component {
     this.render();
   }
   addChild(Child, selector, props) {
-    new Child(selector, props, this.root);
+    return new Child(selector, props, this.root);
   }
   addEvent(eventType, selector, callback) {
     if (!eventCallbacks[this.root]) return;

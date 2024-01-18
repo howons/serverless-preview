@@ -58,6 +58,7 @@
 .sidebar__inner {
   height: 100%;
   overflow-y: scroll;
+  scroll-snap-type: y proximity;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -70,6 +71,7 @@
   display: block;
   font-size: 2rem;
   text-align: right;
+  scroll-snap-align: start;
 }
 
 .sidebar__scroll-helper {
