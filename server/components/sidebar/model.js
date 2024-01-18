@@ -1,4 +1,4 @@
-const sidebarItems = [
+export const sidebarItems = [
   { id: 'side-intro', name: '인트로', icon: 'H' },
   { id: 'side-profile', name: '프로필', icon: 'P' },
   { id: 'side-project-list', name: '프로젝트 목록', icon: 'L' },

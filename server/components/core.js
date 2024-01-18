@@ -8,7 +8,7 @@ export default class Component {
   props;
   constructor(selector, props, root) {
     if (singleton[selector]) {
-      singleton[selector].props = props;
+      singleton[selector].props = { ...props };
       singleton[selector].render();
 
       return singleton[selector];
@@ -18,7 +18,7 @@ export default class Component {
     if (!this.$target) return;
 
     singleton[selector] = this;
-    this.props = props;
+    this.props = { ...props };
     this.root = root || this.$target.id;
 
     this.setup();
