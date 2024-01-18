@@ -7,13 +7,10 @@
 }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
-}
-
-.sidebar > a {
-  font-size: 2rem;
+  height: 100%;
 }
 
 .close-box {
@@ -56,6 +53,27 @@
 }
 .close-box.open > .close-box__bottom-slash {
   transform: rotate(-45deg) scaleX(1.41);
+}
+
+.sidebar__inner {
+  height: 100%;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sidebar__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-item {
+  display: block;
+  font-size: 2rem;
+  text-align: right;
+}
+
+.sidebar__scroll-helper {
+  height: calc(100% - 2.3rem);
 }
 
 .main {

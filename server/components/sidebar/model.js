@@ -11,8 +11,14 @@ export const sidebar = `
       <div class="close-box__slash close-box__middle-slash"></div>
       <div class="close-box__slash close-box__bottom-slash"></div>
     </div>
-    ${sidebarItems
-      .map(({ id, name, icon }) => `<a id="${id}">${name} ${icon}</a>`)
-      .join('')}
+    <div class="sidebar__inner">
+      ${sidebarItems
+        .map(
+          ({ id, name, icon }) =>
+            `<a id="${id}" class="sidebar-item">${name} ${icon}</a>`,
+        )
+        .join('')}
+      <div class="sidebar__scroll-helper"></div>
+    </div>
   </aside>
 `;
