@@ -15,7 +15,7 @@ export const sidebar = `
       <div class="close-box__slash close-box__middle-slash"></div>
       <div class="close-box__slash close-box__bottom-slash"></div>
     </div>
-    <div class="sidebar__inner">
+    <div id="sidebar__inner" class="sidebar__inner">
       ${sidebarItems
         .map(
           ({ id, name, icon }, index) =>

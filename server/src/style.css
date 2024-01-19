@@ -20,6 +20,7 @@
   width: 3rem;
   height: 3rem;
   background-color: rgb(146, 185, 234);
+  z-index: 1;
 }
 
 .close-box__slash {
@@ -69,10 +70,33 @@
 
 .sidebar-item {
   display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   font-size: 2rem;
   text-align: right;
   scroll-snap-align: start;
   cursor: pointer;
+  user-select: none;
+  transition: all 0.35s ease;
+  transform: translateX(-12.5rem);
+}
+.sidebar-item__0 {
+  transform: translateX(0);
+}
+.sidebar-item__1 {
+  transform: translateX(-6rem);
+}
+.sidebar-item__2 {
+  transform: translateX(-9rem);
+}
+.sidebar-item__3 {
+  transform: translateX(-11rem);
+}
+.sidebar-item__-1 {
+  transform: translateX(-6rem);
+}
+.sidebar-item.open {
+  transform: translateX(0);
 }
 
 .sidebar__scroll-helper {

@@ -11,16 +11,18 @@ export default class Sidebar extends Component {
 
     this.refs = {
       items: [],
+      io: null,
     };
 
     super.setup();
   }
 
   hydrate() {
-    this.refs.interObserver = new IntersectionObserver(
+    this.refs.io = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
-          if (entry.boundingClientRect.y >= 0) return;
+          console.log(entry.target.id, entry.boundingClientRect.x);
+          if (entry.boundingClientRect.y >= 100) return;
 
           const targetIndex = Number(entry.target.dataset.index);
 
@@ -37,7 +39,11 @@ export default class Sidebar extends Component {
           });
         });
       },
-      { threshold: 0.5 },
+      {
+        threshold: 0.5,
+        root: this.$target.querySelector('#sidebar__inner'),
+        rootMargin: '0px 500px 0px 500px',
+      },
     );
 
     super.hydrate();
@@ -55,13 +61,15 @@ export default class Sidebar extends Component {
     const sidebarItemsProp = {
       isOpen: this.state.isOpen,
     };
+    this.refs.items = [];
+
     sidebarItems.forEach(({ id }) => {
       const sidebarItem = this.addChild(
         SidebarItem,
         `#${id}`,
         sidebarItemsProp,
       );
-      this.refs.interObserver.observe(sidebarItem.$target);
+      this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
     });
   }
