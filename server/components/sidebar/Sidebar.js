@@ -4,8 +4,6 @@ import SidebarItem from './SidebarItem';
 import { sidebarItems } from './model';
 
 export default class Sidebar extends Component {
-  interObserver;
-
   setup() {
     this.state = {
       isOpen: false,
@@ -19,25 +17,25 @@ export default class Sidebar extends Component {
   }
 
   hydrate() {
-    this.interObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio >= 1) return;
+    this.refs.interObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio >= 1) return;
 
-        this.refs.items.forEach((item) => {
-          const indexClass = item.$target.classList.item(1);
-          const [prefix, index] = indexClass.split('__');
-          const indexNumber = Number(index) + (entry.isIntersecting ? 1 : -1);
-          console.log(indexClass, indexNumber);
+          this.refs.items.forEach((item) => {
+            const indexClass = item.$target.classList.item(1);
+            const [prefix, index] = indexClass.split('__');
+            const indexNumber = Number(index) + (entry.isIntersecting ? 1 : -1);
 
-          item.$target.classList.replace(
-            indexClass,
-            `${prefix}__${indexNumber}`,
-          );
+            item.$target.classList.replace(
+              indexClass,
+              `${prefix}__${indexNumber}`,
+            );
+          });
         });
-      });
-    }, {});
-
-    this.addEvent('scroll', this.idSelector, () => {});
+      },
+      { threshold: 0.5 },
+    );
 
     super.hydrate();
   }
@@ -60,7 +58,7 @@ export default class Sidebar extends Component {
         `#${id}`,
         sidebarItemsProp,
       );
-      this.interObserver.observe(sidebarItem.$target);
+      this.refs.interObserver.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
     });
   }
