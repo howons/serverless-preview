@@ -9,7 +9,7 @@ export default class SidebarItem extends Component {
 
   hydrate() {
     this.addEvent('click', this.idSelector, () => {
-      console.log(this.$target.id, 'clicked');
+      this.$target.scrollIntoView({ behavior: 'smooth' });
     });
 
     super.hydrate();
