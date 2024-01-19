@@ -20,16 +20,19 @@ export default class Sidebar extends Component {
     this.refs.interObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
-          if (entry.intersectionRatio >= 1) return;
+          if (entry.boundingClientRect.y >= 0) return;
 
-          this.refs.items.forEach((item) => {
+          const targetIndex = Number(entry.target.dataset.index);
+
+          this.refs.items.forEach((item, index) => {
             const indexClass = item.$target.classList.item(1);
-            const [prefix, index] = indexClass.split('__');
-            const indexNumber = Number(index) + (entry.isIntersecting ? 1 : -1);
+            const [prefix, _] = indexClass.split('__');
 
+            const newIndex =
+              index - targetIndex - (entry.isIntersecting ? 0 : 1);
             item.$target.classList.replace(
               indexClass,
-              `${prefix}__${indexNumber}`,
+              `${prefix}__${newIndex}`,
             );
           });
         });
