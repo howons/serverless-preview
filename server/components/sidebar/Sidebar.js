@@ -21,7 +21,6 @@ export default class Sidebar extends Component {
     this.refs.io = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
-          console.log(entry.target.id, entry.boundingClientRect.x);
           if (entry.boundingClientRect.y >= 100) return;
 
           const targetIndex = Number(entry.target.dataset.index);

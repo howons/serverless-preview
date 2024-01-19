@@ -19,12 +19,14 @@ export const sidebar = `
       ${sidebarItems
         .map(
           ({ id, name, icon }, index) =>
-            `<a 
+            `<div 
               id="${id}" 
               class="sidebar-item sidebar-item__${index}" 
               data-index="${index}">
-              ${name} ${icon}
-            </a>`,
+                <a id="${id}__link">
+                  ${name} ${icon}
+                </a>
+            </div>`,
         )
         .join('')}
       <div class="sidebar__scroll-helper"></div>
