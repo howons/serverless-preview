@@ -23,19 +23,7 @@ export default class Sidebar extends Component {
         entries.forEach((entry) => {
           if (entry.boundingClientRect.y >= 100) return;
 
-          const targetIndex = Number(entry.target.dataset.index);
-
-          this.refs.items.forEach((item, index) => {
-            const indexClass = item.$target.classList.item(1);
-            const [prefix, _] = indexClass.split('__');
-
-            const newIndex =
-              index - targetIndex - (entry.isIntersecting ? 0 : 1);
-            item.$target.classList.replace(
-              indexClass,
-              `${prefix}__${newIndex}`,
-            );
-          });
+          this.reorderItemsClass(entry);
         });
       },
       {
@@ -55,6 +43,7 @@ export default class Sidebar extends Component {
         this.setState({ isOpen: nextIsOpen });
       },
     };
+
     this.addChild(CloseBox, '#close-box', closeBoxProp);
 
     const sidebarItemsProp = {
@@ -70,6 +59,18 @@ export default class Sidebar extends Component {
       );
       this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
+    });
+  }
+
+  reorderItemsClass(entry) {
+    const targetIndex = Number(entry.target.dataset.index);
+
+    this.refs.items.forEach((item, index) => {
+      const indexClass = item.$target.classList.item(1);
+      const [prefix, _] = indexClass.split('__');
+
+      const newIndex = index - targetIndex - (entry.isIntersecting ? 0 : 1);
+      item.$target.classList.replace(indexClass, `${prefix}__${newIndex}`);
     });
   }
 }
