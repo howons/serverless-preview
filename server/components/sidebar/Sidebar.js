@@ -21,7 +21,7 @@ export default class Sidebar extends Component {
     this.refs.io = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
-          if (entry.boundingClientRect.y >= 100) return;
+          if (entry.boundingClientRect.y >= 10) return;
 
           this.reorderItemsClass(entry);
         });
@@ -48,15 +48,18 @@ export default class Sidebar extends Component {
 
     const sidebarItemsProp = {
       isOpen: this.state.isOpen,
+      itemPathname: '',
     };
     this.refs.items = [];
 
-    sidebarItems.forEach(({ id }) => {
+    sidebarItems.forEach(({ id, path }) => {
+      sidebarItemsProp.itemPathname = path;
       const sidebarItem = this.addChild(
         SidebarItem,
         `#${id}`,
         sidebarItemsProp,
       );
+
       this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
     });

@@ -75,6 +75,9 @@
   font-size: 2rem;
   scroll-snap-align: start;
 }
+.sidebar-item.active {
+  color: rgb(83, 139, 208);
+}
 
 .sidebar-item > a {
   display: flex;
@@ -88,22 +91,29 @@
   flex-grow: 1;
 }
 .sidebar-item__1 > a {
-  transform: translateX(-9rem);
+  transform: translateX(-10rem);
 }
 .sidebar-item__2 > a {
-  transform: translateX(-12rem);
+  transform: translateX(-13rem);
 }
 .sidebar-item__3 > a {
-  transform: translateX(-14rem);
+  transform: translateX(-14.4rem);
 }
 .sidebar-item__4 > a {
   transform: translateX(-15rem);
 }
 .sidebar-item__-1 > a {
-  transform: translateX(-9rem);
+  transform: translateX(-10rem);
 }
 .sidebar-item.open > a {
   transform: translateX(-3rem);
+}
+.sidebar-item > a:hover {
+  transform: translateX(-3rem);
+  flex-grow: 1;
+}
+.sidebar-item__0 > a:hover {
+  transform: translateX(1rem);
 }
 .sidebar-item__0.open > a {
   flex-grow: 0;

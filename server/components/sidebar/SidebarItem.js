@@ -15,6 +15,16 @@ export default class SidebarItem extends Component {
     super.hydrate();
   }
 
+  mounted() {
+    const pathname = window.location.pathname;
+    this.$target.classList.toggle(
+      'active',
+      pathname.includes(this.props.itemPathname),
+    );
+
+    super.mounted();
+  }
+
   get linkIdSelector() {
     return `${this.idSelector}__link`;
   }
