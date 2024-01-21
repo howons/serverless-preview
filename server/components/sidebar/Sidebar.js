@@ -42,18 +42,19 @@ export default class Sidebar extends Component {
       setIsOpen: (nextIsOpen) => {
         this.setState({ isOpen: nextIsOpen });
       },
+      firstItemRef: null,
+      activeItemRef: null,
     };
-
-    this.addChild(CloseBox, '#close-box', closeBoxProp);
 
     const sidebarItemsProp = {
       isOpen: this.state.isOpen,
-      itemPathname: '',
+      isActive: false,
     };
     this.refs.items = [];
 
-    sidebarItems.forEach(({ id, path }) => {
-      sidebarItemsProp.itemPathname = path;
+    sidebarItems.forEach(({ id, path }, index) => {
+      sidebarItemsProp.isActive = window.location.pathname.includes(path);
+
       const sidebarItem = this.addChild(
         SidebarItem,
         `#${id}`,
@@ -62,7 +63,12 @@ export default class Sidebar extends Component {
 
       this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
+
+      if (index === 0) closeBoxProp.firstItemRef = sidebarItem;
+      if (sidebarItemsProp.isActive) closeBoxProp.activeItemRef = sidebarItem;
     });
+
+    this.addChild(CloseBox, '#close-box', closeBoxProp);
   }
 
   reorderItemsClass(entry) {

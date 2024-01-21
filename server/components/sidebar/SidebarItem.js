@@ -16,11 +16,7 @@ export default class SidebarItem extends Component {
   }
 
   mounted() {
-    const pathname = window.location.pathname;
-    this.$target.classList.toggle(
-      'active',
-      pathname.includes(this.props.itemPathname),
-    );
+    this.$target.classList.toggle('active', this.props.isActive);
 
     super.mounted();
   }

@@ -87,7 +87,7 @@
   transform: translateX(-15.7rem);
 }
 .sidebar-item__0 > a {
-  transform: translateX(0);
+  transform: translateX(0rem);
   flex-grow: 1;
 }
 .sidebar-item__1 > a {
@@ -117,6 +117,10 @@
 }
 .sidebar-item__0.open > a {
   flex-grow: 0;
+}
+.sidebar-item__0.open > a:hover {
+  transform: translateX(0rem);
+  flex-grow: 1;
 }
 
 .sidebar__scroll-helper {

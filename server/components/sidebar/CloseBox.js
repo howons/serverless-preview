@@ -10,6 +10,12 @@ export default class CloseBox extends Component {
   hydrate() {
     this.addEvent('click', this.idSelector, () => {
       this.props.setIsOpen(!this.props.isOpen);
+
+      if (this.props.isOpen) {
+        this.props.firstItemRef.$target.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        this.props.activeItemRef.$target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
 
     super.hydrate();
