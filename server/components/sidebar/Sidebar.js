@@ -12,6 +12,8 @@ export default class Sidebar extends Component {
     this.refs = {
       items: [],
       io: null,
+      innerRef: this.$target.querySelector('#sidebar__inner'),
+      mouseX: 0,
     };
 
     super.setup();
@@ -28,10 +30,12 @@ export default class Sidebar extends Component {
       },
       {
         threshold: 0.5,
-        root: this.$target.querySelector('#sidebar__inner'),
+        root: this.refs.innerRef,
         rootMargin: '0px 500px 0px 500px',
       },
     );
+
+    this.restrictScrollAreaWhenClosed();
 
     super.hydrate();
   }
@@ -80,6 +84,22 @@ export default class Sidebar extends Component {
 
       const newIndex = index - targetIndex - (entry.isIntersecting ? 0 : 1);
       item.$target.classList.replace(indexClass, `${prefix}__${newIndex}`);
+    });
+  }
+
+  restrictScrollAreaWhenClosed() {
+    this.refs.innerRef.addEventListener('mousemove', (e) => {
+      this.refs.mouseX = e.clientX;
+    });
+    this.refs.innerRef.addEventListener('wheel', (e) => {
+      if (this.refs.mouseX > 50 && !this.state.isOpen) {
+        e.preventDefault();
+      }
+    });
+    this.refs.innerRef.addEventListener('touchmove', (e) => {
+      if (this.refs.mouseX > 50 && !this.state.isOpen) {
+        e.preventDefault();
+      }
     });
   }
 }

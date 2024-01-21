@@ -28,7 +28,6 @@ export default class Component {
 
   /* lifecycle methods */
   setup() {
-    console.log('setup', this.idSelector);
     if (this.isRoot) {
       eventCallbacks[this.$target.id] = {
         click: [],
@@ -42,7 +41,6 @@ export default class Component {
     if (this.isRoot) this.setEventDeligation();
   }
   render() {
-    console.log('render', this.idSelector);
     this.mounted();
   }
   mounted() {
