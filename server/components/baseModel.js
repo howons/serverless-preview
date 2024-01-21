@@ -1,3 +1,4 @@
+import { scrollIndicator } from './scrollIndicator/model';
 import { sidebar } from './sidebar/model';
 
 export const generateHTML = (title, main) => `
@@ -12,6 +13,7 @@ export const generateHTML = (title, main) => `
       <div id="app" class="app">
         ${sidebar}
         ${main}
+        ${scrollIndicator}
       </div>
       <script src="./src/main.js" type="module"></script>
     </body>
