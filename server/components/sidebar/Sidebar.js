@@ -14,6 +14,7 @@ export default class Sidebar extends Component {
       io: null,
       innerRef: this.$target.querySelector('#sidebar__inner'),
       mouseX: 0,
+      mainRef: document.querySelector('#main'),
     };
 
     super.setup();
@@ -91,15 +92,34 @@ export default class Sidebar extends Component {
     this.refs.innerRef.addEventListener('mousemove', (e) => {
       this.refs.mouseX = e.clientX;
     });
-    this.refs.innerRef.addEventListener('wheel', (e) => {
-      if (this.refs.mouseX > 50 && !this.state.isOpen) {
-        e.preventDefault();
-      }
+    this.refs.innerRef.addEventListener('touchstart', (e) => {
+      this.refs.mouseX = e.touches[0].clientX;
+      console.log(e.touches[0].clientX);
     });
-    this.refs.innerRef.addEventListener('touchmove', (e) => {
-      if (this.refs.mouseX > 50 && !this.state.isOpen) {
+
+    const handleWheel = (e) => {
+      let lastTouchClientY = 0;
+
+      return (e) => {
+        if (this.refs.mouseX <= 50 || this.state.isOpen) return;
+
         e.preventDefault();
-      }
-    });
+
+        const deltaY = e.deltaY ?? lastTouchClientY - e.touches[0].clientY;
+        lastTouchClientY = e.touches ? e.touches[0].clientY : lastTouchClientY;
+
+        if (e.touches) {
+          this.refs.mainRef.scrollTop += deltaY;
+        } else {
+          this.refs.mainRef.scrollBy({
+            top: deltaY / 3,
+            behavior: 'smooth',
+          });
+        }
+      };
+    };
+
+    this.refs.innerRef.addEventListener('wheel', handleWheel());
+    this.refs.innerRef.addEventListener('touchmove', handleWheel());
   }
 }
