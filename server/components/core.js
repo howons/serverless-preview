@@ -32,6 +32,9 @@ export default class Component {
       eventCallbacks[this.$target.id] = {
         click: [],
         scroll: [],
+        mousemove: [],
+        wheel: [],
+        touchmove: [],
       };
     }
   }
