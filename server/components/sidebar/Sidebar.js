@@ -94,11 +94,13 @@ export default class Sidebar extends Component {
     });
     this.refs.innerRef.addEventListener('touchstart', (e) => {
       this.refs.mouseX = e.touches[0].clientX;
-      console.log(e.touches[0].clientX);
     });
 
     const handleWheel = (e) => {
       let lastTouchClientY = 0;
+      let cumulativeDeltaY = 0;
+      let deltaYTimer = null;
+      let lastDeltaY = 0;
 
       return (e) => {
         if (this.refs.mouseX <= 50 || this.state.isOpen) return;
@@ -106,16 +108,31 @@ export default class Sidebar extends Component {
         e.preventDefault();
 
         const deltaY = e.deltaY ?? lastTouchClientY - e.touches[0].clientY;
-        lastTouchClientY = e.touches ? e.touches[0].clientY : lastTouchClientY;
 
-        if (e.touches) {
+        const isTouchScreen = !!e.touches;
+        const isTouchpad = lastDeltaY !== deltaY && lastDeltaY !== -deltaY;
+
+        if (isTouchScreen || isTouchpad) {
           this.refs.mainRef.scrollTop += deltaY;
         } else {
+          if (cumulativeDeltaY * deltaY <= 0) cumulativeDeltaY = 0;
+          cumulativeDeltaY += deltaY;
+
           this.refs.mainRef.scrollBy({
-            top: deltaY / 3,
+            top: cumulativeDeltaY / 3,
             behavior: 'smooth',
           });
+
+          clearTimeout(deltaYTimer);
+          deltaYTimer = setTimeout(() => {
+            cumulativeDeltaY = 0;
+          }, 100);
         }
+
+        lastTouchClientY = isTouchScreen
+          ? e.touches[0].clientY
+          : lastTouchClientY;
+        lastDeltaY = deltaY;
       };
     };
 
