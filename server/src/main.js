@@ -1,9 +1,9 @@
-import ScrollIndicator from '../components/scrollIndicator/ScrollIndicator';
+import Main from '../components/main/Main';
 import Sidebar from '../components/sidebar/Sidebar';
 
 function main() {
   new Sidebar('#sidebar');
-  new ScrollIndicator('#scroll-indicator');
+  new Main('#main');
 }
 
 main();

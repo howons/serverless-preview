@@ -78,6 +78,10 @@ export default class Component {
       callback,
     });
   }
+  unmount() {
+    singleton[this.idSelector] = null;
+    this.$target.remove();
+  }
 
   /* util methods */
   get isRoot() {
