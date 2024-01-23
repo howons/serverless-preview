@@ -1,8 +1,12 @@
 import Component from '../core';
 
-const SCROLL_MAX = 1000;
+const SCROLL_MAX = 800;
 export default class ScrollIndicator extends Component {
   setup() {
+    this.state = {
+      scrollLevel: 0,
+    };
+
     this.refs = {
       mouseX: 0,
       scrollCounter: 0,
@@ -17,6 +21,25 @@ export default class ScrollIndicator extends Component {
     super.hydrate();
   }
 
+  render() {
+    Array.from({ length: Math.round(SCROLL_MAX / 100) + 1 })
+      .map((_, index) => index)
+      .forEach((num) => {
+        this.$target.classList.toggle(
+          `scroll-indicator--level${num}`,
+          this.state.scrollLevel === num,
+        );
+        if (num > 0) {
+          this.$target.classList.toggle(
+            `scroll-indicator--level${-num}`,
+            this.state.scrollLevel === -num,
+          );
+        }
+      });
+
+    super.render();
+  }
+
   addScrollCountEvent() {
     this.addEvent('mousemove', '#main', (e) => {
       this.refs.mouseX = e.clientX;
@@ -24,9 +47,11 @@ export default class ScrollIndicator extends Component {
 
     const countOverScroll = (e) => {
       let lastTouchClientY = 0;
+      let scrollTimer = null;
 
       return (e) => {
-        const deltaY = e.deltaY ?? lastTouchClientY - e.touches[0].clientY;
+        const deltaY =
+          e.deltaY ?? 5 * (lastTouchClientY - e.touches[0].clientY);
         lastTouchClientY = e.touches ? e.touches[0].clientY : lastTouchClientY;
 
         const isTop = e.currentTarget.scrollTop === 0;
@@ -41,12 +66,30 @@ export default class ScrollIndicator extends Component {
             this.refs.scrollCounter = SCROLL_MAX;
           if (this.refs.scrollCounter < -SCROLL_MAX)
             this.refs.scrollCounter = -SCROLL_MAX;
+
+          this.setScrollLevel();
         }
-        console.log(this.refs.scrollCounter);
+
+        clearInterval(scrollTimer);
+        scrollTimer = setInterval(() => {
+          this.refs.scrollCounter =
+            this.refs.scrollCounter < 1 && this.refs.scrollCounter > -1
+              ? 0
+              : this.refs.scrollCounter * 0.6;
+
+          this.setScrollLevel();
+        }, 700);
       };
     };
 
     this.addEvent('wheel', '#main', countOverScroll());
     this.addEvent('touchmove', '#main', countOverScroll());
+  }
+
+  setScrollLevel() {
+    const nextScrollLevel = Math.round(this.refs.scrollCounter / 100);
+    if (this.state.scrollLevel !== nextScrollLevel) {
+      this.setState({ scrollLevel: nextScrollLevel });
+    }
   }
 }
