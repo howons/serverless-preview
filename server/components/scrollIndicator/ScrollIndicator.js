@@ -1,6 +1,9 @@
+import { getNextRoute, getPrevRoute } from '../../utils/routes';
 import Component from '../core';
 
 const SCROLL_MAX = 800;
+const SCROLL_LEVEL_MAX = Math.round(SCROLL_MAX / 100);
+
 export default class ScrollIndicator extends Component {
   setup() {
     this.state = {
@@ -10,6 +13,7 @@ export default class ScrollIndicator extends Component {
     this.refs = {
       mouseX: 0,
       scrollCounter: 0,
+      scrollLevelLock: false,
     };
 
     super.setup();
@@ -22,7 +26,7 @@ export default class ScrollIndicator extends Component {
   }
 
   render() {
-    Array.from({ length: Math.round(SCROLL_MAX / 100) + 1 })
+    Array.from({ length: SCROLL_LEVEL_MAX + 1 })
       .map((_, index) => index)
       .forEach((num) => {
         this.$target.classList.toggle(
@@ -36,6 +40,26 @@ export default class ScrollIndicator extends Component {
           );
         }
       });
+
+    const nextTriggered = this.state.scrollLevel >= SCROLL_LEVEL_MAX;
+    const prevTriggered = this.state.scrollLevel <= -SCROLL_LEVEL_MAX;
+
+    if (nextTriggered || prevTriggered) {
+      const targetPathname = nextTriggered
+        ? getNextRoute(this.props.curPathname)
+        : getPrevRoute(this.props.curPathname);
+
+      if (targetPathname) {
+        this.refs.scrollLevelLock = true;
+        this.setState({
+          scrollLevel: this.state.scrollLevel + (nextTriggered ? -1 : 1),
+        });
+
+        this.props.loadPageData(targetPathname).then(() => {
+          this.refs.scrollLevelLock = false;
+        });
+      }
+    }
 
     super.render();
   }
@@ -87,6 +111,8 @@ export default class ScrollIndicator extends Component {
   }
 
   setScrollLevel() {
+    if (this.refs.scrollLevelLock) return;
+
     const nextScrollLevel = Math.round(this.refs.scrollCounter / 100);
     if (this.state.scrollLevel !== nextScrollLevel) {
       this.setState({ scrollLevel: nextScrollLevel });
