@@ -12,7 +12,7 @@ export const generateHTML = (title, main) => `
     <body>
       <div id="app" class="app">
         ${sidebar}
-        ${main}
+        ${main}<div id="main-divider"></div>
         ${scrollIndicator}
       </div>
       <script src="./src/main.js" type="module"></script>

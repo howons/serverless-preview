@@ -1,4 +1,4 @@
-import { checkIsBeforeOrAfter } from '../../utils/routes';
+import { checkIsBeforeOrAfter, getUrl } from '../../utils/routes';
 import Component from '../core';
 import ScrollIndicator from '../scrollIndicator/ScrollIndicator';
 
@@ -25,6 +25,11 @@ export default class Main extends Component {
   }
 
   render() {
+    if (!window.location.pathname.includes(this.state.curPathname)) {
+      this.$target.innerHTML = mainHtmlCache[this.state.curPathname].data;
+      history.pushState({}, '', getUrl(this.state.curPathname));
+    }
+
     super.render();
   }
 
@@ -41,22 +46,29 @@ export default class Main extends Component {
   }
 
   async loadPageData(pathname) {
-    if (mainHtmlCache[pathname] && mainHtmlCache[pathname].status !== 'error') {
-      return;
+    if (mainHtmlCache[pathname]) {
+      if (mainHtmlCache[pathname].status === 'loading') {
+        return;
+      }
+      if (mainHtmlCache[pathname].status === 'loaded') {
+        this.setState({ curPathname: pathname });
+        return;
+      }
     }
 
     try {
       this.setHtmlData(pathname, 'loading', '');
 
-      const url = `${window.location.protocol}//${window.location.host}${pathname}`;
-      const response = await fetch(url);
+      const response = await fetch(getUrl(pathname));
 
       if (!response.ok) {
         throw new Error(response?.statusText ?? 'something wrong');
       }
 
-      console.log(response);
-      this.setHtmlData(pathname, 'loaded', '');
+      const mainInnerHTML = this.splitMainInnerHTML(await response.text());
+      this.setHtmlData(pathname, 'loaded', mainInnerHTML);
+
+      this.setState({ curPathname: pathname });
     } catch (err) {
       console.error(err);
       this.setHtmlData(pathname, 'error', '');
@@ -79,5 +91,12 @@ export default class Main extends Component {
     if (isAfter) {
       this.setState({ nextPageStatus: status });
     }
+  }
+
+  splitMainInnerHTML(html) {
+    return html
+      .split('<div id="main" class="main">')[1]
+      .split('<div id="main-divider"></div>')[0]
+      .slice(0, -7);
   }
 }

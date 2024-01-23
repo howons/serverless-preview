@@ -51,6 +51,7 @@ export default class ScrollIndicator extends Component {
 
       if (targetPathname) {
         this.refs.scrollLevelLock = true;
+
         this.setState({
           scrollLevel: this.state.scrollLevel + (nextTriggered ? -1 : 1),
         });

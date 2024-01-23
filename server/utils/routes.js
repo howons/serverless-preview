@@ -17,7 +17,6 @@ export const getNextRoute = (pathname) => {
 
 export const getPrevRoute = (pathname) => {
   const curIndex = findPathIndex(pathname);
-  console.log(curIndex);
   if (curIndex <= 0) return;
 
   return ROUTES[curIndex - 1];
@@ -31,6 +30,10 @@ export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {
     isBefore: targetIndex - curIndex < 0,
     ifAfter: targetIndex - curIndex > 0,
   };
+};
+
+export const getUrl = (pathname) => {
+  return `${window.location.protocol}//${window.location.host}/dev${pathname}`;
 };
 
 const findPathIndex = (pathname) => {
