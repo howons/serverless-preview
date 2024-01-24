@@ -122,7 +122,7 @@ body {
   flex-grow: 1;
 }
 .sidebar-item__0 > a:hover {
-  transform: translateX(1rem);
+  transform: translateX(-1rem);
 }
 .sidebar-item__0.open > a {
   flex-grow: 0;

@@ -50,11 +50,14 @@ export default class Sidebar extends Component {
     const sidebarItemsProp = {
       isOpen: this.state.isOpen,
       isActive: false,
+      pathname: '',
+      loadPageData: this.props.loadPageData,
     };
     this.refs.items = [];
 
     sidebarItems.forEach(({ id, path }, index) => {
-      sidebarItemsProp.isActive = window.location.pathname.includes(path);
+      sidebarItemsProp.isActive = this.props.curPathname === path;
+      sidebarItemsProp.pathname = path;
 
       const sidebarItem = this.addChild(
         SidebarItem,

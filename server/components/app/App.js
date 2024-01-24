@@ -8,8 +8,9 @@ const mainHtmlCache = {};
 
 export default class App extends Component {
   setup() {
+    const path = window.location.pathname;
     this.state = {
-      curPathname: window.location.pathname,
+      curPathname: path.includes('/dev') ? path.slice(4) : path,
       nextPageStatus: 'empty',
       prevPageStatus: 'empty',
     };
@@ -27,7 +28,10 @@ export default class App extends Component {
   }
 
   mounted() {
-    const sidebarProp = {};
+    const sidebarProp = {
+      curPathname: this.state.curPathname,
+      loadPageData: this.loadPageData.bind(this),
+    };
     this.addChild(Sidebar, '#sidebar', sidebarProp, null);
 
     const mainProp = {

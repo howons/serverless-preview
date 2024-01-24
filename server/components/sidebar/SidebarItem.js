@@ -1,18 +1,19 @@
 import Component from '../core';
 
 export default class SidebarItem extends Component {
+  hydrate() {
+    this.addEvent('click', this.linkIdSelector, () => {
+      this.$target.scrollIntoView({ behavior: 'smooth' });
+      this.props.loadPageData(this.props.pathname);
+    });
+
+    super.hydrate();
+  }
+
   render() {
     this.$target.classList.toggle('open', this.props.isOpen);
 
     super.render();
-  }
-
-  hydrate() {
-    this.addEvent('click', this.linkIdSelector, () => {
-      this.$target.scrollIntoView({ behavior: 'smooth' });
-    });
-
-    super.hydrate();
   }
 
   mounted() {
