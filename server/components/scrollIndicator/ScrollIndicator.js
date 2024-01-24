@@ -14,6 +14,8 @@ export default class ScrollIndicator extends Component {
       mouseX: 0,
       scrollCounter: 0,
       scrollLevelLock: false,
+      scrollTimer: null,
+      scrollInterval: null,
     };
 
     super.setup();
@@ -58,6 +60,12 @@ export default class ScrollIndicator extends Component {
 
         this.props.loadPageData(targetPathname).then(() => {
           this.refs.scrollLevelLock = false;
+
+          clearTimeout(this.refs.scrollTimer);
+          clearInterval(this.refs.scrollInterval);
+          this.refs.scrollCounter = 0;
+
+          this.setState({ scrollLevel: 0 });
         });
       }
     }
@@ -72,12 +80,13 @@ export default class ScrollIndicator extends Component {
 
     const countOverScroll = (e) => {
       let lastTouchClientY = 0;
-      let scrollTimer = null;
 
       return (e) => {
         const deltaY =
           e.deltaY ?? 5 * (lastTouchClientY - e.touches[0].clientY);
         lastTouchClientY = e.touches ? e.touches[0].clientY : lastTouchClientY;
+
+        if (e.touches && (deltaY > 300 || deltaY < -300)) return;
 
         const isTop = e.currentTarget.scrollTop === 0;
         const isBottom =
@@ -95,15 +104,18 @@ export default class ScrollIndicator extends Component {
           this.setScrollLevel();
         }
 
-        clearInterval(scrollTimer);
-        scrollTimer = setInterval(() => {
-          this.refs.scrollCounter =
-            this.refs.scrollCounter < 1 && this.refs.scrollCounter > -1
-              ? 0
-              : this.refs.scrollCounter * 0.6;
+        clearTimeout(this.refs.scrollTimer);
+        clearInterval(this.refs.scrollInterval);
+        this.refs.scrollTimer = setTimeout(() => {
+          this.refs.scrollInterval = setInterval(() => {
+            this.refs.scrollCounter =
+              this.refs.scrollCounter < 1 && this.refs.scrollCounter > -1
+                ? 0
+                : this.refs.scrollCounter * 0.93;
 
-          this.setScrollLevel();
-        }, 700);
+            this.setScrollLevel();
+          }, 100);
+        }, 1000);
       };
     };
 
