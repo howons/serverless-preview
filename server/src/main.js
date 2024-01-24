@@ -1,9 +1,7 @@
-import Main from '../components/main/Main';
-import Sidebar from '../components/sidebar/Sidebar';
+import App from '../components/app/App';
 
 function main() {
-  new Sidebar('#sidebar');
-  new Main('#main');
+  new App('#app');
 }
 
 main();

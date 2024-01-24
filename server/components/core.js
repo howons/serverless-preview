@@ -70,8 +70,8 @@ export default class Component {
     this.state = { ...this.state, ...nextState };
     this.render();
   }
-  addChild(Child, selector, props) {
-    return new Child(selector, props, this.root);
+  addChild(Child, selector, props, root = this.root) {
+    return new Child(selector, props, root);
   }
   addEvent(eventType, selector, callback) {
     if (!eventCallbacks[this.root]) return;
