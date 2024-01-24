@@ -59,13 +59,14 @@ export default class ScrollIndicator extends Component {
         });
 
         this.props.loadPageData(targetPathname).then(() => {
-          this.refs.scrollLevelLock = false;
-
           clearTimeout(this.refs.scrollTimer);
           clearInterval(this.refs.scrollInterval);
           this.refs.scrollCounter = 0;
 
-          this.setState({ scrollLevel: 0 });
+          setTimeout(() => {
+            this.refs.scrollLevelLock = false;
+            this.setState({ scrollLevel: 0 });
+          }, 100);
         });
       }
     }
