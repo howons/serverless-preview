@@ -6,6 +6,7 @@ export const generateHTML = (title, main) => `
   <html lang="kr">
     <head>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width" />
       <title>${title}</title>
       <link rel="stylesheet" href="./src/style.css"/>
     </head>

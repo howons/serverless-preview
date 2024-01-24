@@ -15,7 +15,7 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 3rem;
+  width: 0;
   height: 100%;
   overflow-x: visible;
 }
@@ -64,7 +64,7 @@ body {
 }
 
 .sidebar__inner {
-  width: 20rem;
+  width: 18rem;
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
