@@ -36,8 +36,6 @@ export default class Sidebar extends Component {
       },
     );
 
-    this.restrictScrollAreaWhenClosed();
-
     super.hydrate();
   }
 
@@ -86,57 +84,5 @@ export default class Sidebar extends Component {
       const newIndex = index - targetIndex - (entry.isIntersecting ? 0 : 1);
       item.$target.classList.replace(indexClass, `${prefix}__${newIndex}`);
     });
-  }
-
-  restrictScrollAreaWhenClosed() {
-    this.refs.innerRef.addEventListener('mousemove', (e) => {
-      this.refs.mouseX = e.clientX;
-    });
-    this.refs.innerRef.addEventListener('touchstart', (e) => {
-      this.refs.mouseX = e.touches[0].clientX;
-    });
-
-    const handleWheel = (e) => {
-      let lastTouchClientY = 0;
-      let cumulativeDeltaY = 0;
-      let deltaYTimer = null;
-      let lastDeltaY = 0;
-
-      return (e) => {
-        if (this.refs.mouseX <= 50 || this.state.isOpen) return;
-
-        e.preventDefault();
-
-        const deltaY = e.deltaY ?? lastTouchClientY - e.touches[0].clientY;
-
-        const isTouchScreen = !!e.touches;
-        const isTouchpad = lastDeltaY !== deltaY && lastDeltaY !== -deltaY;
-
-        if (isTouchScreen || isTouchpad) {
-          this.refs.mainRef.scrollTop += deltaY;
-        } else {
-          if (cumulativeDeltaY * deltaY <= 0) cumulativeDeltaY = 0;
-          cumulativeDeltaY += deltaY;
-
-          this.refs.mainRef.scrollBy({
-            top: cumulativeDeltaY / 3,
-            behavior: 'smooth',
-          });
-
-          clearTimeout(deltaYTimer);
-          deltaYTimer = setTimeout(() => {
-            cumulativeDeltaY = 0;
-          }, 100);
-        }
-
-        lastTouchClientY = isTouchScreen
-          ? e.touches[0].clientY
-          : lastTouchClientY;
-        lastDeltaY = deltaY;
-      };
-    };
-
-    this.refs.innerRef.addEventListener('wheel', handleWheel());
-    this.refs.innerRef.addEventListener('touchmove', handleWheel());
   }
 }

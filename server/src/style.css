@@ -7,15 +7,17 @@ body {
 
 .app {
   position: relative;
+  display: flex;
   width: 100vw;
   height: 100vh;
 }
 
 .sidebar {
-  position: fixed;
   display: flex;
   flex-direction: column;
+  width: 3rem;
   height: 100%;
+  overflow-x: visible;
 }
 
 .close-box {
@@ -25,7 +27,7 @@ body {
   width: 3rem;
   height: 3rem;
   background-color: rgb(146, 185, 234);
-  z-index: 1;
+  z-index: 11;
 }
 
 .close-box__slash {
@@ -62,6 +64,7 @@ body {
 }
 
 .sidebar__inner {
+  width: 20rem;
   height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
@@ -78,6 +81,7 @@ body {
   flex-direction: row-reverse;
   padding: 0.5rem 0 0.5rem 3.5rem;
   font-size: 2rem;
+  z-index: 10;
   scroll-snap-align: start;
 }
 .sidebar-item.active {
@@ -133,10 +137,12 @@ body {
 }
 
 .main {
+  left: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
   height: 100%;
   overflow-y: auto;
 }
