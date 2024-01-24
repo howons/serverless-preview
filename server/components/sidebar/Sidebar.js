@@ -13,8 +13,6 @@ export default class Sidebar extends Component {
       items: [],
       io: null,
       innerRef: this.$target.querySelector('#sidebar__inner'),
-      mouseX: 0,
-      mainRef: document.querySelector('#main'),
     };
 
     super.setup();
