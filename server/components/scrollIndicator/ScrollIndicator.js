@@ -1,3 +1,4 @@
+import { ID } from '../../utils/ids';
 import { getNextRoute, getPrevRoute } from '../../utils/routes';
 import Component from '../core';
 
@@ -75,7 +76,7 @@ export default class ScrollIndicator extends Component {
   }
 
   addScrollCountEvent() {
-    this.addEvent('mousemove', '#main', (e) => {
+    this.addEvent('mousemove', ID.MAIN, (e) => {
       this.refs.mouseX = e.clientX;
     });
 
@@ -120,8 +121,8 @@ export default class ScrollIndicator extends Component {
       };
     };
 
-    this.addEvent('wheel', '#main', countOverScroll());
-    this.addEvent('touchmove', '#main', countOverScroll());
+    this.addEvent('wheel', ID.MAIN, countOverScroll());
+    this.addEvent('touchmove', ID.MAIN, countOverScroll());
   }
 
   setScrollLevel() {

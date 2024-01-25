@@ -1,3 +1,4 @@
+import { ID, getStyleTagId } from '../../utils/ids';
 import { checkIsBeforeOrAfter, getUrl } from '../../utils/routes';
 import Component from '../core';
 import Main from '../main/Main';
@@ -21,9 +22,9 @@ export default class App extends Component {
   hydrate() {
     htmlCache[this.state.curPathname] = {
       status: 'loaded',
-      mainInner: this.$target.querySelector('#main').innerHTML,
+      mainInner: this.$target.querySelector(ID.MAIN).innerHTML,
       styleTag: document.head.querySelector(
-        `#style-${this.state.curPathname.slice(1)}`,
+        getStyleTagId(this.state.curPathname),
       ),
     };
 
@@ -35,13 +36,13 @@ export default class App extends Component {
       curPathname: this.state.curPathname,
       loadPageData: this.loadPageData.bind(this),
     };
-    this.addChild(Sidebar, '#sidebar', sidebarProp, null);
+    this.addChild(Sidebar, ID.SIDEBAR, sidebarProp, null);
 
     const mainProp = {
       curPathname: this.state.curPathname,
       htmlCache: htmlCache[this.state.curPathname],
     };
-    this.addChild(Main, '#main', mainProp);
+    this.addChild(Main, ID.MAIN, mainProp);
 
     const scrollIndicatorProp = {
       curPathname: this.state.curPathname,
@@ -49,7 +50,7 @@ export default class App extends Component {
       nextPageStatus: this.state.nextPageStatus,
       prevPageStatus: this.state.prevPageStatus,
     };
-    this.addChild(ScrollIndicator, '#scroll-indicator', scrollIndicatorProp);
+    this.addChild(ScrollIndicator, ID.SCROLL_INDICATOR, scrollIndicatorProp);
 
     super.mounted();
   }

@@ -1,3 +1,4 @@
+import { ID } from '../../utils/ids';
 import Component from '../core';
 import CloseBox from './CloseBox';
 import SidebarItem from './SidebarItem';
@@ -12,7 +13,7 @@ export default class Sidebar extends Component {
     this.refs = {
       items: [],
       io: null,
-      innerRef: this.$target.querySelector('#sidebar__inner'),
+      innerRef: this.$target.querySelector(ID.SIDEBAR_INNER),
     };
 
     super.setup();
@@ -72,7 +73,7 @@ export default class Sidebar extends Component {
       if (sidebarItemsProp.isActive) closeBoxProp.activeItemRef = sidebarItem;
     });
 
-    this.addChild(CloseBox, '#close-box', closeBoxProp);
+    this.addChild(CloseBox, ID.CLOSE_BOX, closeBoxProp);
   }
 
   reorderItemsClass(entry) {
