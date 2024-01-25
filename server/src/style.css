@@ -145,6 +145,12 @@ body {
   flex-grow: 1;
   height: 100%;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main::-webkit-scrollbar {
+  display: none;
 }
 
 .scroll-container {
@@ -171,22 +177,22 @@ body {
   transform: skewX(-1deg);
 }
 .scroll-indicator--level3 {
-  transform: skewX(-1.5deg) translateX(0.1rem);
+  transform: skewX(-1.5deg) translateX(0.2vh);
 }
 .scroll-indicator--level4 {
-  transform: skewX(-2.2deg) translateX(0.15rem);
+  transform: skewX(-2.2deg) translateX(0.4vh);
 }
 .scroll-indicator--level5 {
-  transform: skewX(-3deg) translateX(0.2rem);
+  transform: skewX(-3deg) translateX(0.7vh);
 }
 .scroll-indicator--level6 {
-  transform: skewX(-3.8deg) translateX(0.3rem);
+  transform: skewX(-3.8deg) translateX(1.1vh);
 }
 .scroll-indicator--level7 {
-  transform: skewX(-5deg) translateX(0.43rem);
+  transform: skewX(-5deg) translateX(1.7vh);
 }
 .scroll-indicator--level8 {
-  transform: skewX(-6.5deg) translateX(0.6rem);
+  transform: skewX(-6.5deg) translateX(2.5vh);
 }
 .scroll-indicator--level-1 {
   transform: skewX(0.5deg);
@@ -195,22 +201,22 @@ body {
   transform: skewX(1deg);
 }
 .scroll-indicator--level-3 {
-  transform: skewX(1.5deg) translateX(0.1rem);
+  transform: skewX(1.5deg) translateX(0.2vh);
 }
 .scroll-indicator--level-4 {
-  transform: skewX(2.2deg) translateX(0.15rem);
+  transform: skewX(2.2deg) translateX(0.4vh);
 }
 .scroll-indicator--level-5 {
-  transform: skewX(3deg) translateX(0.2rem);
+  transform: skewX(3deg) translateX(0.7vh);
 }
 .scroll-indicator--level-6 {
-  transform: skewX(3.8deg) translateX(0.3rem);
+  transform: skewX(3.8deg) translateX(1.1vh);
 }
 .scroll-indicator--level-7 {
-  transform: skewX(5deg) translateX(0.43rem);
+  transform: skewX(5deg) translateX(1.7vh);
 }
 .scroll-indicator--level-8 {
-  transform: skewX(6.5deg) translateX(0.6rem);
+  transform: skewX(6.5deg) translateX(2.5vh);
 }
 
 .scroll-indicator__static {
