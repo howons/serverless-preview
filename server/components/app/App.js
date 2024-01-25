@@ -4,7 +4,7 @@ import Main from '../main/Main';
 import ScrollIndicator from '../scrollIndicator/ScrollIndicator';
 import Sidebar from '../sidebar/Sidebar';
 
-const mainHtmlCache = {};
+const htmlCache = {};
 
 export default class App extends Component {
   setup() {
@@ -19,9 +19,12 @@ export default class App extends Component {
   }
 
   hydrate() {
-    mainHtmlCache[this.state.curPathname] = {
+    htmlCache[this.state.curPathname] = {
       status: 'loaded',
-      data: this.$target.querySelector('#main').innerHTML,
+      mainInner: this.$target.querySelector('#main').innerHTML,
+      styleTag: document.head.querySelector(
+        `#style-${this.state.curPathname.slice(1)}`,
+      ),
     };
 
     super.hydrate();
@@ -36,7 +39,7 @@ export default class App extends Component {
 
     const mainProp = {
       curPathname: this.state.curPathname,
-      mainHtml: mainHtmlCache[this.state.curPathname],
+      htmlCache: htmlCache[this.state.curPathname],
     };
     this.addChild(Main, '#main', mainProp);
 
@@ -52,18 +55,18 @@ export default class App extends Component {
   }
 
   async loadPageData(pathname) {
-    if (mainHtmlCache[pathname]) {
-      if (mainHtmlCache[pathname].status === 'loading') {
+    if (htmlCache[pathname]) {
+      if (htmlCache[pathname].status === 'loading') {
         return;
       }
-      if (mainHtmlCache[pathname].status === 'loaded') {
+      if (htmlCache[pathname].status === 'loaded') {
         this.setState({ curPathname: pathname });
         return;
       }
     }
 
     try {
-      this.setHtmlData(pathname, 'loading', '');
+      this.setHtmlData(pathname, 'loading');
 
       const response = await fetch(getUrl(pathname));
 
@@ -71,20 +74,23 @@ export default class App extends Component {
         throw new Error(response?.statusText ?? 'something wrong');
       }
 
-      const mainInnerHTML = this.splitMainInnerHTML(await response.text());
-      this.setHtmlData(pathname, 'loaded', mainInnerHTML);
+      const responseHtml = await response.text();
+      const mainInnerHTML = this.splitMainInnerHTML(responseHtml);
+      const headStyleTag = this.splitHeadStyleTag(responseHtml);
+      this.setHtmlData(pathname, 'loaded', mainInnerHTML, headStyleTag);
 
       this.setState({ curPathname: pathname });
     } catch (err) {
       console.error(err);
-      this.setHtmlData(pathname, 'error', '');
+      this.setHtmlData(pathname, 'error');
     }
   }
 
-  setHtmlData(pathname, status, data) {
-    mainHtmlCache[pathname] = {
+  setHtmlData(pathname, status, mainInner = '', styleTag = '') {
+    htmlCache[pathname] = {
       status,
-      data,
+      mainInner,
+      styleTag,
     };
 
     const { isBefore, isAfter } = checkIsBeforeOrAfter(
@@ -103,6 +109,11 @@ export default class App extends Component {
     return html
       .split('<div id="main" class="main">')[1]
       .split('<div id="main-divider"></div>')[0]
-      .slice(0, -7);
+      .slice(0, -13);
+  }
+  splitHeadStyleTag(html) {
+    return html
+      .split('<link rel="stylesheet" href="./src/style.css"/>')[1]
+      .split('</head>')[0];
   }
 }
