@@ -1,0 +1,17 @@
+.intro {
+  &__title {
+    margin: 0 5% 0 5%;
+    text-align: center;
+    font-size: 2.3rem;
+    line-height: 1.5;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+
+  &__profile-summary {
+    color: rgb(122, 122, 122);
+    position: absolute;
+    bottom: 1rem;
+    right: 2rem;
+  }
+}

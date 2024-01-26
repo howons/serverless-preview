@@ -1,0 +1,346 @@
+html,
+body {
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+  overscroll-behavior-y: contain;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 0;
+  height: 100%;
+  overflow-x: visible;
+
+  &__inner {
+    width: 18rem;
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__scroll-helper {
+    height: calc(100% - 2.3rem);
+  }
+}
+
+.sidebar-item {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 0.4rem 0 0.4rem 3.5rem;
+  font-size: 2rem;
+  z-index: 10;
+  scroll-snap-align: start;
+
+  &.active {
+    color: rgb(83, 139, 208);
+  }
+
+  &.open > a {
+    transform: translateX(-3rem);
+  }
+
+  > a {
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.35s ease;
+    transform: translateX(-15.7rem) scale(0.7);
+
+    &:hover {
+      transform: translateX(-3rem);
+      flex-grow: 1;
+    }
+  }
+
+  &__0 {
+    > a {
+      transform: translateX(0rem) scale(1);
+      flex-grow: 1;
+
+      &:hover {
+        transform: translateX(-1rem);
+      }
+    }
+
+    &.open > a {
+      flex-grow: 0;
+
+      &:hover {
+        transform: translateX(0rem);
+        flex-grow: 1;
+      }
+    }
+  }
+  &__1 > a {
+    transform: translateX(-10rem) scale(0.9);
+  }
+  &__2 > a {
+    transform: translateX(-13rem) scale(0.8);
+  }
+  &__3 > a {
+    transform: translateX(-14.4rem) scale(0.75);
+  }
+  &__4 > a {
+    transform: translateX(-15rem) scale(0.72);
+  }
+  &__-1 > a {
+    transform: translateX(-10rem) scale(0.9);
+  }
+}
+
+.close-box {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgb(146, 185, 234);
+  z-index: 11;
+
+  &__slash {
+    position: absolute;
+    width: 1.7rem;
+    height: 0;
+    border-bottom: 2px solid rgb(47, 74, 107);
+    transition: all 0.2s ease;
+  }
+
+  &__upper-slash {
+    top: 0.85rem;
+    left: 0.65rem;
+    transform-origin: 10.5% 0;
+  }
+  &__middle-slash {
+    top: 1.5rem;
+    left: 0.65rem;
+  }
+  &__bottom-slash {
+    top: 2.15rem;
+    left: 0.65rem;
+    transform-origin: 10.5% 0;
+  }
+
+  &.open {
+    .close-box {
+      &__upper-slash {
+        transform: rotate(45deg) scaleX(1.41);
+      }
+      &__middle-slash {
+        transform: rotate(-45deg) scaleX(1.41);
+      }
+      &__bottom-slash {
+        transform: rotate(-45deg) scaleX(1.41);
+      }
+    }
+  }
+}
+
+.main {
+  left: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.scroll-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  right: -4rem;
+  width: 5rem;
+  height: 100%;
+  transition: all 0.3s ease-out;
+
+  &--level0 {
+    transform: skewX(0deg);
+  }
+  &--level1 {
+    transform: skewX(-0.5deg);
+
+    > .indicator__next {
+      opacity: 0.47;
+    }
+  }
+  &--level2 {
+    transform: skewX(-1deg);
+
+    > .indicator__next {
+      opacity: 0.43;
+    }
+  }
+  &--level3 {
+    transform: skewX(-1.5deg) translateX(0.2vh);
+
+    > .indicator__next {
+      opacity: 0.38;
+    }
+  }
+  &--level4 {
+    transform: skewX(-2.2deg) translateX(0.4vh);
+
+    > .indicator__next {
+      opacity: 0.32;
+    }
+  }
+  &--level5 {
+    transform: skewX(-3deg) translateX(0.7vh);
+
+    > .indicator__next {
+      opacity: 0.25;
+    }
+  }
+  &--level6 {
+    transform: skewX(-3.8deg) translateX(1.1vh);
+
+    > .indicator__next {
+      opacity: 0.17;
+    }
+  }
+  &--level7 {
+    transform: skewX(-5deg) translateX(1.7vh);
+
+    > .indicator__next {
+      opacity: 0.08;
+    }
+  }
+  &--level8 {
+    transform: skewX(-6.5deg) translateX(2.5vh);
+
+    > .indicator__next {
+      opacity: 0;
+    }
+  }
+  &--level-1 {
+    transform: skewX(0.5deg);
+
+    > .indicator__prev {
+      opacity: 0.47;
+    }
+  }
+  &--level-2 {
+    transform: skewX(1deg);
+
+    > .indicator__prev {
+      opacity: 0.43;
+    }
+  }
+  &--level-3 {
+    transform: skewX(1.5deg) translateX(0.2vh);
+
+    > .indicator__prev {
+      opacity: 0.38;
+    }
+  }
+  &--level-4 {
+    transform: skewX(2.2deg) translateX(0.4vh);
+
+    > .indicator__prev {
+      opacity: 0.32;
+    }
+  }
+  &--level-5 {
+    transform: skewX(3deg) translateX(0.7vh);
+
+    > .indicator__prev {
+      opacity: 0.25;
+    }
+  }
+  &--level-6 {
+    transform: skewX(3.8deg) translateX(1.1vh);
+
+    > .indicator__prev {
+      opacity: 0.17;
+    }
+  }
+  &--level-7 {
+    transform: skewX(5deg) translateX(1.7vh);
+
+    > .indicator__prev {
+      opacity: 0.08;
+    }
+  }
+  &--level-8 {
+    transform: skewX(6.5deg) translateX(2.5vh);
+
+    > .indicator__prev {
+      opacity: 0;
+    }
+  }
+
+  &__static {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0.3rem;
+    height: 100%;
+  }
+}
+
+.indicator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  &__next {
+    background: rgb(225, 246, 255);
+    background: linear-gradient(
+      0deg,
+      rgb(213, 239, 251) 0%,
+      rgb(91, 174, 247) 100%
+    );
+    opacity: 0.5;
+  }
+
+  &__prev {
+    background: rgb(123, 228, 106);
+    background: linear-gradient(
+      0deg,
+      rgba(123, 228, 106, 1) 0%,
+      rgba(218, 255, 231, 1) 100%
+    );
+    opacity: 0.5;
+  }
+}

@@ -1,11 +1,16 @@
 const path = require('path');
 const serverlessWebpack = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
-const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var configSls = {
   // entry를 따로 설정하지 않아도 됨
   entry: serverlessWebpack.lib.entries,
+  output: {
+    libraryTarget: 'commonjs',
+    path: path.join(__dirname, '.webpack/service'),
+    filename: '[name].js',
+  },
   target: 'node',
   mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
   // webpack의 critical warning 메시지를 피하기 위한 용도
@@ -13,7 +18,6 @@ var configSls = {
   resolve: {
     modules: [path.resolve('./server'), 'node_modules'], // server 디렉토리 내부에서 absolute import를 사용하기 위한 용도
   },
-
   module: {
     rules: [
       {
@@ -30,26 +34,18 @@ var configSls = {
       },
     ],
   },
-  output: {
-    libraryTarget: 'commonjs',
-    path: path.join(__dirname, '.webpack/service'),
-    filename: '[name].js',
-  },
 };
 
-var configSrc = {
+var configSrcJs = {
   entry: { 'server/src/main': './server/src/main.js' },
+  output: {
+    path: path.join(__dirname, '.webpack/service'),
+  },
   mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
-  plugins: [
-    new CopyPlugin({
-      patterns: [{ from: './server/src/*.css', to: './' }],
-    }),
-  ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
@@ -58,13 +54,34 @@ var configSrc = {
             },
           },
         ],
+        exclude: /node_modules/,
       },
     ],
   },
-  output: {
-    path: path.join(__dirname, '.webpack/service'),
-    filename: '[name].js',
-  },
 };
 
-module.exports = [configSls, configSrc];
+var configSrcCss = {
+  entry: {
+    'server/src/normalize': './server/src/normalize.css',
+    'server/src/style': './server/src/style.scss',
+    'server/src/intro': './server/src/intro.scss',
+    'server/src/profile': './server/src/profile.scss',
+  },
+  output: {
+    path: path.join(__dirname, '.webpack/service'),
+  },
+  mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  devtool: 'source-map',
+};
+
+module.exports = [configSls, configSrcJs, configSrcCss];
