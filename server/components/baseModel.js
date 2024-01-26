@@ -8,6 +8,8 @@ export const baseModel = (component) => `
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width" />
       <title>${component.title}</title>
+      <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+      <link rel="stylesheet" href="./src/normalize.css"/>
       <link rel="stylesheet" href="./src/style.css"/>
       ${component.style}
     </head>
