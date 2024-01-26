@@ -93,7 +93,7 @@ body {
 .sidebar-item {
   display: flex;
   flex-direction: row-reverse;
-  padding: 0.5rem 0 0.5rem 3.5rem;
+  padding: 0.4rem 0 0.4rem 3.5rem;
   font-size: 2rem;
   z-index: 10;
   scroll-snap-align: start;
@@ -107,26 +107,26 @@ body {
   cursor: pointer;
   user-select: none;
   transition: all 0.35s ease;
-  transform: translateX(-15.7rem);
+  transform: translateX(-15.7rem) scale(0.7);
 }
 .sidebar-item__0 > a {
-  transform: translateX(0rem);
+  transform: translateX(0rem) scale(1);
   flex-grow: 1;
 }
 .sidebar-item__1 > a {
-  transform: translateX(-10rem);
+  transform: translateX(-10rem) scale(0.9);
 }
 .sidebar-item__2 > a {
-  transform: translateX(-13rem);
+  transform: translateX(-13rem) scale(0.8);
 }
 .sidebar-item__3 > a {
-  transform: translateX(-14.4rem);
+  transform: translateX(-14.4rem) scale(0.75);
 }
 .sidebar-item__4 > a {
-  transform: translateX(-15rem);
+  transform: translateX(-15rem) scale(0.72);
 }
 .sidebar-item__-1 > a {
-  transform: translateX(-10rem);
+  transform: translateX(-10rem) scale(0.9);
 }
 .sidebar-item.open > a {
   transform: translateX(-3rem);
