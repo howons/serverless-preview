@@ -107,10 +107,7 @@ export default class App extends Component {
   }
 
   splitMainInnerHTML(html) {
-    return html
-      .split('<div id="main" class="main">')[1]
-      .split('<div id="main-divider"></div>')[0]
-      .slice(0, -13);
+    return html.split('<div id="main-divider"></div>')[1].slice(0, -13);
   }
   splitHeadStyleTag(html) {
     return html

@@ -3,7 +3,7 @@ export const intro = {
   style: `<link id="style-intro" rel="stylesheet" href="./src/intro.css" />`,
   main: `
     <div id="main" class="main intro">
-      <h1 class="intro__title">기초를 다지는 프론트엔드 개발자, 신호원입니다</h1>
+      <h1 class="intro__title">원리를 알아가는 프론트엔드 개발자, 신호원입니다</h1>
       <section class="intro__profile-summary">
         <p class="intro__profile-item">신호원</p>
         <p class="intro__profile-item">010-6535-7020</p>
