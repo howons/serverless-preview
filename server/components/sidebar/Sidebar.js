@@ -38,6 +38,12 @@ export default class Sidebar extends Component {
     super.hydrate();
   }
 
+  render() {
+    this.refs.innerRef.classList.toggle('open', this.state.isOpen);
+
+    super.render();
+  }
+
   mounted() {
     const closeBoxProp = {
       isOpen: this.state.isOpen,
