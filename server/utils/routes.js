@@ -46,6 +46,11 @@ export const getUrl = (pathname) => {
   return `${window.location.protocol}//${window.location.host}/dev${pathname}`;
 };
 
+export const getWindowPathname = () => {
+  const path = window.location.pathname;
+  return path.includes('/dev') ? path.slice(4) : path;
+};
+
 const findPathIndex = (pathname) => {
   return ROUTES.findIndex(
     (route) => route === pathname || route === pathname.split('/dev')?.[1],

@@ -4,6 +4,7 @@ import {
   ROUTE_TITLE,
   checkIsBeforeOrAfter,
   getUrl,
+  getWindowPathname,
 } from '../../utils/routes';
 import { getStyleTag } from '../../utils/styles';
 import Component from '../core';
@@ -16,7 +17,7 @@ const htmlCache = {};
 export default class App extends Component {
   setup() {
     this.state = {
-      curPathname: this.getWindowPathname(),
+      curPathname: getWindowPathname(),
       nextPageStatus: 'empty',
       prevPageStatus: 'empty',
     };
@@ -31,7 +32,7 @@ export default class App extends Component {
     };
 
     window.addEventListener('popstate', (e) => {
-      this.setPathname(this.getWindowPathname());
+      this.setPathname(getWindowPathname());
     });
 
     super.hydrate();
@@ -134,10 +135,5 @@ export default class App extends Component {
 
     const styleTag = getStyleTag(pathname);
     document.head.insertAdjacentHTML('beforeend', styleTag);
-  }
-
-  getWindowPathname() {
-    const path = window.location.pathname;
-    return path.includes('/dev') ? path.slice(4) : path;
   }
 }
