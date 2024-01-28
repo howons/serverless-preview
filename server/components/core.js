@@ -35,6 +35,7 @@ export default class Component {
         mousemove: [],
         wheel: [],
         touchmove: [],
+        popstate: [],
       };
     }
   }

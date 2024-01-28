@@ -1,5 +1,10 @@
 import { ID, getStyleTagId } from '../../utils/ids';
-import { ROUTES, checkIsBeforeOrAfter, getUrl } from '../../utils/routes';
+import {
+  ROUTES,
+  ROUTE_TITLE,
+  checkIsBeforeOrAfter,
+  getUrl,
+} from '../../utils/routes';
 import { getStyleTag } from '../../utils/styles';
 import Component from '../core';
 import Main from '../main/Main';
@@ -10,9 +15,8 @@ const htmlCache = {};
 
 export default class App extends Component {
   setup() {
-    const path = window.location.pathname;
     this.state = {
-      curPathname: path.includes('/dev') ? path.slice(4) : path,
+      curPathname: this.getWindowPathname(),
       nextPageStatus: 'empty',
       prevPageStatus: 'empty',
     };
@@ -25,6 +29,10 @@ export default class App extends Component {
       status: 'loaded',
       mainInner: this.$target.querySelector(ID.MAIN).innerHTML,
     };
+
+    window.addEventListener('popstate', (e) => {
+      this.setPathname(this.getWindowPathname());
+    });
 
     super.hydrate();
   }
@@ -64,7 +72,7 @@ export default class App extends Component {
         return;
       }
       if (htmlCache[pathname].status === 'loaded') {
-        this.setState({ curPathname: pathname });
+        this.setPathname(pathname, true);
         return;
       }
     }
@@ -83,10 +91,19 @@ export default class App extends Component {
       const mainInnerHTML = this.splitMainInnerHTML(responseHtml);
       this.setHtmlData(pathname, 'loaded', mainInnerHTML);
 
-      this.setState({ curPathname: pathname });
+      this.setPathname(pathname, true);
     } catch (err) {
       console.error(err);
       this.setHtmlData(pathname, 'error');
+    }
+  }
+
+  setPathname(pathname, shouldPush) {
+    this.setState({ curPathname: pathname });
+    document.title = ROUTE_TITLE[pathname];
+
+    if (shouldPush) {
+      history.pushState({}, '', getUrl(pathname));
     }
   }
 
@@ -117,5 +134,10 @@ export default class App extends Component {
 
     const styleTag = getStyleTag(pathname);
     document.head.insertAdjacentHTML('beforeend', styleTag);
+  }
+
+  getWindowPathname() {
+    const path = window.location.pathname;
+    return path.includes('/dev') ? path.slice(4) : path;
   }
 }

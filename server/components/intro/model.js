@@ -1,6 +1,5 @@
 export const intro = {
-  id: 'intro',
-  title: '신호원 포트폴리오',
+  id: '/intro',
   content: `
     <div id="intro" class="intro">
       <h1 class="intro__title">원리를 알아가는 프론트엔드 개발자, 신호원입니다</h1>
