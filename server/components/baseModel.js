@@ -1,3 +1,4 @@
+import { getStyleTag } from '../utils/styles';
 import { scrollIndicator } from './scrollIndicator/model';
 import { sidebar } from './sidebar/model';
 
@@ -11,7 +12,7 @@ export const baseModel = (component) => `
       <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
       <link rel="stylesheet" href="./src/normalize.css"/>
       <link rel="stylesheet" href="./src/style.css"/>
-      ${component.style}
+      ${getStyleTag(component.id)}
     </head>
     <body>
       <div id="app" class="app">

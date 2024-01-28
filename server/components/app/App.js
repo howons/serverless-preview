@@ -1,5 +1,6 @@
 import { ID, getStyleTagId } from '../../utils/ids';
-import { checkIsBeforeOrAfter, getUrl } from '../../utils/routes';
+import { ROUTES, checkIsBeforeOrAfter, getUrl } from '../../utils/routes';
+import { getStyleTag } from '../../utils/styles';
 import Component from '../core';
 import Main from '../main/Main';
 import ScrollIndicator from '../scrollIndicator/ScrollIndicator';
@@ -23,9 +24,6 @@ export default class App extends Component {
     htmlCache[this.state.curPathname] = {
       status: 'loaded',
       mainInner: this.$target.querySelector(ID.MAIN).innerHTML,
-      styleTag: document.head.querySelector(
-        getStyleTagId(this.state.curPathname),
-      ),
     };
 
     super.hydrate();
@@ -56,6 +54,11 @@ export default class App extends Component {
   }
 
   async loadPageData(pathname) {
+    if (!ROUTES.some((route) => route === pathname)) {
+      console.error('Incorrect pathname: ', pathname);
+      return;
+    }
+
     if (htmlCache[pathname]) {
       if (htmlCache[pathname].status === 'loading') {
         return;
@@ -69,6 +72,7 @@ export default class App extends Component {
     try {
       this.setHtmlData(pathname, 'loading');
 
+      this.loadPageStylesheet(pathname);
       const response = await fetch(getUrl(pathname));
 
       if (!response.ok) {
@@ -77,8 +81,7 @@ export default class App extends Component {
 
       const responseHtml = await response.text();
       const mainInnerHTML = this.splitMainInnerHTML(responseHtml);
-      const headStyleTag = this.splitHeadStyleTag(responseHtml);
-      this.setHtmlData(pathname, 'loaded', mainInnerHTML, headStyleTag);
+      this.setHtmlData(pathname, 'loaded', mainInnerHTML);
 
       this.setState({ curPathname: pathname });
     } catch (err) {
@@ -87,11 +90,10 @@ export default class App extends Component {
     }
   }
 
-  setHtmlData(pathname, status, mainInner = '', styleTag = '') {
+  setHtmlData(pathname, status, mainInner = '') {
     htmlCache[pathname] = {
       status,
       mainInner,
-      styleTag,
     };
 
     const { isBefore, isAfter } = checkIsBeforeOrAfter(
@@ -109,9 +111,11 @@ export default class App extends Component {
   splitMainInnerHTML(html) {
     return html.split('<main id="main" class="main">')[1].split('</main>')[0];
   }
-  splitHeadStyleTag(html) {
-    return html
-      .split('<link rel="stylesheet" href="./src/style.css"/>')[1]
-      .split('</head>')[0];
+
+  loadPageStylesheet(pathname) {
+    if (document.head.querySelector(getStyleTagId(pathname))) return;
+
+    const styleTag = getStyleTag(pathname);
+    document.head.insertAdjacentHTML('beforeend', styleTag);
   }
 }

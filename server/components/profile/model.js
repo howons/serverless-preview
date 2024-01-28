@@ -1,8 +1,8 @@
 import { IMAGE_URL } from '../../utils/images';
 
 export const profile = {
+  id: 'profile',
   title: '프로필',
-  style: `<link id="style-profile" rel="stylesheet" href="./src/profile.css" />`,
   content: `
     <div id="profile" class="profile">
       <section class="profile__">
