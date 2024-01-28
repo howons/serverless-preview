@@ -16,9 +16,9 @@ export const baseModel = (component) => `
     <body>
       <div id="app" class="app">
         ${sidebar}
-        <div id="main-divider"></div>
-        ${component.main}
-        <div id="main-divider"></div>
+        <main id="main" class="main">
+          ${component.content}
+        </main>
         ${scrollIndicator}
       </div>
       <script src="./src/main.js" type="module"></script>
