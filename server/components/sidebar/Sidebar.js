@@ -13,7 +13,10 @@ export default class Sidebar extends Component {
     this.refs = {
       items: [],
       io: null,
+      lastPathname: '',
       innerRef: this.$target.querySelector(ID.SIDEBAR_INNER),
+      firstItemRef: null,
+      activeItemRef: null,
     };
 
     super.setup();
@@ -50,8 +53,8 @@ export default class Sidebar extends Component {
       setIsOpen: (nextIsOpen) => {
         this.setState({ isOpen: nextIsOpen });
       },
-      firstItemRef: null,
-      activeItemRef: null,
+      firstItemRef: this.refs.firstItemRef,
+      activeItemRef: this.refs.activeItemRef,
     };
 
     const sidebarItemsProp = {
@@ -75,9 +78,14 @@ export default class Sidebar extends Component {
       this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
 
-      if (index === 0) closeBoxProp.firstItemRef = sidebarItem;
-      if (sidebarItemsProp.isActive) closeBoxProp.activeItemRef = sidebarItem;
+      if (index === 0) this.refs.firstItemRef = sidebarItem;
+      if (sidebarItemsProp.isActive) this.refs.activeItemRef = sidebarItem;
     });
+
+    if (this.refs.lastPathname !== this.props.curPathname) {
+      this.refs.lastPathname = this.props.curPathname;
+      this.refs.activeItemRef.$target.scrollIntoView({ behavior: 'smooth' });
+    }
 
     this.addChild(CloseBox, ID.CLOSE_BOX, closeBoxProp);
   }

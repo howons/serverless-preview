@@ -1,9 +1,9 @@
+import { getWindowPathname } from '../../utils/routes';
 import Component from '../core';
 
 export default class SidebarItem extends Component {
   hydrate() {
     this.addEvent('click', this.linkIdSelector, () => {
-      this.$target.scrollIntoView({ behavior: 'smooth' });
       this.props.loadPageData(this.props.pathname);
     });
 
