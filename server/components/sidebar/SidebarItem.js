@@ -1,4 +1,3 @@
-import { getWindowPathname } from '../../utils/routes';
 import Component from '../core';
 
 export default class SidebarItem extends Component {
