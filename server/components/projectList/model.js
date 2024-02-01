@@ -13,7 +13,7 @@ const projects = [
       'Webpack',
       'Sass',
       'Aws Lambda',
-      'Aws S3',
+      'Amazon S3',
     ],
   },
 ];

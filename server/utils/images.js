@@ -1,5 +1,6 @@
 export const IMAGE_URL = {
   PROFILE: 'https://d2pu0ruyxf50in.cloudfront.net/20231223_162052_cut.jpg',
+  PORTFOLIO: 'https://d2pu0ruyxf50in.cloudfront.net/portfolio.png',
   HERO: 'https://d2pu0ruyxf50in.cloudfront.net/히어로.png',
   MUSSEUK: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱레터_og.png',
   VELOG: 'https://d2pu0ruyxf50in.cloudfront.net/velog.png',
@@ -15,7 +16,7 @@ export const ICON_URL = {
     'https://img.shields.io/badge/Webpack-%238DD6F9?style=flat-square&logo=webpack&logoColor=white',
   EXPRESS:
     'https://img.shields.io/badge/Express-%23000000?style=flat-square&logo=express&logoColor=white',
-  AWS_S3:
+  AMAZON_S3:
     'https://img.shields.io/badge/Aws%20S3-%23569A31?style=flat-square&logo=amazons3&logoColor=white',
   AWS_LAMBDA:
     'https://img.shields.io/badge/Aws%20Lambda-%23FF9900?style=flat-square&logo=awslambda&logoColor=white',
