@@ -1,0 +1,12 @@
+.project-list {
+  &__album {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  &__thumbnail {
+    width: 45vw;
+    height: 25vw;
+  }
+}

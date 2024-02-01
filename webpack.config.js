@@ -66,6 +66,7 @@ var configSrcCss = {
     'server/src/style': './server/src/style.scss',
     'server/src/intro': './server/src/intro.scss',
     'server/src/profile': './server/src/profile.scss',
+    'server/src/project-list': './server/src/project-list.scss',
   },
   output: {
     path: path.join(__dirname, '.webpack/service'),
