@@ -1,6 +1,6 @@
 import { ID, getStyleTagId } from '../../utils/ids';
 import {
-  ROUTES,
+  ROUTES_LIST,
   ROUTE_TITLE,
   checkIsBeforeOrAfter,
   getUrl,
@@ -63,7 +63,7 @@ export default class App extends Component {
   }
 
   async loadPageData(pathname) {
-    if (!ROUTES.some((route) => route === pathname)) {
+    if (!ROUTES_LIST.some((route) => route === pathname)) {
       console.error('Incorrect pathname: ', pathname);
       return;
     }

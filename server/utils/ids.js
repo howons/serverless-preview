@@ -10,3 +10,7 @@ export const ID = {
 export const getStyleTagId = (pathname) => {
   return `#style-${pathname.slice(1)}`;
 };
+
+export const pathnameToId = (pathname) => {
+  return `#${pathname.slice(1)}`;
+};

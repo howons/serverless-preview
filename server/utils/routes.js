@@ -1,35 +1,45 @@
-export const ROUTES = [
-  '/intro',
-  '/profile',
-  '/project-list',
-  '/portfolio',
-  '/one-day-hero',
-  '/musseuk-letter',
-  '/7elog',
+export const ROUTE = {
+  INTRO: '/intro',
+  PROFILE: '/profile',
+  PROJECT_LIST: '/project-list',
+  PORTFOLIO: '/portfolio',
+  ONE_DAY_HERO: '/one-day-hero',
+  MUSSEUK: '/musseuk-letter',
+  VELOG: '/7elog',
+};
+
+export const ROUTES_LIST = [
+  ROUTE.INTRO,
+  ROUTE.PROFILE,
+  ROUTE.PROJECT_LIST,
+  ROUTE.PORTFOLIO,
+  ROUTE.ONE_DAY_HERO,
+  ROUTE.MUSSEUK,
+  ROUTE.VELOG,
 ];
 
 export const ROUTE_TITLE = {
-  '/intro': '신호원 포트폴리오',
-  '/profile': '프로필',
-  '/project-list': '프로젝트 목록',
-  '/portfolio': '프로젝트-포트폴리오',
-  '/one-day-hero': '프로젝트-원데이히어로',
-  '/musseuk-letter': '프로젝트-머쓱레터',
-  '/7elog': '프로젝트-벨로그클로닝',
+  [ROUTE.INTRO]: '신호원 포트폴리오',
+  [ROUTE.PROFILE]: '프로필',
+  [ROUTE.PROJECT_LIST]: '프로젝트 목록',
+  [ROUTE.PORTFOLIO]: '프로젝트-포트폴리오',
+  [ROUTE.ONE_DAY_HERO]: '프로젝트-원데이히어로',
+  [ROUTE.MUSSEUK]: '프로젝트-머쓱레터',
+  [ROUTE.VELOG]: '프로젝트-벨로그클로닝',
 };
 
 export const getNextRoute = (pathname) => {
   const curIndex = findPathIndex(pathname);
-  if (curIndex < 0 || curIndex >= ROUTES.length - 1) return;
+  if (curIndex < 0 || curIndex >= ROUTES_LIST.length - 1) return;
 
-  return ROUTES[curIndex + 1];
+  return ROUTES_LIST[curIndex + 1];
 };
 
 export const getPrevRoute = (pathname) => {
   const curIndex = findPathIndex(pathname);
   if (curIndex <= 0) return;
 
-  return ROUTES[curIndex - 1];
+  return ROUTES_LIST[curIndex - 1];
 };
 
 export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {
@@ -52,7 +62,7 @@ export const getWindowPathname = () => {
 };
 
 const findPathIndex = (pathname) => {
-  return ROUTES.findIndex(
+  return ROUTES_LIST.findIndex(
     (route) => route === pathname || route === pathname.split('/dev')?.[1],
   );
 };
