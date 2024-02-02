@@ -20,4 +20,21 @@ export const ICON_URL = {
     'https://img.shields.io/badge/Aws%20S3-%23569A31?style=flat-square&logo=amazons3&logoColor=white',
   AWS_LAMBDA:
     'https://img.shields.io/badge/Aws%20Lambda-%23FF9900?style=flat-square&logo=awslambda&logoColor=white',
+  TYPESCRIPT:
+    'https://img.shields.io/badge/TypeScript-%233178C6?style=flat-square&logo=typescript&logoColor=white',
+  REACT:
+    'https://img.shields.io/badge/React-%2361DAFB?style=flat-square&logo=react&logoColor=white',
+  TANSTACK:
+    'https://img.shields.io/badge/Tanstack%20Query-%23FF4154?style=flat-square&logo=reactquery&logoColor=white',
+  CHAKRA:
+    'https://img.shields.io/badge/Chakra%20UI-%23319795?style=flat-square&logo=chakraui&logoColor=white',
+  VITE: 'https://img.shields.io/badge/Vite-%23646CFF?style=flat-square&logo=vite&logoColor=white',
+  AXIOS:
+    'https://img.shields.io/badge/Axios-%235A29E4?style=flat-square&logo=axios&logoColor=white',
+  NEXTJS:
+    'https://img.shields.io/badge/Next.js-%23000000?style=flat-square&logo=nextdotjs&logoColor=white',
+  TAILWIND:
+    'https://img.shields.io/badge/Tailwind%20CSS-%2306B6D4?style=flat-square&logo=tailwindcss&logoColor=white',
+  VERCEL:
+    'https://img.shields.io/badge/Vercel-%23000000?style=flat-square&logo=vercel&logoColor=white',
 };
