@@ -121,8 +121,9 @@ export default class ScrollIndicator extends Component {
       };
     };
 
-    this.addEvent('wheel', ID.MAIN, countOverScroll());
-    this.addEvent('touchmove', ID.MAIN, countOverScroll());
+    const $main = document.querySelector(ID.MAIN);
+    $main.addEventListener('wheel', countOverScroll());
+    $main.addEventListener('touchmove', countOverScroll());
   }
 
   setScrollLevel() {
