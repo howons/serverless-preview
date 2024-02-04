@@ -19,7 +19,6 @@ export default class ProjectList extends Component {
       this.refs.imageRefs.push(this.$target.querySelector(this.getImageId(id)));
 
       this.addEvent('click', this.getImageId(id), (e) => {
-        console.log(id);
         this.setState({
           selectedProject: id,
         });

@@ -7,6 +7,7 @@ export default class Component {
   state;
   props;
   refs;
+  events = [];
   constructor(selector, props, root) {
     if (singleton[selector]) {
       singleton[selector].props = { ...props };
@@ -77,14 +78,28 @@ export default class Component {
   addEvent(eventType, selector, callback) {
     if (!eventCallbacks[this.root]) return;
 
-    eventCallbacks[this.root][eventType]?.push({
+    const callbackInfo = {
       selector,
       callback,
+    };
+    eventCallbacks[this.root][eventType]?.push(callbackInfo);
+
+    this.events.push({
+      eventType,
+      callbackInfo,
     });
   }
   unmount() {
     singleton[this.idSelector] = null;
     this.$target.remove();
+
+    this.events.forEach(({ eventType, callbackInfo }) => {
+      eventCallbacks[this.root][eventType] = eventCallbacks[this.root][
+        eventType
+      ].reduce((acc, cur) => {
+        return cur === callbackInfo ? acc : [...acc, cur];
+      }, []);
+    });
   }
 
   /* util methods */
