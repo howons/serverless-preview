@@ -19,6 +19,7 @@ export default class ProjectList extends Component {
       this.refs.imageRefs.push(this.$target.querySelector(this.getImageId(id)));
 
       this.addEvent('click', this.getImageId(id), (e) => {
+        console.log(id);
         this.setState({
           selectedProject: id,
         });
@@ -32,7 +33,7 @@ export default class ProjectList extends Component {
     this.refs.imageRefs.forEach((imageRef) => {
       imageRef.classList.toggle(
         'active',
-        imageRef.id === this.getImageId(this.state.selectedProject),
+        imageRef.id === this.getImageId(this.state.selectedProject).slice(1),
       );
     });
 

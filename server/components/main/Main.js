@@ -1,12 +1,12 @@
 import { pathnameToId } from '../../utils/ids';
-import { ROUTE, getWindowPathname } from '../../utils/routes';
+import { ROUTE } from '../../utils/routes';
 import Component from '../core';
 import ProjectList from '../projectList/ProjectList';
 
 export default class Main extends Component {
   setup() {
     this.refs = {
-      curPagename: getWindowPathname(),
+      curPagename: '',
       mainComponents: {
         [ROUTE.INTRO]: { constructor: null, instance: null },
         [ROUTE.PROFILE]: { constructor: null, instance: null },
@@ -17,28 +17,8 @@ export default class Main extends Component {
     super.setup();
   }
 
-  render() {
-    this.handleRoute();
-
-    super.render();
-  }
-
   mounted() {
-    Object.entries(this.refs.mainComponents).forEach(
-      (pathname, { constructor, instance }) => {
-        if (!constructor) return;
-
-        if (this.refs.curPagename.includes(pathname)) {
-          this.refs.mainComponents[pathname].instance = this.addChild(
-            constructor,
-            pathnameToId(pathname),
-            {},
-          );
-        } else if (instance) {
-          instance.unmount();
-        }
-      },
-    );
+    this.handleRoute();
 
     super.mounted();
   }
@@ -46,7 +26,19 @@ export default class Main extends Component {
   handleRoute() {
     if (this.props.curPathname === this.refs.curPagename) return;
 
+    this.refs.mainComponents[this.refs.curPagename]?.instance?.unmount();
+
     this.$target.innerHTML = this.props.htmlCache.mainInner;
     this.refs.curPagename = this.props.curPathname;
+
+    const nextConstructor =
+      this.refs.mainComponents[this.refs.curPagename].constructor;
+    if (nextConstructor) {
+      this.refs.mainComponents[this.refs.curPagename].instance = this.addChild(
+        nextConstructor,
+        pathnameToId(this.refs.curPagename),
+        {},
+      );
+    }
   }
 }
