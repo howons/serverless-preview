@@ -1,6 +1,6 @@
 import { ICON_URL, IMAGE_URL } from '../../utils/images';
 
-const projects = [
+export const projects = [
   {
     id: 'portfolio',
     imageUrl: IMAGE_URL.PORTFOLIO,
@@ -16,7 +16,7 @@ const projects = [
     ],
   },
   {
-    id: 'onedayhero',
+    id: 'one-day-hero',
     imageUrl: IMAGE_URL.HERO,
     description: '알바/심부름 대타 매칭 중개 플랫폼',
     skills: [

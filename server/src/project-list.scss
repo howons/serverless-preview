@@ -18,6 +18,10 @@
     object-fit: contain;
     background-color: rgba(106, 145, 181, 0.15);
     cursor: pointer;
+
+    &.active {
+      border: 3px solid rgb(83, 139, 208);
+    }
   }
 
   &__introduction {

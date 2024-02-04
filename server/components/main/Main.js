@@ -1,15 +1,16 @@
 import { pathnameToId } from '../../utils/ids';
 import { ROUTE, getWindowPathname } from '../../utils/routes';
 import Component from '../core';
+import ProjectList from '../projectList/ProjectList';
 
 export default class Main extends Component {
   setup() {
     this.refs = {
       curPagename: getWindowPathname(),
       mainComponents: {
-        [ROUTE.INTRO]: null,
-        [ROUTE.PROFILE]: null,
-        [ROUTE.PROJECT_LIST]: null,
+        [ROUTE.INTRO]: { constructor: null, instance: null },
+        [ROUTE.PROFILE]: { constructor: null, instance: null },
+        [ROUTE.PROJECT_LIST]: { constructor: ProjectList, instance: null },
       },
     };
 
@@ -23,15 +24,21 @@ export default class Main extends Component {
   }
 
   mounted() {
-    Object.entries(this.mainComponents).forEach((pathname, component) => {
-      if (!component) return;
+    Object.entries(this.refs.mainComponents).forEach(
+      (pathname, { constructor, instance }) => {
+        if (!constructor) return;
 
-      if (this.refs.curPagename.includes(pathname)) {
-        this.addChild(component, pathnameToId(pathname), {});
-      } else {
-        component.unmount();
-      }
-    });
+        if (this.refs.curPagename.includes(pathname)) {
+          this.refs.mainComponents[pathname].instance = this.addChild(
+            constructor,
+            pathnameToId(pathname),
+            {},
+          );
+        } else if (instance) {
+          instance.unmount();
+        }
+      },
+    );
 
     super.mounted();
   }
@@ -40,6 +47,6 @@ export default class Main extends Component {
     if (this.props.curPathname === this.refs.curPagename) return;
 
     this.$target.innerHTML = this.props.htmlCache.mainInner;
-    this.refs.curPagename = this.props.curPagename;
+    this.refs.curPagename = this.props.curPathname;
   }
 }
