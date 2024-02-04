@@ -26,16 +26,25 @@ export default class Main extends Component {
   handleRoute() {
     if (this.props.curPathname === this.refs.curPagename) return;
 
-    this.refs.mainComponents[this.refs.curPagename]?.instance?.unmount();
+    const curComponent = this.refs.mainComponents[this.refs.curPagename];
+    if (curComponent) {
+      curComponent.instance?.unmount();
+      curComponent.instance = null;
+    }
 
-    this.$target.innerHTML = this.props.htmlCache.mainInner;
+    const parser = new DOMParser();
+    const newPageNode = parser.parseFromString(
+      this.props.htmlCache.mainInner,
+      'text/html',
+    );
+    this.$target.replaceChildren(newPageNode.body.childNodes[0]);
+
     this.refs.curPagename = this.props.curPathname;
 
-    const nextConstructor =
-      this.refs.mainComponents[this.refs.curPagename].constructor;
-    if (nextConstructor) {
-      this.refs.mainComponents[this.refs.curPagename].instance = this.addChild(
-        nextConstructor,
+    const nextComponent = this.refs.mainComponents[this.refs.curPagename];
+    if (nextComponent.constructor) {
+      nextComponent.instance = this.addChild(
+        nextComponent.constructor,
         pathnameToId(this.refs.curPagename),
         {},
       );

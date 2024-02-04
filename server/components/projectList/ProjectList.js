@@ -15,9 +15,11 @@ export default class ProjectList extends Component {
   }
 
   hydrate() {
-    projects.forEach(({ id }) => {
-      this.refs.imageRefs.push(this.$target.querySelector(this.getImageId(id)));
+    this.refs.imageRefs = this.$target.querySelectorAll(
+      '.project-list__thumbnail',
+    );
 
+    projects.forEach(({ id }) => {
       this.addEvent('click', this.getImageId(id), (e) => {
         this.setState({
           selectedProject: id,

@@ -92,13 +92,20 @@ export default class Component {
   unmount() {
     singleton[this.idSelector] = null;
     this.$target.remove();
+    this.$target = null;
 
     this.events.forEach(({ eventType, callbackInfo }) => {
-      eventCallbacks[this.root][eventType] = eventCallbacks[this.root][
-        eventType
-      ].reduce((acc, cur) => {
-        return cur === callbackInfo ? acc : [...acc, cur];
-      }, []);
+      const targetIndice = [];
+      eventCallbacks[this.root][eventType].forEach(
+        (prevCallbackInfo, index) => {
+          if (prevCallbackInfo === callbackInfo) {
+            targetIndice.push(index);
+          }
+        },
+      );
+      targetIndice.reverse().forEach((target) => {
+        eventCallbacks[this.root][eventType].splice(target, 1);
+      });
     });
   }
 
