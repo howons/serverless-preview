@@ -51,6 +51,7 @@ export default class Component {
   mounted() {
     /**@note children 추가 작업 위치*/
   }
+  /**@note eventCallbacks의 내부 배열은 참조를 변경하지 말 것 */
   setEventDeligation() {
     if (!this.isRoot) return;
 

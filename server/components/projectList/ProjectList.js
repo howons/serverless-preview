@@ -4,11 +4,13 @@ import { projects } from './model';
 export default class ProjectList extends Component {
   setup() {
     this.state = {
-      selectedProject: projects[0].id,
+      selectedProjectIndex: 0,
     };
 
     this.refs = {
       imageRefs: [],
+      skillListRefs: [],
+      descRefs: [],
     };
 
     super.setup();
@@ -19,26 +21,47 @@ export default class ProjectList extends Component {
       '.project-list__thumbnail',
     );
 
-    projects.forEach(({ id }) => {
+    projects.forEach(({ id }, index) => {
       this.addEvent('click', this.getImageId(id), (e) => {
         this.setState({
-          selectedProject: id,
+          selectedProjectIndex: index,
         });
       });
     });
 
+    this.refs.skillListRefs = this.$target.querySelectorAll(
+      '.project-list__skill-list',
+    );
+    this.refs.descRefs = this.$target.querySelectorAll(
+      '.project-list__description',
+    );
+
     super.hydrate();
   }
 
-  render() {
-    this.refs.imageRefs.forEach((imageRef) => {
+  mounted() {
+    this.refs.imageRefs.forEach((imageRef, index) => {
       imageRef.classList.toggle(
         'active',
-        imageRef.id === this.getImageId(this.state.selectedProject).slice(1),
+        index === this.state.selectedProjectIndex,
       );
     });
 
-    super.render();
+    this.refs.skillListRefs.forEach((skillListRef, index) => {
+      skillListRef.classList.toggle(
+        'active',
+        index === this.state.selectedProjectIndex,
+      );
+    });
+
+    this.refs.descRefs.forEach((descRef, index) => {
+      descRef.classList.toggle(
+        'active',
+        index === this.state.selectedProjectIndex,
+      );
+    });
+
+    super.mounted();
   }
 
   getImageId(id) {
