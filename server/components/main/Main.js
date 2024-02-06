@@ -1,7 +1,7 @@
 import { pathnameToId } from '../../utils/ids';
 import { ROUTE } from '../../utils/routes';
 import Component from '../core';
-import Portfolio from '../portfolio/Portfolio';
+import Project from '../Project';
 import ProjectList from '../projectList/ProjectList';
 
 export default class Main extends Component {
@@ -12,7 +12,7 @@ export default class Main extends Component {
         [ROUTE.INTRO]: { constructor: null, instance: null },
         [ROUTE.PROFILE]: { constructor: null, instance: null },
         [ROUTE.PROJECT_LIST]: { constructor: ProjectList, instance: null },
-        [ROUTE.PORTFOLIO]: { constructor: Portfolio, instance: null },
+        [ROUTE.PORTFOLIO]: { constructor: Project, instance: null },
       },
     };
 
@@ -45,11 +45,28 @@ export default class Main extends Component {
 
     const nextComponent = this.refs.mainComponents[this.refs.curPagename];
     if (nextComponent.constructor) {
+      const componentProps = {
+        curPathname: this.refs.curPagename,
+      };
+
+      if (this.isProjectPage()) {
+        componentProps.name = this.refs.curPagename.slice(1);
+      }
+
       nextComponent.instance = this.addChild(
         nextComponent.constructor,
         pathnameToId(this.refs.curPagename),
-        {},
+        componentProps,
       );
     }
+  }
+
+  isProjectPage() {
+    return (
+      this.refs.curPagename === ROUTE.PORTFOLIO ||
+      this.refs.curPagename === ROUTE.ONE_DAY_HERO ||
+      this.refs.curPagename === ROUTE.MUSSEUK ||
+      this.refs.curPagename === ROUTE.VELOG
+    );
   }
 }

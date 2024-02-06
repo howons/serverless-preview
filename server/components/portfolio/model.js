@@ -2,7 +2,7 @@ import { IMAGE_URL } from '../../utils/images';
 
 const snapshots = [
   {
-    id: 'introduction',
+    id: 'intro',
     imageUrl: IMAGE_URL.PORTFOLIO,
     description: '설명',
   },
