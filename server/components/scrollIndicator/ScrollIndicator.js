@@ -12,7 +12,6 @@ export default class ScrollIndicator extends Component {
     };
 
     this.refs = {
-      mouseX: 0,
       scrollCounter: 0,
       scrollLevelLock: false,
       scrollTimer: null,
@@ -76,10 +75,6 @@ export default class ScrollIndicator extends Component {
   }
 
   addScrollCountEvent() {
-    this.addEvent('mousemove', ID.MAIN, (e) => {
-      this.refs.mouseX = e.clientX;
-    });
-
     const countOverScroll = (e) => {
       let lastTouchClientY = 0;
 

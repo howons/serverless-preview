@@ -1,6 +1,7 @@
 import { pathnameToId } from '../../utils/ids';
 import { ROUTE } from '../../utils/routes';
 import Component from '../core';
+import Portfolio from '../portfolio/Portfolio';
 import ProjectList from '../projectList/ProjectList';
 
 export default class Main extends Component {
@@ -11,7 +12,7 @@ export default class Main extends Component {
         [ROUTE.INTRO]: { constructor: null, instance: null },
         [ROUTE.PROFILE]: { constructor: null, instance: null },
         [ROUTE.PROJECT_LIST]: { constructor: ProjectList, instance: null },
-        [ROUTE.PORTFOLIO]: { constructor: null, instance: null },
+        [ROUTE.PORTFOLIO]: { constructor: Portfolio, instance: null },
       },
     };
 

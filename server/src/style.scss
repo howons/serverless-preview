@@ -206,163 +206,328 @@ body {
   position: fixed;
   top: 0;
   right: 0;
-}
 
-.scroll-indicator {
-  position: fixed;
-  top: 0;
-  right: -4rem;
-  width: 5rem;
-  height: 100%;
-  transition: all 0.3s ease-out;
-
-  &--level0 {
-    transform: skewX(0deg);
-  }
-  &--level1 {
-    transform: skewX(-0.5deg);
-
-    > .indicator__next {
-      opacity: 0.47;
-    }
-  }
-  &--level2 {
-    transform: skewX(-1deg);
-
-    > .indicator__next {
-      opacity: 0.43;
-    }
-  }
-  &--level3 {
-    transform: skewX(-1.5deg) translateX(0.2vh);
-
-    > .indicator__next {
-      opacity: 0.38;
-    }
-  }
-  &--level4 {
-    transform: skewX(-2.2deg) translateX(0.4vh);
-
-    > .indicator__next {
-      opacity: 0.32;
-    }
-  }
-  &--level5 {
-    transform: skewX(-3deg) translateX(0.7vh);
-
-    > .indicator__next {
-      opacity: 0.25;
-    }
-  }
-  &--level6 {
-    transform: skewX(-3.8deg) translateX(1.1vh);
-
-    > .indicator__next {
-      opacity: 0.17;
-    }
-  }
-  &--level7 {
-    transform: skewX(-5deg) translateX(1.7vh);
-
-    > .indicator__next {
-      opacity: 0.08;
-    }
-  }
-  &--level8 {
-    transform: skewX(-6.5deg) translateX(2.5vh);
-
-    > .indicator__next {
-      opacity: 0;
-    }
-  }
-  &--level-1 {
-    transform: skewX(0.5deg);
-
-    > .indicator__prev {
-      opacity: 0.47;
-    }
-  }
-  &--level-2 {
-    transform: skewX(1deg);
-
-    > .indicator__prev {
-      opacity: 0.43;
-    }
-  }
-  &--level-3 {
-    transform: skewX(1.5deg) translateX(0.2vh);
-
-    > .indicator__prev {
-      opacity: 0.38;
-    }
-  }
-  &--level-4 {
-    transform: skewX(2.2deg) translateX(0.4vh);
-
-    > .indicator__prev {
-      opacity: 0.32;
-    }
-  }
-  &--level-5 {
-    transform: skewX(3deg) translateX(0.7vh);
-
-    > .indicator__prev {
-      opacity: 0.25;
-    }
-  }
-  &--level-6 {
-    transform: skewX(3.8deg) translateX(1.1vh);
-
-    > .indicator__prev {
-      opacity: 0.17;
-    }
-  }
-  &--level-7 {
-    transform: skewX(5deg) translateX(1.7vh);
-
-    > .indicator__prev {
-      opacity: 0.08;
-    }
-  }
-  &--level-8 {
-    transform: skewX(6.5deg) translateX(2.5vh);
-
-    > .indicator__prev {
-      opacity: 0;
-    }
-  }
-
-  &__static {
+  > .scroll-indicator {
     position: fixed;
     top: 0;
-    right: 0;
-    width: 0.3rem;
+    right: -4rem;
+    width: 5rem;
     height: 100%;
+    transition: all 0.3s ease-out;
+
+    &--level0 {
+      transform: skewX(0deg);
+    }
+    &--level1 {
+      transform: skewX(-0.5deg);
+
+      > .indicator__next {
+        opacity: 0.47;
+      }
+    }
+    &--level2 {
+      transform: skewX(-1deg);
+
+      > .indicator__next {
+        opacity: 0.43;
+      }
+    }
+    &--level3 {
+      transform: skewX(-1.5deg) translateX(0.2vh);
+
+      > .indicator__next {
+        opacity: 0.38;
+      }
+    }
+    &--level4 {
+      transform: skewX(-2.2deg) translateX(0.4vh);
+
+      > .indicator__next {
+        opacity: 0.32;
+      }
+    }
+    &--level5 {
+      transform: skewX(-3deg) translateX(0.7vh);
+
+      > .indicator__next {
+        opacity: 0.25;
+      }
+    }
+    &--level6 {
+      transform: skewX(-3.8deg) translateX(1.1vh);
+
+      > .indicator__next {
+        opacity: 0.17;
+      }
+    }
+    &--level7 {
+      transform: skewX(-5deg) translateX(1.7vh);
+
+      > .indicator__next {
+        opacity: 0.08;
+      }
+    }
+    &--level8 {
+      transform: skewX(-6.5deg) translateX(2.5vh);
+
+      > .indicator__next {
+        opacity: 0;
+      }
+    }
+    &--level-1 {
+      transform: skewX(0.5deg);
+
+      > .indicator__prev {
+        opacity: 0.47;
+      }
+    }
+    &--level-2 {
+      transform: skewX(1deg);
+
+      > .indicator__prev {
+        opacity: 0.43;
+      }
+    }
+    &--level-3 {
+      transform: skewX(1.5deg) translateX(0.2vh);
+
+      > .indicator__prev {
+        opacity: 0.38;
+      }
+    }
+    &--level-4 {
+      transform: skewX(2.2deg) translateX(0.4vh);
+
+      > .indicator__prev {
+        opacity: 0.32;
+      }
+    }
+    &--level-5 {
+      transform: skewX(3deg) translateX(0.7vh);
+
+      > .indicator__prev {
+        opacity: 0.25;
+      }
+    }
+    &--level-6 {
+      transform: skewX(3.8deg) translateX(1.1vh);
+
+      > .indicator__prev {
+        opacity: 0.17;
+      }
+    }
+    &--level-7 {
+      transform: skewX(5deg) translateX(1.7vh);
+
+      > .indicator__prev {
+        opacity: 0.08;
+      }
+    }
+    &--level-8 {
+      transform: skewX(6.5deg) translateX(2.5vh);
+
+      > .indicator__prev {
+        opacity: 0;
+      }
+    }
+
+    &__static {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 0.3rem;
+      height: 100%;
+    }
+  }
+
+  .indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &__next {
+      background: rgb(225, 246, 255);
+      background: linear-gradient(
+        0deg,
+        rgb(213, 239, 251) 0%,
+        rgb(91, 174, 247) 100%
+      );
+      opacity: 0.5;
+    }
+
+    &__prev {
+      background: rgb(123, 228, 106);
+      background: linear-gradient(
+        0deg,
+        rgba(123, 228, 106, 1) 0%,
+        rgba(218, 255, 231, 1) 100%
+      );
+      opacity: 0.5;
+    }
   }
 }
 
-.indicator {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.scroll-container__horizon {
+  position: fixed;
+  left: 0;
+  bottom: 0;
 
-  &__next {
-    background: rgb(225, 246, 255);
-    background: linear-gradient(
-      0deg,
-      rgb(213, 239, 251) 0%,
-      rgb(91, 174, 247) 100%
-    );
-    opacity: 0.5;
+  > .scroll-indicator {
+    position: fixed;
+    left: 0;
+    bottom: -4rem;
+    height: 5rem;
+    width: 100%;
+    transition: all 0.3s ease-out;
+
+    &--level0 {
+      transform: skewY(0deg);
+    }
+    &--level1 {
+      transform: skewY(-0.5deg);
+
+      > .indicator__next {
+        opacity: 0.47;
+      }
+    }
+    &--level2 {
+      transform: skewY(-1deg);
+
+      > .indicator__next {
+        opacity: 0.43;
+      }
+    }
+    &--level3 {
+      transform: skewY(-1.5deg) translateY(0.2vw);
+
+      > .indicator__next {
+        opacity: 0.38;
+      }
+    }
+    &--level4 {
+      transform: skewY(-2.2deg) translateY(0.4vw);
+
+      > .indicator__next {
+        opacity: 0.32;
+      }
+    }
+    &--level5 {
+      transform: skewY(-3deg) translateY(0.7vw);
+
+      > .indicator__next {
+        opacity: 0.25;
+      }
+    }
+    &--level6 {
+      transform: skewY(-3.8deg) translateY(1.1vw);
+
+      > .indicator__next {
+        opacity: 0.17;
+      }
+    }
+    &--level7 {
+      transform: skewY(-5deg) translateY(1.7vw);
+
+      > .indicator__next {
+        opacity: 0.08;
+      }
+    }
+    &--level8 {
+      transform: skewY(-6.5deg) translateY(2.5vw);
+
+      > .indicator__next {
+        opacity: 0;
+      }
+    }
+    &--level-1 {
+      transform: skewY(0.5deg);
+
+      > .indicator__prev {
+        opacity: 0.47;
+      }
+    }
+    &--level-2 {
+      transform: skewY(1deg);
+
+      > .indicator__prev {
+        opacity: 0.43;
+      }
+    }
+    &--level-3 {
+      transform: skewY(1.5deg) translateY(0.2vw);
+
+      > .indicator__prev {
+        opacity: 0.38;
+      }
+    }
+    &--level-4 {
+      transform: skewY(2.2deg) translateY(0.4vw);
+
+      > .indicator__prev {
+        opacity: 0.32;
+      }
+    }
+    &--level-5 {
+      transform: skewY(3deg) translateY(0.7vw);
+
+      > .indicator__prev {
+        opacity: 0.25;
+      }
+    }
+    &--level-6 {
+      transform: skewY(3.8deg) translateY(1.1vw);
+
+      > .indicator__prev {
+        opacity: 0.17;
+      }
+    }
+    &--level-7 {
+      transform: skewY(5deg) translateY(1.7vw);
+
+      > .indicator__prev {
+        opacity: 0.08;
+      }
+    }
+    &--level-8 {
+      transform: skewY(6.5deg) translateY(2.5vw);
+
+      > .indicator__prev {
+        opacity: 0;
+      }
+    }
+
+    &__static {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      height: 0.3rem;
+      width: 100%;
+    }
   }
 
-  &__prev {
-    background: rgb(123, 228, 106);
-    background: linear-gradient(
-      0deg,
-      rgba(123, 228, 106, 1) 0%,
-      rgba(218, 255, 231, 1) 100%
-    );
-    opacity: 0.5;
+  .indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    &__next {
+      background: rgb(225, 246, 255);
+      background: linear-gradient(
+        270deg,
+        rgb(213, 239, 251) 0%,
+        rgb(91, 174, 247) 100%
+      );
+      opacity: 0.5;
+    }
+
+    &__prev {
+      background: rgb(123, 228, 106);
+      background: linear-gradient(
+        270deg,
+        rgba(123, 228, 106, 1) 0%,
+        rgba(218, 255, 231, 1) 100%
+      );
+      opacity: 0.5;
+    }
   }
 }
