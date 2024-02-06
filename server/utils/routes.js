@@ -28,6 +28,13 @@ export const ROUTE_TITLE = {
   [ROUTE.VELOG]: '프로젝트-벨로그클로닝',
 };
 
+export const ROUTE_HASHES = {
+  [ROUTE.PORTFOLIO]: ['', 'serverless'],
+  [ROUTE.ONE_DAY_HERO]: [],
+  [ROUTE.MUSSEUK]: [],
+  [ROUTE.VELOG]: [],
+};
+
 export const getNextRoute = (pathname) => {
   const curIndex = findPathIndex(pathname);
   if (curIndex < 0 || curIndex >= ROUTES_LIST.length - 1) return;
@@ -42,6 +49,22 @@ export const getPrevRoute = (pathname) => {
   return ROUTES_LIST[curIndex - 1];
 };
 
+export const getNextHash = (pathname, curPageNum) => {
+  if (curPageNum < 0 || curPageNum >= ROUTE_HASHES.length - 1) return;
+
+  return ROUTE_HASHES[pathname][curPageNum + 1];
+};
+
+export const getPrevHash = (pathname, curPageNum) => {
+  if (curPageNum <= 0) return;
+
+  return ROUTE_HASHES[pathname][curPageNum - 1];
+};
+
+export const getHashIndex = (pathname, slideName) => {
+  return ROUTE_HASHES[pathname].findIndex((hash) => hash === slideName);
+};
+
 export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {
   const curIndex = findPathIndex(curPathname);
   const targetIndex = findPathIndex(targetPathname);
@@ -52,13 +75,22 @@ export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {
   };
 };
 
-export const getUrl = (pathname) => {
-  return `${window.location.protocol}//${window.location.host}/dev${pathname}`;
+export const getUrl = (pathname, hash) => {
+  const hashUrl = hash ? `#${hash}` : '';
+  return `${window.location.protocol}//${window.location.host}/dev${pathname}${hashUrl}`;
 };
 
 export const getWindowPathname = () => {
   const path = window.location.pathname;
   return path.includes('/dev') ? path.slice(4) : path;
+};
+
+export const setWindowPathname = (pathname, hash, shouldPush) => {
+  document.title = ROUTE_TITLE[pathname];
+
+  if (shouldPush) {
+    history.pushState({}, '', getUrl(pathname, hash));
+  }
 };
 
 const findPathIndex = (pathname) => {

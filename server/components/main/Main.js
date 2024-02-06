@@ -1,5 +1,5 @@
 import { pathnameToId } from '../../utils/ids';
-import { ROUTE } from '../../utils/routes';
+import { ROUTE, ROUTE_HASHES } from '../../utils/routes';
 import Component from '../core';
 import Project from '../Project';
 import ProjectList from '../projectList/ProjectList';
@@ -51,6 +51,7 @@ export default class Main extends Component {
 
       if (this.isProjectPage()) {
         componentProps.name = this.refs.curPagename.slice(1);
+        componentProps.hashList = ROUTE_HASHES[this.refs.curPagename];
       }
 
       nextComponent.instance = this.addChild(

@@ -1,5 +1,10 @@
 import { ID } from '../../utils/ids';
-import { getNextRoute, getPrevRoute } from '../../utils/routes';
+import {
+  getNextHash,
+  getNextRoute,
+  getPrevHash,
+  getPrevRoute,
+} from '../../utils/routes';
 import Component from '../core';
 
 const SCROLL_MAX = 800;
@@ -47,18 +52,16 @@ export default class ScrollIndicator extends Component {
     const prevTriggered = this.state.scrollLevel <= -SCROLL_LEVEL_MAX;
 
     if (nextTriggered || prevTriggered) {
-      const targetPathname = nextTriggered
-        ? getNextRoute(this.props.curPathname)
-        : getPrevRoute(this.props.curPathname);
+      const targetPage = this.getTargetPage(nextTriggered);
 
-      if (targetPathname) {
+      if (targetPage) {
         this.refs.scrollLevelLock = true;
 
         this.setState({
           scrollLevel: this.state.scrollLevel + (nextTriggered ? -1 : 1),
         });
 
-        this.props.loadPageData(targetPathname).then(() => {
+        this.props.loadPageData(targetPage).then(() => {
           clearTimeout(this.refs.scrollTimer);
           clearInterval(this.refs.scrollInterval);
           this.refs.scrollCounter = 0;
@@ -72,6 +75,17 @@ export default class ScrollIndicator extends Component {
     }
 
     super.render();
+  }
+
+  getTargetPage(isNext) {
+    const { curSlideNum, curPathname } = this.props;
+    if (curSlideNum) {
+      return isNext
+        ? getNextHash(curPathname, curSlideNum)
+        : getPrevHash(curPathname, curSlideNum);
+    } else {
+      return isNext ? getNextRoute(curPathname) : getPrevRoute(curPathname);
+    }
   }
 
   addScrollCountEvent() {

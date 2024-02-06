@@ -1,10 +1,10 @@
 import { ID, getStyleTagId } from '../../utils/ids';
 import {
   ROUTES_LIST,
-  ROUTE_TITLE,
   checkIsBeforeOrAfter,
   getUrl,
   getWindowPathname,
+  setWindowPathname,
 } from '../../utils/routes';
 import { getStyleTag } from '../../utils/styles';
 import Component from '../core';
@@ -101,11 +101,7 @@ export default class App extends Component {
 
   setPathname(pathname, shouldPush) {
     this.setState({ curPathname: pathname });
-    document.title = ROUTE_TITLE[pathname];
-
-    if (shouldPush) {
-      history.pushState({}, '', getUrl(pathname));
-    }
+    setWindowPathname(pathname, '', shouldPush);
   }
 
   setHtmlData(pathname, status, mainInner = '') {
