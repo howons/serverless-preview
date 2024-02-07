@@ -86,6 +86,7 @@ export default class ScrollIndicator extends Component {
 
   mounted() {
     this.$target.classList.toggle('inactive', !this.isActive());
+    console.log(this.$target.id, this.isActive(), window.location.hash);
 
     super.mounted();
   }
@@ -106,6 +107,8 @@ export default class ScrollIndicator extends Component {
       let lastTouchClientY = 0;
 
       return (e) => {
+        if (!this.isActive()) return;
+
         const deltaY =
           e.deltaY ?? 5 * (lastTouchClientY - e.touches[0].clientY);
         lastTouchClientY = e.touches ? e.touches[0].clientY : lastTouchClientY;

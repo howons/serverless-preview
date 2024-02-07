@@ -40,6 +40,7 @@ export default class App extends Component {
   }
 
   mounted() {
+    console.log('app mounted', this.state);
     const sidebarProp = {
       curPathname: this.state.curPathname,
       loadPageData: this.loadPageData.bind(this),
@@ -102,10 +103,10 @@ export default class App extends Component {
   }
 
   setPathname(pathname, shouldPush) {
-    this.setState({ curPathname: pathname });
-
     const hash = Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '';
     setWindowPathname(pathname, hash, shouldPush);
+
+    this.setState({ curPathname: pathname });
   }
 
   setHtmlData(pathname, status, mainInner = '') {
