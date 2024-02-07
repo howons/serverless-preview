@@ -52,6 +52,7 @@ export default class Main extends Component {
       if (this.isProjectPage()) {
         componentProps.name = this.refs.curPagename.slice(1);
         componentProps.hashList = ROUTE_HASHES[this.refs.curPagename];
+        componentProps.loadPageData = this.props.loadPageData;
       }
 
       nextComponent.instance = this.addChild(

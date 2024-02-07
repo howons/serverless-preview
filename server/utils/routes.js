@@ -50,13 +50,14 @@ export const getPrevRoute = (pathname) => {
 };
 
 export const getNextHash = (pathname, curPageNum) => {
-  if (curPageNum < 0 || curPageNum >= ROUTE_HASHES.length - 1) return;
+  if (curPageNum < 0 || curPageNum >= ROUTE_HASHES.length - 1)
+    return getNextRoute(pathname);
 
   return ROUTE_HASHES[pathname][curPageNum + 1];
 };
 
 export const getPrevHash = (pathname, curPageNum) => {
-  if (curPageNum <= 0) return;
+  if (curPageNum <= 0) return getPrevRoute(pathname);
 
   return ROUTE_HASHES[pathname][curPageNum - 1];
 };
@@ -87,7 +88,7 @@ export const getWindowPathname = () => {
 
 export const setWindowPathname = (pathname, hash, shouldPush) => {
   document.title = ROUTE_TITLE[pathname];
-  console.log(pathname);
+
   if (shouldPush) {
     history.pushState({}, '', getUrl(pathname, hash));
   } else {

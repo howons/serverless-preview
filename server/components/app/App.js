@@ -48,6 +48,7 @@ export default class App extends Component {
 
     const mainProp = {
       curPathname: this.state.curPathname,
+      loadPageData: this.loadPageData.bind(this),
       htmlCache: htmlCache[this.state.curPathname],
     };
     this.addChild(Main, ID.MAIN, mainProp);
