@@ -40,7 +40,6 @@ export default class App extends Component {
   }
 
   mounted() {
-    console.log('app mounted', this.state);
     const sidebarProp = {
       curPathname: this.state.curPathname,
       loadPageData: this.loadPageData.bind(this),

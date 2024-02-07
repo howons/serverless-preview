@@ -86,7 +86,6 @@ export default class ScrollIndicator extends Component {
 
   mounted() {
     this.$target.classList.toggle('inactive', !this.isActive());
-    console.log(this.$target.id, this.isActive(), window.location.hash);
 
     super.mounted();
   }

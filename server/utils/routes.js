@@ -63,7 +63,8 @@ export const getPrevHash = (pathname, curPageNum) => {
 };
 
 export const getHashIndex = (pathname, slideName) => {
-  return ROUTE_HASHES[pathname].findIndex((hash) => hash === slideName);
+  const name = slideName[0] === '#' ? slideName.slice(1) : slideName;
+  return ROUTE_HASHES[pathname].findIndex((hash) => hash === name);
 };
 
 export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {

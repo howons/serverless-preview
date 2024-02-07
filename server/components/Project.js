@@ -25,6 +25,15 @@ export default class Project extends Component {
       `.${this.props.name}__description`,
     );
 
+    const hashIndex = getHashIndex(
+      this.props.curPathname,
+      window.location.hash,
+    );
+    if (this.state.slideNum !== hashIndex) {
+      this.state.slideNum = hashIndex;
+      console.log(hashIndex);
+    }
+
     super.hydrate();
   }
 
