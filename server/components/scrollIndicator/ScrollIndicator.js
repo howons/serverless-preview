@@ -29,11 +29,13 @@ export default class ScrollIndicator extends Component {
   hydrate() {
     this.addScrollCountEvent();
 
+    this.$target.classList.toggle('inactive', !this.isActive());
+
     super.hydrate();
   }
 
   render() {
-    if (this.isInactive()) {
+    if (!this.isActive()) {
       super.render();
       return;
     }
@@ -83,7 +85,7 @@ export default class ScrollIndicator extends Component {
   }
 
   mounted() {
-    this.$target.classList.toggle('inactive', this.isInactive());
+    this.$target.classList.toggle('inactive', !this.isActive());
 
     super.mounted();
   }
@@ -156,13 +158,13 @@ export default class ScrollIndicator extends Component {
   }
 
   isHorizon() {
-    return !!this.props.curSlideNum;
+    return this.props.curSlideNum !== undefined;
   }
 
-  isInactive() {
+  isActive() {
     return (
-      (this.isHorizon() && !window.location.hash) ||
-      (!this.isHorizon() && window.location.hash)
+      (this.isHorizon() && !!window.location.hash) ||
+      (!this.isHorizon() && !window.location.hash)
     );
   }
 }

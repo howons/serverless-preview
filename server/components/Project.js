@@ -51,7 +51,7 @@ export default class Project extends Component {
     super.mounted();
   }
 
-  moveSlide(targetSlide) {
+  async moveSlide(targetSlide) {
     const targetSlideNum = getHashIndex(this.props.curPathname, targetSlide);
 
     this.setState({
