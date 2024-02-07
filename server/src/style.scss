@@ -215,6 +215,10 @@ body {
     height: 100%;
     transition: all 0.3s ease-out;
 
+    &.inactive {
+      display: none;
+    }
+
     &--level0 {
       transform: skewX(0deg);
     }
@@ -379,6 +383,10 @@ body {
     height: 5rem;
     width: 100%;
     transition: all 0.3s ease-out;
+
+    &.inactive {
+      display: none;
+    }
 
     &--level0 {
       transform: skewY(0deg);

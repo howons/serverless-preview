@@ -1,6 +1,7 @@
 import { ID, getStyleTagId } from '../../utils/ids';
 import {
   ROUTES_LIST,
+  ROUTE_HASHES,
   checkIsBeforeOrAfter,
   getUrl,
   getWindowPathname,
@@ -101,7 +102,9 @@ export default class App extends Component {
 
   setPathname(pathname, shouldPush) {
     this.setState({ curPathname: pathname });
-    setWindowPathname(pathname, '', shouldPush);
+
+    const hash = Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '';
+    setWindowPathname(pathname, hash, shouldPush);
   }
 
   setHtmlData(pathname, status, mainInner = '') {

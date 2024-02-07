@@ -29,7 +29,7 @@ export const ROUTE_TITLE = {
 };
 
 export const ROUTE_HASHES = {
-  [ROUTE.PORTFOLIO]: ['', 'serverless'],
+  [ROUTE.PORTFOLIO]: ['intro', 'serverless'],
   [ROUTE.ONE_DAY_HERO]: [],
   [ROUTE.MUSSEUK]: [],
   [ROUTE.VELOG]: [],
@@ -87,9 +87,11 @@ export const getWindowPathname = () => {
 
 export const setWindowPathname = (pathname, hash, shouldPush) => {
   document.title = ROUTE_TITLE[pathname];
-
+  console.log(pathname);
   if (shouldPush) {
     history.pushState({}, '', getUrl(pathname, hash));
+  } else {
+    history.replaceState({}, '', getUrl(pathname, hash));
   }
 };
 

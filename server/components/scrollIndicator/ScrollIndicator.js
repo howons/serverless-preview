@@ -33,6 +33,11 @@ export default class ScrollIndicator extends Component {
   }
 
   render() {
+    if (this.isInactive()) {
+      super.render();
+      return;
+    }
+
     Array.from({ length: SCROLL_LEVEL_MAX + 1 })
       .map((_, index) => index)
       .forEach((num) => {
@@ -77,9 +82,15 @@ export default class ScrollIndicator extends Component {
     super.render();
   }
 
+  mounted() {
+    this.$target.classList.toggle('inactive', this.isInactive());
+
+    super.mounted();
+  }
+
   getTargetPage(isNext) {
     const { curSlideNum, curPathname } = this.props;
-    if (curSlideNum) {
+    if (this.isHorizon()) {
       return isNext
         ? getNextHash(curPathname, curSlideNum)
         : getPrevHash(curPathname, curSlideNum);
@@ -142,5 +153,16 @@ export default class ScrollIndicator extends Component {
     if (this.state.scrollLevel !== nextScrollLevel) {
       this.setState({ scrollLevel: nextScrollLevel });
     }
+  }
+
+  isHorizon() {
+    return !!this.props.curSlideNum;
+  }
+
+  isInactive() {
+    return (
+      (this.isHorizon() && !window.location.hash) ||
+      (!this.isHorizon() && window.location.hash)
+    );
   }
 }
