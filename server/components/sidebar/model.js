@@ -14,18 +14,6 @@ export const sidebarItems = [
     path: '/portfolio',
   },
   {
-    id: 'side-portfolio-intro',
-    name: '소개',
-    path: '/portfolio',
-    hash: '#intro',
-  },
-  {
-    id: 'side-portfolio-serverless',
-    name: '서버리스',
-    path: '/portfolio',
-    hash: '#serverless',
-  },
-  {
     id: 'side-project-onedayhero',
     name: '원데이히어로',
     icon: 'O',

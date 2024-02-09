@@ -63,7 +63,7 @@ export default class App extends Component {
     super.mounted();
   }
 
-  async loadPageData(pathname, hash) {
+  async loadPageData(pathname) {
     if (!ROUTES_LIST.some((route) => route === pathname)) {
       console.error('Incorrect pathname: ', pathname);
       return;
@@ -74,7 +74,7 @@ export default class App extends Component {
         return;
       }
       if (htmlCache[pathname].status === 'loaded') {
-        this.setPathname(pathname, hash, true);
+        this.setPathname(pathname, true);
         return;
       }
     }
@@ -93,15 +93,15 @@ export default class App extends Component {
       const mainInnerHTML = this.splitMainInnerHTML(responseHtml);
       this.setHtmlData(pathname, 'loaded', mainInnerHTML);
 
-      this.setPathname(pathname, hash, true);
+      this.setPathname(pathname, true);
     } catch (err) {
       console.error(err);
       this.setHtmlData(pathname, 'error');
     }
   }
 
-  setPathname(pathname, hash, shouldPush) {
-    setWindowPathname(pathname, hash, shouldPush);
+  setPathname(pathname, shouldPush) {
+    setWindowPathname(pathname, null, shouldPush);
     this.setState({ curPathname: pathname });
   }
 

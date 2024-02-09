@@ -3,7 +3,7 @@ import Component from '../core';
 export default class SidebarItem extends Component {
   hydrate() {
     this.addEvent('click', this.linkIdSelector, () => {
-      this.props.loadPageData(this.props.pathname, this.props.hash);
+      this.props.loadPageData(this.props.pathname);
     });
 
     super.hydrate();
@@ -16,14 +16,7 @@ export default class SidebarItem extends Component {
   }
 
   mounted() {
-    if (this.props.hash) {
-      this.$target.classList.toggle(
-        'active',
-        this.props.hash === window.location.hash,
-      );
-    } else {
-      this.$target.classList.toggle('active', this.props.isActive);
-    }
+    this.$target.classList.toggle('active', this.props.isActive);
 
     super.mounted();
   }
