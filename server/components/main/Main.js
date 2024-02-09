@@ -1,7 +1,7 @@
 import { pathnameToId } from '../../utils/ids';
 import { ROUTE, ROUTE_HASHES } from '../../utils/routes';
 import Component from '../core';
-import Project from '../Project';
+import Project from '../project/Project';
 import ProjectList from '../projectList/ProjectList';
 
 export default class Main extends Component {

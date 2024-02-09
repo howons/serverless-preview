@@ -1,8 +1,8 @@
-import { getHashIndex } from '../utils/hashes';
-import { ID } from '../utils/ids';
-import { ROUTE_HASHES, setWindowPathname } from '../utils/routes';
-import Component from './core';
-import ScrollIndicator from './scrollIndicator/ScrollIndicator';
+import { getHashIndex } from '../../utils/hashes';
+import { ID } from '../../utils/ids';
+import { ROUTE_HASHES, setWindowPathname } from '../../utils/routes';
+import Component from '../core';
+import ScrollIndicator from '../scrollIndicator/ScrollIndicator';
 
 export default class Project extends Component {
   setup() {
@@ -19,12 +19,8 @@ export default class Project extends Component {
   }
 
   hydrate() {
-    this.refs.imageRefs = this.$target.querySelectorAll(
-      `.${this.props.name}__snapshot`,
-    );
-    this.refs.descRefs = this.$target.querySelectorAll(
-      `.${this.props.name}__description`,
-    );
+    this.refs.imageRefs = this.$target.querySelectorAll(`.project__snapshot`);
+    this.refs.descRefs = this.$target.querySelectorAll(`.project__description`);
 
     this.syncHashIndex();
 

@@ -1,4 +1,4 @@
-import { ID, getStyleTagId } from '../../utils/ids';
+import { ID } from '../../utils/ids';
 import {
   ROUTES_LIST,
   checkIsBeforeOrAfter,
@@ -6,7 +6,7 @@ import {
   getWindowPathname,
   setWindowPathname,
 } from '../../utils/routes';
-import { getStyleTag } from '../../utils/styles';
+import { getStyleTag, getStyleTagId } from '../../utils/styles';
 import Component from '../core';
 import Main from '../main/Main';
 import ScrollIndicator from '../scrollIndicator/ScrollIndicator';

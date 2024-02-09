@@ -1,4 +1,5 @@
 import { IMAGE_URL } from '../../utils/images';
+import { project } from '../project/model';
 
 const snapshots = [
   {
@@ -13,26 +14,4 @@ const snapshots = [
   },
 ];
 
-export const portfolio = {
-  id: '/portfolio',
-  content: `
-    <div id="portfolio" class="portfolio">
-      <section class="portfolio__snapshot-list">
-      ${snapshots
-        .map(({ id, imageUrl }) => {
-          return `<img src="${imageUrl}" alt="${id} 스냅샷" id="portfolio__${id}" class="portfolio__snapshot" />`;
-        })
-        .join('')}
-      </section>
-      <section class="portfolio__description-list">
-      ${snapshots
-        .map(({ id, description }) => {
-          return `<p class="portfolio__description">
-            ${description}
-          </p>`;
-        })
-        .join('')}
-      </section>
-    </div>
-  `,
-};
+export const portfolio = project('portfolio', snapshots);

@@ -1,4 +1,8 @@
-import { ROUTE_HASHES, getNextRoute, getPrevRoute } from './routes';
+import { ROUTE, ROUTE_HASHES, getNextRoute, getPrevRoute } from './routes';
+
+export const HASH_TITLE = {
+  [ROUTE.PORTFOLIO]: ['소개', '서버리스'],
+};
 
 export const getNextHash = (pathname, curPageNum) => {
   if (curPageNum < 0 || curPageNum >= ROUTE_HASHES.length - 1)
