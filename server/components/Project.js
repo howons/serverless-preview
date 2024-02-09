@@ -1,5 +1,6 @@
+import { ROUTE_HASHES, getHashIndex } from '../utils/hashes';
 import { ID } from '../utils/ids';
-import { ROUTE_HASHES, getHashIndex, setWindowPathname } from '../utils/routes';
+import { setWindowPathname } from '../utils/routes';
 import Component from './core';
 import ScrollIndicator from './scrollIndicator/ScrollIndicator';
 
@@ -31,7 +32,6 @@ export default class Project extends Component {
     );
     if (this.state.slideNum !== hashIndex) {
       this.state.slideNum = hashIndex;
-      console.log(hashIndex);
     }
 
     super.hydrate();

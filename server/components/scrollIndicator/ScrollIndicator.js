@@ -1,10 +1,6 @@
+import { getNextHash, getPrevHash } from '../../utils/hashes';
 import { ID } from '../../utils/ids';
-import {
-  getNextHash,
-  getNextRoute,
-  getPrevHash,
-  getPrevRoute,
-} from '../../utils/routes';
+import { getNextRoute, getPrevRoute } from '../../utils/routes';
 import Component from '../core';
 
 const SCROLL_MAX = 800;

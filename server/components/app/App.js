@@ -1,7 +1,7 @@
+import { ROUTE_HASHES } from '../../utils/hashes';
 import { ID, getStyleTagId } from '../../utils/ids';
 import {
   ROUTES_LIST,
-  ROUTE_HASHES,
   checkIsBeforeOrAfter,
   getUrl,
   getWindowPathname,
