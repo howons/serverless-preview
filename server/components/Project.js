@@ -61,21 +61,21 @@ export default class Project extends Component {
   }
 
   async moveSlide(targetName) {
-    const targetSlideNum = getHashIndex(this.props.curPathname, targetName);
-    if (targetSlideNum < 0) {
+    const targetSlideIndex = getHashIndex(this.props.curPathname, targetName);
+    if (targetSlideIndex < 0) {
       await this.props.loadPageData(targetName);
       return;
     }
 
-    this.setState({
-      slideIndex: targetSlideNum,
-    });
-
     setWindowPathname(
       this.props.curPathname,
-      this.props.hashList[this.state.slideIndex],
+      this.props.hashList[targetSlideIndex],
       true,
     );
+
+    this.setState({
+      slideIndex: targetSlideIndex,
+    });
   }
 
   isFirstSlide() {
@@ -93,6 +93,7 @@ export default class Project extends Component {
       this.props.curPathname,
       window.location.hash,
     );
+
     if (this.state.slideIndex !== hashIndex) {
       this.state.slideIndex = hashIndex;
     }

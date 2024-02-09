@@ -73,7 +73,7 @@ export const setWindowPathname = (pathname, hash, shouldPush) => {
   document.title = ROUTE_TITLE[pathname];
 
   const hashName =
-    hash ?? Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '';
+    hash ?? (Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '');
 
   if (shouldPush) {
     history.pushState({}, '', getUrl(pathname, hashName));

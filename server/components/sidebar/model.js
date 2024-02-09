@@ -15,9 +15,15 @@ export const sidebarItems = [
   },
   {
     id: 'side-portfolio-intro',
-    name: '포트폴리오-소개',
+    name: '소개',
     path: '/portfolio',
     hash: '#intro',
+  },
+  {
+    id: 'side-portfolio-serverless',
+    name: '서버리스',
+    path: '/portfolio',
+    hash: '#serverless',
   },
   {
     id: 'side-project-onedayhero',

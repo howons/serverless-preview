@@ -16,7 +16,14 @@ export default class SidebarItem extends Component {
   }
 
   mounted() {
-    this.$target.classList.toggle('active', this.props.isActive);
+    if (this.props.hash) {
+      this.$target.classList.toggle(
+        'active',
+        this.props.hash === window.location.hash,
+      );
+    } else {
+      this.$target.classList.toggle('active', this.props.isActive);
+    }
 
     super.mounted();
   }
