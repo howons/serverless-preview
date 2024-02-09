@@ -95,7 +95,9 @@ export default class Project extends Component {
     );
 
     if (this.state.slideIndex !== hashIndex) {
-      this.state.slideIndex = hashIndex;
+      this.setState({
+        slideIndex: hashIndex,
+      });
     }
   }
 }

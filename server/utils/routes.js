@@ -60,7 +60,7 @@ export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {
 };
 
 export const getUrl = (pathname, hash) => {
-  const hashUrl = hash ? `#${hash}` : '';
+  const hashUrl = hash ? (hash[0] === '#' ? hash : `#${hash}`) : '';
   return `${window.location.protocol}//${window.location.host}/dev${pathname}${hashUrl}`;
 };
 
@@ -73,7 +73,7 @@ export const setWindowPathname = (pathname, hash, shouldPush) => {
   document.title = ROUTE_TITLE[pathname];
 
   const hashName =
-    hash ?? (Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '');
+    hash ?? (Object.keys(ROUTE_HASHES).includes(pathname) ? '#intro' : '');
 
   if (shouldPush) {
     history.pushState({}, '', getUrl(pathname, hashName));

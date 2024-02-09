@@ -3,7 +3,7 @@ import Component from '../core';
 export default class SidebarItem extends Component {
   hydrate() {
     this.addEvent('click', this.linkIdSelector, () => {
-      this.props.loadPageData(this.props.pathname);
+      this.props.loadPageData(this.props.pathname, this.props.hash);
     });
 
     super.hydrate();
