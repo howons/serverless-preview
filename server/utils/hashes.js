@@ -1,11 +1,4 @@
-import { ROUTE, getNextRoute, getPrevRoute } from './routes';
-
-export const ROUTE_HASHES = {
-  [ROUTE.PORTFOLIO]: ['intro', 'serverless'],
-  [ROUTE.ONE_DAY_HERO]: [],
-  [ROUTE.MUSSEUK]: [],
-  [ROUTE.VELOG]: [],
-};
+import { ROUTE_HASHES, getNextRoute, getPrevRoute } from './routes';
 
 export const getNextHash = (pathname, curPageNum) => {
   if (curPageNum < 0 || curPageNum >= ROUTE_HASHES.length - 1)

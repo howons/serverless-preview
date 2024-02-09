@@ -28,6 +28,13 @@ export const ROUTE_TITLE = {
   [ROUTE.VELOG]: '프로젝트-벨로그클로닝',
 };
 
+export const ROUTE_HASHES = {
+  [ROUTE.PORTFOLIO]: ['intro', 'serverless'],
+  [ROUTE.ONE_DAY_HERO]: [],
+  [ROUTE.MUSSEUK]: [],
+  [ROUTE.VELOG]: [],
+};
+
 export const getNextRoute = (pathname) => {
   const curIndex = findPathIndex(pathname);
   if (curIndex < 0 || curIndex >= ROUTES_LIST.length - 1) return;
@@ -65,14 +72,17 @@ export const getWindowPathname = () => {
 export const setWindowPathname = (pathname, hash, shouldPush) => {
   document.title = ROUTE_TITLE[pathname];
 
+  const hashName =
+    hash ?? Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '';
+
   if (shouldPush) {
-    history.pushState({}, '', getUrl(pathname, hash));
+    history.pushState({}, '', getUrl(pathname, hashName));
   } else {
-    history.replaceState({}, '', getUrl(pathname, hash));
+    history.replaceState({}, '', getUrl(pathname, hashName));
   }
 };
 
-const findPathIndex = (pathname) => {
+export const findPathIndex = (pathname) => {
   return ROUTES_LIST.findIndex(
     (route) => route === pathname || route === pathname.split('/dev')?.[1],
   );

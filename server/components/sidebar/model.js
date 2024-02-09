@@ -14,6 +14,12 @@ export const sidebarItems = [
     path: '/portfolio',
   },
   {
+    id: 'side-portfolio-intro',
+    name: '포트폴리오-소개',
+    path: '/portfolio',
+    hash: '#intro',
+  },
+  {
     id: 'side-project-onedayhero',
     name: '원데이히어로',
     icon: 'O',
@@ -44,7 +50,7 @@ export const sidebar = `
               class="sidebar-item sidebar-item__${index}" 
               data-index="${index}">
                 <a id="${id}__link">
-                  ${name} ${icon}
+                  ${name} ${icon ?? ''}
                 </a>
             </div>`,
         )

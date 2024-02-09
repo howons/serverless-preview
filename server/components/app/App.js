@@ -1,4 +1,3 @@
-import { ROUTE_HASHES } from '../../utils/hashes';
 import { ID, getStyleTagId } from '../../utils/ids';
 import {
   ROUTES_LIST,
@@ -33,7 +32,7 @@ export default class App extends Component {
     };
 
     window.addEventListener('popstate', (e) => {
-      this.setPathname(getWindowPathname());
+      this.setPathname(getWindowPathname(), window.location.hash);
     });
 
     super.hydrate();
@@ -64,7 +63,7 @@ export default class App extends Component {
     super.mounted();
   }
 
-  async loadPageData(pathname) {
+  async loadPageData(pathname, hash) {
     if (!ROUTES_LIST.some((route) => route === pathname)) {
       console.error('Incorrect pathname: ', pathname);
       return;
@@ -75,7 +74,7 @@ export default class App extends Component {
         return;
       }
       if (htmlCache[pathname].status === 'loaded') {
-        this.setPathname(pathname, true);
+        this.setPathname(pathname, hash, true);
         return;
       }
     }
@@ -94,17 +93,15 @@ export default class App extends Component {
       const mainInnerHTML = this.splitMainInnerHTML(responseHtml);
       this.setHtmlData(pathname, 'loaded', mainInnerHTML);
 
-      this.setPathname(pathname, true);
+      this.setPathname(pathname, hash, true);
     } catch (err) {
       console.error(err);
       this.setHtmlData(pathname, 'error');
     }
   }
 
-  setPathname(pathname, shouldPush) {
-    const hash = Object.keys(ROUTE_HASHES).includes(pathname) ? 'intro' : '';
+  setPathname(pathname, hash, shouldPush) {
     setWindowPathname(pathname, hash, shouldPush);
-
     this.setState({ curPathname: pathname });
   }
 

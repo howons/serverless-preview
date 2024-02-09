@@ -156,7 +156,7 @@ export default class ScrollIndicator extends Component {
   }
 
   isHorizon() {
-    return this.props.curSlideNum !== undefined;
+    return this.props.curSlideIndex !== undefined;
   }
 
   isActive() {

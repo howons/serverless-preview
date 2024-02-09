@@ -1,13 +1,13 @@
-import { ROUTE_HASHES, getHashIndex } from '../utils/hashes';
+import { getHashIndex } from '../utils/hashes';
 import { ID } from '../utils/ids';
-import { setWindowPathname } from '../utils/routes';
+import { ROUTE_HASHES, setWindowPathname } from '../utils/routes';
 import Component from './core';
 import ScrollIndicator from './scrollIndicator/ScrollIndicator';
 
 export default class Project extends Component {
   setup() {
     this.state = {
-      slideNum: 0,
+      slideIndex: 0,
     };
 
     this.refs = {
@@ -26,29 +26,29 @@ export default class Project extends Component {
       `.${this.props.name}__description`,
     );
 
-    const hashIndex = getHashIndex(
-      this.props.curPathname,
-      window.location.hash,
-    );
-    if (this.state.slideNum !== hashIndex) {
-      this.state.slideNum = hashIndex;
-    }
+    this.syncHashIndex();
 
     super.hydrate();
   }
 
+  render() {
+    this.syncHashIndex();
+
+    super.render();
+  }
+
   mounted() {
     this.refs.imageRefs.forEach((imageRef, index) => {
-      imageRef.classList.toggle('active', index === this.state.slideNum);
+      imageRef.classList.toggle('active', index === this.state.slideIndex);
     });
 
     this.refs.descRefs.forEach((descRef, index) => {
-      descRef.classList.toggle('active', index === this.state.slideNum);
+      descRef.classList.toggle('active', index === this.state.slideIndex);
     });
 
     const scrollIndicatorProp = {
       curPathname: this.props.curPathname,
-      curSlideNum: this.state.slideNum,
+      curSlideIndex: this.state.slideIndex,
       loadPageData: this.moveSlide.bind(this),
     };
     this.addChild(
@@ -68,23 +68,33 @@ export default class Project extends Component {
     }
 
     this.setState({
-      slideNum: targetSlideNum,
+      slideIndex: targetSlideNum,
     });
 
     setWindowPathname(
       this.props.curPathname,
-      this.props.hashList[this.state.slideNum],
+      this.props.hashList[this.state.slideIndex],
       true,
     );
   }
 
   isFirstSlide() {
-    return this.state.slidenum <= 0;
+    return this.state.slideIndex <= 0;
   }
 
   isLastSlide() {
     return (
-      this.state.slideNum >= ROUTE_HASHES[this.props.curPathname].length - 1
+      this.state.slideIndex >= ROUTE_HASHES[this.props.curPathname].length - 1
     );
+  }
+
+  syncHashIndex() {
+    const hashIndex = getHashIndex(
+      this.props.curPathname,
+      window.location.hash,
+    );
+    if (this.state.slideIndex !== hashIndex) {
+      this.state.slideIndex = hashIndex;
+    }
   }
 }

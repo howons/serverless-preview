@@ -1,6 +1,5 @@
-import { ROUTE_HASHES } from '../../utils/hashes';
 import { pathnameToId } from '../../utils/ids';
-import { ROUTE } from '../../utils/routes';
+import { ROUTE, ROUTE_HASHES } from '../../utils/routes';
 import Component from '../core';
 import Project from '../Project';
 import ProjectList from '../projectList/ProjectList';
