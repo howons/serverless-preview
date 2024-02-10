@@ -3,6 +3,7 @@ import { ID } from '../../utils/ids';
 import { ROUTE_HASHES, setWindowPathname } from '../../utils/routes';
 import Component from '../core';
 import ScrollIndicator from '../scrollIndicator/ScrollIndicator';
+import SlideBar from './SlideBar';
 
 export default class Project extends Component {
   setup() {
@@ -42,6 +43,12 @@ export default class Project extends Component {
       descRef.classList.toggle('active', index === this.state.slideIndex);
     });
 
+    const slideBarProp = {
+      curSlideIndex: this.state.slideIndex,
+      moveSlide: this.moveSlide.bind(this),
+    };
+    this.addChild(SlideBar, ID.SLIDE_BAR, slideBarProp);
+
     const scrollIndicatorProp = {
       curPathname: this.props.curPathname,
       curSlideIndex: this.state.slideIndex,
@@ -56,10 +63,19 @@ export default class Project extends Component {
     super.mounted();
   }
 
-  async moveSlide(targetName) {
-    const targetSlideIndex = getHashIndex(this.props.curPathname, targetName);
-    if (targetSlideIndex < 0) {
-      await this.props.loadPageData(targetName);
+  async moveSlide(target) {
+    let targetSlideIndex;
+
+    if (typeof target === 'string') {
+      targetSlideIndex = getHashIndex(this.props.curPathname, target);
+      if (targetSlideIndex < 0) {
+        await this.props.loadPageData(target);
+        return;
+      }
+    } else if (typeof target === 'number') {
+      targetSlideIndex = target;
+    } else {
+      console.error('Invalid target type');
       return;
     }
 

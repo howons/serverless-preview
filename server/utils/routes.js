@@ -29,7 +29,7 @@ export const ROUTE_TITLE = {
 };
 
 export const ROUTE_HASHES = {
-  [ROUTE.PORTFOLIO]: ['intro', 'serverless'],
+  [ROUTE.PORTFOLIO]: ['intro', 'serverless', 'webpack'],
   [ROUTE.ONE_DAY_HERO]: [],
   [ROUTE.MUSSEUK]: [],
   [ROUTE.VELOG]: [],

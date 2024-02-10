@@ -6,6 +6,7 @@ export const ID = {
   CLOSE_BOX: '#close-box',
   SCROLL_INDICATOR: '#scroll-indicator',
   SCROLL_INDICATOR_HORIZON: '#scroll-indicator__horizon',
+  SLIDE_BAR: '#slide-bar',
 };
 
 export const pathnameToId = (pathname) => {
