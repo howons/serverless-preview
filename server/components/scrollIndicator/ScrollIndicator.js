@@ -17,6 +17,7 @@ export default class ScrollIndicator extends Component {
       scrollLevelLock: false,
       scrollTimer: null,
       scrollInterval: null,
+      scrollCallback: null,
     };
 
     super.setup();
@@ -86,6 +87,17 @@ export default class ScrollIndicator extends Component {
     super.mounted();
   }
 
+  unmount() {
+    clearTimeout(this.refs.scrollTimer);
+    clearInterval(this.refs.scrollInterval);
+
+    const $main = document.querySelector(ID.MAIN);
+    $main.removeEventListener('wheel', this.refs.scrollCallback);
+    $main.removeEventListener('touchmove', this.refs.scrollCallback);
+
+    super.unmount();
+  }
+
   getTargetPage(isNext) {
     const { curSlideIndex, curPathname } = this.props;
     if (this.isHorizon()) {
@@ -141,9 +153,11 @@ export default class ScrollIndicator extends Component {
       };
     };
 
+    this.refs.scrollCallback = countOverScroll();
+
     const $main = document.querySelector(ID.MAIN);
-    $main.addEventListener('wheel', countOverScroll());
-    $main.addEventListener('touchmove', countOverScroll());
+    $main.addEventListener('wheel', this.refs.scrollCallback);
+    $main.addEventListener('touchmove', this.refs.scrollCallback);
   }
 
   setScrollLevel() {

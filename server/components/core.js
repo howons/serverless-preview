@@ -8,6 +8,7 @@ export default class Component {
   props;
   refs;
   events = [];
+  children = [];
   constructor(selector, props, root) {
     if (singleton[selector]) {
       singleton[selector].props = { ...props };
@@ -46,6 +47,8 @@ export default class Component {
     if (this.isRoot) this.setEventDeligation();
   }
   render() {
+    if (!this.$target) return;
+
     this.mounted();
   }
   mounted() {
@@ -74,7 +77,10 @@ export default class Component {
     this.render();
   }
   addChild(Child, selector, props, root = this.root) {
-    return new Child(selector, props, root);
+    const child = new Child(selector, props, root);
+    this.children.push(child);
+
+    return child;
   }
   addEvent(eventType, selector, callback) {
     if (!eventCallbacks[this.root]) return;
@@ -91,6 +97,10 @@ export default class Component {
     });
   }
   unmount() {
+    this.children.forEach((child) => {
+      child.unmount();
+    });
+
     singleton[this.idSelector] = null;
     this.$target.remove();
     this.$target = null;
