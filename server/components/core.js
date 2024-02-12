@@ -1,14 +1,16 @@
 const singleton = {};
 const eventCallbacks = {};
+const stateStore = {};
 
 export default class Component {
   $target;
   root;
-  state;
-  props;
-  refs;
+  state = {};
+  props = {};
+  refs = {};
   events = [];
   children = [];
+  raf = null;
   constructor(selector, props, root) {
     if (singleton[selector]) {
       singleton[selector].props = { ...props };
@@ -22,7 +24,7 @@ export default class Component {
 
     singleton[selector] = this;
     this.props = { ...props };
-    this.root = root || this.$target.id;
+    this.root = root || this.id;
 
     this.setup();
     this.hydrate();
@@ -31,7 +33,7 @@ export default class Component {
   /* lifecycle methods */
   setup() {
     if (this.isRoot) {
-      eventCallbacks[this.$target.id] = {
+      eventCallbacks[this.id] = {
         click: [],
         scroll: [],
         mousemove: [],
@@ -40,6 +42,8 @@ export default class Component {
         popstate: [],
       };
     }
+
+    stateStore[this.id] = { ...this.state };
   }
   hydrate() {
     /**@note addEvent 추가 위치 */
@@ -59,7 +63,7 @@ export default class Component {
     if (!this.isRoot) return;
 
     for (const [eventType, targetList] of Object.entries(
-      eventCallbacks[this.$target.id],
+      eventCallbacks[this.id],
     )) {
       this.$target.addEventListener(eventType, (event) => {
         targetList.forEach(({ selector, callback }) => {
@@ -73,12 +77,24 @@ export default class Component {
 
   /* trigger methods */
   setState(nextState) {
-    this.state = { ...this.state, ...nextState };
-    this.render();
+    stateStore[this.id] = { ...stateStore[this.id], ...nextState };
+
+    cancelAnimationFrame(this.raf);
+
+    if (this.shallowEqualState()) return;
+
+    this.raf = requestAnimationFrame(() => {
+      this.state = stateStore[this.id];
+
+      this.render();
+    });
   }
   addChild(Child, selector, props, root = this.root) {
     const child = new Child(selector, props, root);
-    this.children.push(child);
+
+    if (!this.children.includes(child)) {
+      this.children.push(child);
+    }
 
     return child;
   }
@@ -102,8 +118,9 @@ export default class Component {
     });
 
     singleton[this.idSelector] = null;
-    this.$target.remove();
-    this.$target = null;
+
+    stateStore[this.id] = {};
+    cancelAnimationFrame(this.raf);
 
     this.events.forEach(({ eventType, callbackInfo }) => {
       const targetIndice = [];
@@ -118,13 +135,31 @@ export default class Component {
         eventCallbacks[this.root][eventType].splice(target, 1);
       });
     });
+
+    this.$target.remove();
+    this.$target = null;
   }
 
   /* util methods */
-  get isRoot() {
-    return this.root === this.$target.id;
+  get id() {
+    return this.$target.id;
   }
   get idSelector() {
-    return `#${this.$target.id}`;
+    return `#${this.id}`;
+  }
+  get isRoot() {
+    return this.root === this.id;
+  }
+  shallowEqualState() {
+    const keys = Object.keys(this.state);
+    const nextKeys = Object.keys(stateStore[this.id]);
+
+    if (keys.length !== nextKeys.length) return false;
+
+    for (const key of keys) {
+      if (this.state[key] !== stateStore[key]) return false;
+    }
+
+    return true;
   }
 }

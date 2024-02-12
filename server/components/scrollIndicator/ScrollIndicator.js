@@ -15,8 +15,9 @@ export default class ScrollIndicator extends Component {
     this.refs = {
       scrollCounter: 0,
       scrollLevelLock: false,
-      scrollTimer: null,
+      scrollInitialDelay: null,
       scrollInterval: null,
+      scrollRefresh: null,
       scrollCallback: null,
     };
 
@@ -66,11 +67,11 @@ export default class ScrollIndicator extends Component {
         });
 
         this.props.loadPageData(targetPage).then(() => {
-          clearTimeout(this.refs.scrollTimer);
+          clearTimeout(this.refs.scrollInitialDelay);
           clearInterval(this.refs.scrollInterval);
           this.refs.scrollCounter = 0;
 
-          setTimeout(() => {
+          this.refs.scrollRefresh = setTimeout(() => {
             this.refs.scrollLevelLock = false;
             this.setState({ scrollLevel: 0 });
           }, 100);
@@ -88,7 +89,8 @@ export default class ScrollIndicator extends Component {
   }
 
   unmount() {
-    clearTimeout(this.refs.scrollTimer);
+    clearTimeout(this.refs.scrollInitialDelay);
+    clearTimeout(this.refs.scrollRefresh);
     clearInterval(this.refs.scrollInterval);
 
     const $main = document.querySelector(ID.MAIN);
@@ -138,9 +140,10 @@ export default class ScrollIndicator extends Component {
           this.setScrollLevel();
         }
 
-        clearTimeout(this.refs.scrollTimer);
+        clearTimeout(this.refs.scrollInitialDelay);
         clearInterval(this.refs.scrollInterval);
-        this.refs.scrollTimer = setTimeout(() => {
+
+        this.refs.scrollInitialDelay = setTimeout(() => {
           this.refs.scrollInterval = setInterval(() => {
             this.refs.scrollCounter =
               this.refs.scrollCounter < 1 && this.refs.scrollCounter > -1
