@@ -3,7 +3,7 @@ export const project = (name, snapshots) => ({
   content: `
     <div id="${name}" class="project">
       <nav id="slide-bar" class="project__slide-bar">
-        <div class="project__link-wrapper">
+        <div id="project__link-wrapper" class="project__link-wrapper">
           <div class="project__scroll-helper"></div>
           ${snapshots
             .map(() => {

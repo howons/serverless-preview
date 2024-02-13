@@ -1,9 +1,11 @@
+import { scrollIntoView } from '../../utils/scroll';
 import Component from '../core';
 
 export default class SlideBar extends Component {
   setup() {
     this.refs = {
       itemRefs: [],
+      containerRef: null,
     };
 
     super.setup();
@@ -11,6 +13,9 @@ export default class SlideBar extends Component {
 
   hydrate() {
     this.refs.itemRefs = this.$target.querySelectorAll('.project__link');
+    this.refs.containerRef = this.$target.querySelector(
+      '#project__link-wrapper',
+    );
 
     this.refs.itemRefs.forEach((itemRef, index) => {
       this.addEvent('click', `#${itemRef.id}`, () => {
@@ -22,10 +27,13 @@ export default class SlideBar extends Component {
   }
 
   mounted() {
-    this.refs.itemRefs[this.props.curSlideIndex].scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-    });
+    scrollIntoView(
+      this.refs.containerRef,
+      this.refs.itemRefs[this.props.curSlideIndex],
+      false,
+      'smooth',
+      'center',
+    );
 
     super.mounted();
   }

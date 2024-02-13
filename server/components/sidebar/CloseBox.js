@@ -12,9 +12,9 @@ export default class CloseBox extends Component {
       this.props.setIsOpen(!this.props.isOpen);
 
       if (this.props.isOpen) {
-        this.props.firstItemRef.$target.scrollIntoView({ behavior: 'smooth' });
+        this.props.firstItem.$target.scrollIntoView({ behavior: 'smooth' });
       } else {
-        this.props.activeItemRef.$target.scrollIntoView({ behavior: 'smooth' });
+        this.props.activeItem.$target.scrollIntoView({ behavior: 'smooth' });
       }
     });
 

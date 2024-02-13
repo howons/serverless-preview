@@ -25,7 +25,7 @@ export const sidebarItems = [
     icon: 'M',
     path: '/musseuk-letter',
   },
-  { id: 'side-project-7elog', name: 'velog 클로닝', icon: 'V', path: '/7elog' },
+  { id: 'side-project-7elog', name: 'velog 클로닝', icon: 'V', path: '/velog' },
 ];
 
 export const sidebar = `

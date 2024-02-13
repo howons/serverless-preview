@@ -1,4 +1,5 @@
 import { ID } from '../../utils/ids';
+import { scrollIntoView } from '../../utils/scroll';
 import Component from '../core';
 import CloseBox from './CloseBox';
 import SidebarItem from './SidebarItem';
@@ -14,9 +15,9 @@ export default class Sidebar extends Component {
       items: [],
       io: null,
       lastPathname: '',
-      innerRef: this.$target.querySelector(ID.SIDEBAR_INNER),
-      firstItemRef: null,
-      activeItemRef: null,
+      innerRef: null,
+      firstItem: null,
+      activeItem: null,
     };
 
     super.setup();
@@ -38,6 +39,8 @@ export default class Sidebar extends Component {
       },
     );
 
+    this.refs.innerRef = this.$target.querySelector(ID.SIDEBAR_INNER);
+
     super.hydrate();
   }
 
@@ -53,8 +56,8 @@ export default class Sidebar extends Component {
       setIsOpen: (nextIsOpen) => {
         this.setState({ isOpen: nextIsOpen });
       },
-      firstItemRef: this.refs.firstItemRef,
-      activeItemRef: this.refs.activeItemRef,
+      firstItem: this.refs.firstItem,
+      activeItem: this.refs.activeItem,
     };
 
     const sidebarItemsProp = {
@@ -78,13 +81,17 @@ export default class Sidebar extends Component {
       this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
 
-      if (index === 0) this.refs.firstItemRef = sidebarItem;
-      if (sidebarItemsProp.isActive) this.refs.activeItemRef = sidebarItem;
+      if (index === 0) this.refs.firstItem = sidebarItem;
+      if (sidebarItemsProp.isActive) this.refs.activeItem = sidebarItem;
     });
-
     if (this.refs.lastPathname !== this.props.curPathname) {
       this.refs.lastPathname = this.props.curPathname;
-      this.refs.activeItemRef.$target.scrollIntoView({ behavior: 'smooth' });
+      scrollIntoView(
+        this.refs.innerRef,
+        this.refs.activeItem.$target,
+        true,
+        'smooth',
+      );
     }
 
     this.addChild(CloseBox, ID.CLOSE_BOX, closeBoxProp);
