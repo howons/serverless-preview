@@ -23,4 +23,4 @@ const snapshots = [
   },
 ];
 
-export const musseuk = project('musseuk', snapshots);
+export const musseuk = project('musseuk-letter', snapshots);

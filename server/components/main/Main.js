@@ -13,6 +13,9 @@ export default class Main extends Component {
         [ROUTE.PROFILE]: { constructor: null, instance: null },
         [ROUTE.PROJECT_LIST]: { constructor: ProjectList, instance: null },
         [ROUTE.PORTFOLIO]: { constructor: Project, instance: null },
+        [ROUTE.ONE_DAY_HERO]: { constructor: Project, instance: null },
+        [ROUTE.MUSSEUK]: { constructor: Project, instance: null },
+        [ROUTE.VELOG]: { constructor: Project, instance: null },
       },
     };
 

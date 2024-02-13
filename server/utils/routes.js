@@ -5,7 +5,7 @@ export const ROUTE = {
   PORTFOLIO: '/portfolio',
   ONE_DAY_HERO: '/one-day-hero',
   MUSSEUK: '/musseuk-letter',
-  VELOG: '/7elog',
+  VELOG: '/velog',
 };
 
 export const ROUTES_LIST = [

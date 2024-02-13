@@ -4,17 +4,17 @@ export const HASH_TITLE = {
   [ROUTE.PORTFOLIO]: ['소개', '서버리스', '웹팩'],
 };
 
-export const getNextHash = (pathname, curPageNum) => {
-  if (curPageNum < 0 || curPageNum >= ROUTE_HASHES.length - 1)
+export const getNextHash = (pathname, curSlideIndex) => {
+  if (curSlideIndex >= ROUTE_HASHES[pathname].length - 1)
     return getNextRoute(pathname);
 
-  return ROUTE_HASHES[pathname][curPageNum + 1];
+  return ROUTE_HASHES[pathname][curSlideIndex + 1];
 };
 
-export const getPrevHash = (pathname, curPageNum) => {
-  if (curPageNum <= 0) return getPrevRoute(pathname);
+export const getPrevHash = (pathname, curSlideIndex) => {
+  if (curSlideIndex <= 0) return getPrevRoute(pathname);
 
-  return ROUTE_HASHES[pathname][curPageNum - 1];
+  return ROUTE_HASHES[pathname][curSlideIndex - 1];
 };
 
 export const getHashIndex = (pathname, slideName) => {

@@ -23,4 +23,4 @@ const snapshots = [
   },
 ];
 
-export const oneDayHero = project('oneDayHero', snapshots);
+export const oneDayHero = project('one-day-hero', snapshots);
