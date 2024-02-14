@@ -1,3 +1,5 @@
+@import '_mixin';
+
 html,
 body {
   font-family:
@@ -38,12 +40,8 @@ body {
     height: 100%;
     overflow-y: scroll;
     scroll-snap-type: y proximity;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    @include hidden-scroll;
 
     &::before {
       content: '';
@@ -52,14 +50,15 @@ body {
       left: -18rem;
       width: 18rem;
       height: 100%;
-      background: rgba(255, 255, 255, 0.8);
-      background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0.8) 90%,
-        rgba(255, 255, 255, 0) 100%
-      );
       transition: all 0.35s ease;
       transform: translateX(0rem);
+
+      @include two-color-gradient(
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 255, 255, 0),
+        90deg,
+        90%
+      );
     }
 
     &.open {
@@ -194,12 +193,8 @@ body {
   flex-grow: 1;
   height: 100%;
   overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include hidden-scroll;
 }
 
 .scroll-container {
@@ -350,23 +345,15 @@ body {
     height: 100%;
 
     &__next {
-      background: rgb(225, 246, 255);
-      background: linear-gradient(
-        0deg,
-        rgb(213, 239, 251) 0%,
-        rgb(91, 174, 247) 100%
-      );
       opacity: 0.5;
+
+      @include two-color-gradient(rgb(225, 246, 255), rgb(91, 174, 247), 0deg);
     }
 
     &__prev {
-      background: rgb(123, 228, 106);
-      background: linear-gradient(
-        0deg,
-        rgba(123, 228, 106, 1) 0%,
-        rgba(218, 255, 231, 1) 100%
-      );
       opacity: 0.5;
+
+      @include two-color-gradient(rgb(123, 228, 106), rgb(218, 255, 231), 0deg);
     }
   }
 }
@@ -519,23 +506,23 @@ body {
     height: 100%;
 
     &__next {
-      background: rgb(225, 246, 255);
-      background: linear-gradient(
-        270deg,
-        rgb(213, 239, 251) 0%,
-        rgb(91, 174, 247) 100%
-      );
       opacity: 0.5;
+
+      @include two-color-gradient(
+        rgb(225, 246, 255),
+        rgb(91, 174, 247),
+        270deg
+      );
     }
 
     &__prev {
-      background: rgb(123, 228, 106);
-      background: linear-gradient(
-        270deg,
-        rgba(123, 228, 106, 1) 0%,
-        rgba(218, 255, 231, 1) 100%
-      );
       opacity: 0.5;
+
+      @include two-color-gradient(
+        rgb(123, 228, 106),
+        rgb(218, 255, 231),
+        270deg
+      );
     }
   }
 }

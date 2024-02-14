@@ -1,0 +1,13 @@
+@mixin hidden-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin two-color-gradient($primary, $secondary, $deg, $start: 0%, $end: 100%) {
+  background: $primary;
+  background: linear-gradient($deg, $primary $start, $secondary $end);
+}
