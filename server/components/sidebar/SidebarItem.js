@@ -11,14 +11,9 @@ export default class SidebarItem extends Component {
 
   render() {
     this.$target.classList.toggle('open', this.props.isOpen);
-
-    super.render();
-  }
-
-  mounted() {
     this.$target.classList.toggle('active', this.props.isActive);
 
-    super.mounted();
+    super.render();
   }
 
   get linkIdSelector() {

@@ -16,8 +16,8 @@ export default class Sidebar extends Component {
       io: null,
       lastPathname: '',
       innerRef: null,
-      firstItem: null,
-      activeItem: null,
+      firstItemRef: null,
+      activeItemRef: null,
     };
 
     super.setup();
@@ -51,15 +51,6 @@ export default class Sidebar extends Component {
   }
 
   mounted() {
-    const closeBoxProp = {
-      isOpen: this.state.isOpen,
-      setIsOpen: (nextIsOpen) => {
-        this.setState({ isOpen: nextIsOpen });
-      },
-      firstItem: this.refs.firstItem,
-      activeItem: this.refs.activeItem,
-    };
-
     const sidebarItemsProp = {
       isOpen: this.state.isOpen,
       isActive: false,
@@ -81,19 +72,29 @@ export default class Sidebar extends Component {
       this.refs.io.observe(sidebarItem.$target);
       this.refs.items.push(sidebarItem);
 
-      if (index === 0) this.refs.firstItem = sidebarItem;
-      if (sidebarItemsProp.isActive) this.refs.activeItem = sidebarItem;
+      if (index === 0) this.refs.firstItemRef = sidebarItem.$target;
+      if (sidebarItemsProp.isActive)
+        this.refs.activeItemRef = sidebarItem.$target;
     });
+
     if (this.refs.lastPathname !== this.props.curPathname) {
       this.refs.lastPathname = this.props.curPathname;
       scrollIntoView(
         this.refs.innerRef,
-        this.refs.activeItem.$target,
+        this.refs.activeItemRef,
         true,
         'smooth',
       );
     }
 
+    const closeBoxProp = {
+      isOpen: this.state.isOpen,
+      setIsOpen: (nextIsOpen) => {
+        this.setState({ isOpen: nextIsOpen });
+      },
+      firstItemRef: this.refs.firstItemRef,
+      activeItemRef: this.refs.activeItemRef,
+    };
     this.addChild(CloseBox, ID.CLOSE_BOX, closeBoxProp);
   }
 

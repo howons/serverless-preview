@@ -23,18 +23,12 @@ export default class Project extends Component {
     this.refs.imageRefs = this.$target.querySelectorAll(`.project__snapshot`);
     this.refs.descRefs = this.$target.querySelectorAll(`.project__description`);
 
-    this.syncHashIndex();
-
     super.hydrate();
   }
 
   render() {
     this.syncHashIndex();
 
-    super.render();
-  }
-
-  mounted() {
     this.refs.imageRefs.forEach((imageRef, index) => {
       imageRef.classList.toggle('active', index === this.state.slideIndex);
     });
@@ -43,6 +37,10 @@ export default class Project extends Component {
       descRef.classList.toggle('active', index === this.state.slideIndex);
     });
 
+    super.render();
+  }
+
+  mounted() {
     const slideBarProp = {
       curSlideIndex: this.state.slideIndex,
       moveSlide: this.moveSlide.bind(this),

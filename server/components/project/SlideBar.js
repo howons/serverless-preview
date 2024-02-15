@@ -26,7 +26,7 @@ export default class SlideBar extends Component {
     super.hydrate();
   }
 
-  mounted() {
+  render() {
     scrollIntoView(
       this.refs.containerRef,
       this.refs.itemRefs[this.props.curSlideIndex],
@@ -35,6 +35,6 @@ export default class SlideBar extends Component {
       'center',
     );
 
-    super.mounted();
+    super.render();
   }
 }

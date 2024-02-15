@@ -22,10 +22,10 @@ export default class Main extends Component {
     super.setup();
   }
 
-  mounted() {
+  render() {
     this.handleRoute();
 
-    super.mounted();
+    super.render();
   }
 
   handleRoute() {

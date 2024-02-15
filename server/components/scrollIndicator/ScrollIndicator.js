@@ -27,12 +27,11 @@ export default class ScrollIndicator extends Component {
   hydrate() {
     this.addScrollCountEvent();
 
-    this.$target.classList.toggle('inactive', !this.isActive());
-
     super.hydrate();
   }
 
   render() {
+    this.$target.classList.toggle('inactive', !this.isActive());
     if (!this.isActive()) {
       super.render();
       return;
@@ -82,12 +81,6 @@ export default class ScrollIndicator extends Component {
     }
 
     super.render();
-  }
-
-  mounted() {
-    this.$target.classList.toggle('inactive', !this.isActive());
-
-    super.mounted();
   }
 
   unmount() {

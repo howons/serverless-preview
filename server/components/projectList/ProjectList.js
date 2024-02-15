@@ -39,7 +39,7 @@ export default class ProjectList extends Component {
     super.hydrate();
   }
 
-  mounted() {
+  render() {
     this.refs.imageRefs.forEach((imageRef, index) => {
       imageRef.classList.toggle(
         'active',
@@ -61,7 +61,7 @@ export default class ProjectList extends Component {
       );
     });
 
-    super.mounted();
+    super.render();
   }
 
   getImageId(id) {

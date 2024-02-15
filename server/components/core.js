@@ -47,7 +47,7 @@ export default class Component {
   }
   hydrate() {
     /**@note addEvent 추가 위치 */
-    this.mounted();
+    this.render();
     if (this.isRoot) this.setEventDeligation();
   }
   render() {
