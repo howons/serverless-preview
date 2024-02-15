@@ -34,14 +34,10 @@ export const project = (name, snapshots) => ({
         })
         .join('')}
       </section>
-        <div class="scroll-container__horizon">
-        <div id="scroll-indicator__horizon" class="scroll-indicator inactive">
-          <div class="indicator indicator__prev"></div>
-          <div class="indicator indicator__next"></div>
-        </div>
-        <div class="scroll-indicator__static">
-          <div class="indicator indicator__prev"></div>
-          <div class="indicator indicator__next"></div>
+      <div class="scroll-container scroll-container--horizon">
+        <div id="scroll-indicator--horizon" class="scroll-indicator scroll-indicator--horizon inactive">
+          <div class="indicator indicator__prev indicator__prev--horizon"></div>
+          <div class="indicator indicator__next indicator__next--horizon"></div>
         </div>
       </div>
     </div>

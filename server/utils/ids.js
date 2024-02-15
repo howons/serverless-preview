@@ -5,7 +5,7 @@ export const ID = {
   SIDEBAR_INNER: '#sidebar__inner',
   CLOSE_BOX: '#close-box',
   SCROLL_INDICATOR: '#scroll-indicator',
-  SCROLL_INDICATOR_HORIZON: '#scroll-indicator__horizon',
+  SCROLL_INDICATOR_HORIZON: '#scroll-indicator--horizon',
   SLIDE_BAR: '#slide-bar',
 };
 

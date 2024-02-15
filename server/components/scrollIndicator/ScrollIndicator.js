@@ -38,16 +38,18 @@ export default class ScrollIndicator extends Component {
       return;
     }
 
+    const horizonModifier = this.isHorizon() ? '--horizon' : '';
+
     Array.from({ length: SCROLL_LEVEL_MAX + 1 })
       .map((_, index) => index)
       .forEach((num) => {
         this.$target.classList.toggle(
-          `scroll-indicator--level${num}`,
+          `scroll-indicator--level${num}${horizonModifier}`,
           this.state.scrollLevel === num,
         );
         if (num > 0) {
           this.$target.classList.toggle(
-            `scroll-indicator--level${-num}`,
+            `scroll-indicator--level${-num}${horizonModifier}`,
             this.state.scrollLevel === -num,
           );
         }
