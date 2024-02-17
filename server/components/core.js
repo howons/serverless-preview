@@ -12,6 +12,11 @@ export default class Component {
   children = [];
   raf = null;
   constructor(selector, props, root) {
+    if (!selector.startsWith('#')) {
+      console.error('selector is not Id');
+      return;
+    }
+
     if (singleton[selector]) {
       singleton[selector].props = { ...props };
       singleton[selector].render();
