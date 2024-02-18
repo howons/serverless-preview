@@ -8,7 +8,7 @@ export const profile = {
         <img src="${IMAGE_URL.PROFILE}" alt="프로필 이미지" class="profile__image" />
         <p class="profile__intro-text">원리를 어쩌구~</p>
       </section>
-      <section>
+      <section class="profile__text">
         <p>소개 관련 내용</p>
       </section>
     </div>
