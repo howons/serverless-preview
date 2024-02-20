@@ -5,8 +5,6 @@ import routes from './routes';
 
 const app = express();
 
-app.use(express.json());
-
 app.use('/src', express.static(path.join(__dirname, 'src')));
 
 app.use('/', routes);
