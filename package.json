@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "serverless offline start --reloadHandler",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "package": "serverless package",
+    "webpack": "webpack --config webpack.src.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +28,7 @@
     "serverless-offline": "^13.3.2",
     "serverless-webpack": "^5.13.0",
     "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
     "webpack-node-externals": "^3.0.0"
   }
 }
