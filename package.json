@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "serverless offline start --reloadHandler",
-    "deploy": "serverless deploy",
     "package": "serverless package",
-    "webpack": "webpack --config webpack.src.config.js"
+    "webpack": "webpack --config webpack.src.config.js && node buildSrc.js",
+    "deploy": "npm run package && npm run webpack && serverless deploy --package .serverless"
   },
   "author": "",
   "license": "ISC",
