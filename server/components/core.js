@@ -163,7 +163,7 @@ export default class Component {
     if (keys.length !== nextKeys.length) return false;
 
     for (const key of keys) {
-      if (this.state[key] !== stateStore[key]) return false;
+      if (this.state[key] !== stateStore[this.id][key]) return false;
     }
 
     return true;
