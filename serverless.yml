@@ -1,4 +1,4 @@
-service: portfolio
+service: portfolio-preview
 
 plugins:
   - serverless-webpack
@@ -17,7 +17,7 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: ap-northeast-2
-  apiName: portfolio
+  apiName: portfolio-preview
 
 functions:
   api:

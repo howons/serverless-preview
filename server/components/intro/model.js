@@ -2,11 +2,11 @@ export const intro = {
   id: '/intro',
   content: `
     <div id="intro" class="intro">
-      <h1 class="intro__title">원리를 알아가는 프론트엔드 개발자, 신호원입니다</h1>
+      <h1 class="intro__title">Vanilla JS와 Serverless로 SSR 사이트 만들기</h1>
       <section class="intro__profile-summary">
-        <p class="intro__profile-item">신호원</p>
-        <p class="intro__profile-item">010-6535-7020</p>
-        <p class="intro__profile-item">shinhw371@gmail.com</p>
+        <p class="intro__profile-item">thru</p>
+        <p class="intro__profile-item">velog</p>
+        <p class="intro__profile-item">https://velog.io/@shinhw371/posts</p>
       </section>
     </div>
   `,
