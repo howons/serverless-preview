@@ -1,13 +1,14 @@
 const path = require('path');
 const serverlessWebpack = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
+const slsConfig = {
   // entry를 따로 설정하지 않아도 됨
   entry: serverlessWebpack.lib.entries,
   output: {
     libraryTarget: 'commonjs',
-    path: path.join(__dirname, '.webpack'),
+    path: path.join(__dirname, '.webpack/service'),
     filename: '[name].js',
   },
   target: 'node',
@@ -34,3 +35,44 @@ module.exports = {
     ],
   },
 };
+
+const srcConfig = {
+  entry: {
+    main: './server/src/main.js',
+    normalize: './server/src/normalize.css',
+    style: './server/src/style.scss',
+    intro: './server/src/intro.scss',
+    profile: './server/src/profile.scss',
+    'project-list': './server/src/project-list.scss',
+    project: './server/src/project.scss',
+  },
+  output: {
+    path: path.join(__dirname, '.webpack/service/server/src'),
+  },
+  mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(sa|sc|c)ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  devtool: 'source-map',
+};
+
+module.exports = [srcConfig, slsConfig];
