@@ -21,17 +21,14 @@ body {
   overscroll-behavior-y: contain;
 }
 
-img {
+img.loading {
   background-image: linear-gradient(
     90deg,
-    rgb(197, 197, 197) 0%,
-    rgb(236, 236, 236) 20%,
-    rgb(197, 197, 197) 40%
+    rgba(106, 145, 181, 0.15) 0%,
+    rgba(240, 245, 252, 0.4) 30%,
+    rgba(106, 145, 181, 0.15) 60%
   );
-
-  &.loaded {
-    background-image: none;
-  }
+  animation: 4s loadingSkeleton forwards infinite linear;
 }
 
 .app {
@@ -465,5 +462,14 @@ img {
         270deg
       );
     }
+  }
+}
+
+@keyframes loadingSkeleton {
+  0% {
+    background-position: -20rem 0;
+  }
+  100% {
+    background-position: 20rem 0;
   }
 }

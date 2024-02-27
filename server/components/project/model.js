@@ -21,7 +21,7 @@ export const project = (name, snapshots) => ({
       <section class="project__snapshot-list">
       ${snapshots
         .map(({ id, imageUrl }) => {
-          return `<img src="${imageUrl}" alt="${id} 스냅샷" class="project__snapshot" />`;
+          return `<img src="${imageUrl}" alt="${id} 스냅샷" class="project__snapshot loading" />`;
         })
         .join('')}
       </section>

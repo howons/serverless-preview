@@ -62,7 +62,7 @@ export const projectList = {
         ${projects
           .map(
             ({ id, imageUrl }, index) => `
-          <img src="${imageUrl}" alt="${id} 썸네일" id="project-list__${id}" class="project-list__thumbnail" />
+          <img src="${imageUrl}" alt="${id} 썸네일" id="project-list__${id}" class="project-list__thumbnail loading" />
         `,
           )
           .join('')}
@@ -76,7 +76,7 @@ export const projectList = {
           }">${skills
             .map(
               ({ name, icon }) => `
-            <img src="${icon}" alt="${name}" class="project-list__skill-icon" />
+            <img src="${icon}" alt="${name}" class="project-list__skill-icon loading" />
           `,
             )
             .join('')}</div>

@@ -71,7 +71,7 @@ export default class Main extends Component {
   setImgLoadEvent() {
     this.$target.querySelectorAll('img').forEach((image) => {
       image.addEventListener('load', (event) => {
-        event.target.classList.toggle('loaded', event.target.complete);
+        event.target.classList.toggle('loading', !event.target.complete);
       });
     });
   }
