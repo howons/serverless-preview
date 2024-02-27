@@ -64,6 +64,16 @@ export default class Main extends Component {
         componentProps,
       );
     }
+
+    this.setImgLoadEvent();
+  }
+
+  setImgLoadEvent() {
+    this.$target.querySelectorAll('img').forEach((image) => {
+      image.addEventListener('load', (event) => {
+        event.target.classList.toggle('loaded', event.target.complete);
+      });
+    });
   }
 
   isProjectPage() {

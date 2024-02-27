@@ -28,6 +28,10 @@ img {
     rgb(236, 236, 236) 20%,
     rgb(197, 197, 197) 40%
   );
+
+  &.loaded {
+    background-image: none;
+  }
 }
 
 .app {
