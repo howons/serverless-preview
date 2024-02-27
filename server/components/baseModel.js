@@ -10,6 +10,8 @@ export const baseModel = (component) => `
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width" />
       <title>${ROUTE_TITLE[component.id]}</title>
+      <link rel="icon" type="image/png" href="./src/favicon-16x16.png" sizes="16x16">
+      <link rel="icon" type="image/png" href="./src/favicon-32x32.png" sizes="32x32">
       <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
       <link rel="stylesheet" href="./src/normalize.css"/>
       <link rel="stylesheet" href="./src/style.css"/>
