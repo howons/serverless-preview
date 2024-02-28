@@ -45,8 +45,6 @@ const srcConfig = {
     profile: './server/src/profile.scss',
     'project-list': './server/src/project-list.scss',
     project: './server/src/project.scss',
-    'favicon-16x16': './server/src/favicon-16x16.png',
-    'favicon-32x32': './server/src/favicon-32x32.png',
   },
   output: {
     path: path.join(__dirname, '.webpack/service/server/src'),
@@ -71,13 +69,6 @@ const srcConfig = {
         test: /\.(sa|sc|c)ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         exclude: /node_modules/,
-      },
-      {
-        test: /favicon(.*)\.png/,
-        type: 'asset/resource',
-        generator: {
-          filename: '[name][ext]',
-        },
       },
     ],
   },

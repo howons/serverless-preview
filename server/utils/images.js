@@ -4,6 +4,7 @@ export const IMAGE_URL = {
   HERO: 'https://d2pu0ruyxf50in.cloudfront.net/히어로.png',
   MUSSEUK: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱레터_og.png',
   VELOG: 'https://d2pu0ruyxf50in.cloudfront.net/velog.png',
+  FAVICON: 'https://d2pu0ruyxf50in.cloudfront.net/favicon.png',
 };
 
 export const ICON_URL = {
