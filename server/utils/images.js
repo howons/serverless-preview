@@ -1,10 +1,11 @@
 export const IMAGE_URL = {
   PROFILE: 'https://d2pu0ruyxf50in.cloudfront.net/20231223_162052_cut.jpg',
+  FAVICON: 'https://d2pu0ruyxf50in.cloudfront.net/favicon.png',
   PORTFOLIO: 'https://d2pu0ruyxf50in.cloudfront.net/portfolio.png',
   HERO: 'https://d2pu0ruyxf50in.cloudfront.net/히어로.png',
   MUSSEUK: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱레터_og.png',
   VELOG: 'https://d2pu0ruyxf50in.cloudfront.net/velog.png',
-  FAVICON: 'https://d2pu0ruyxf50in.cloudfront.net/favicon.png',
+  VELOG_INTRO: 'https://d2pu0ruyxf50in.cloudfront.net/벨로그인트로.png',
 };
 
 export const ICON_URL = {
