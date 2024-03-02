@@ -14,6 +14,7 @@ export default class Project extends Component {
     this.refs = {
       imageRefs: [],
       descRefs: [],
+      linksRefs: [],
     };
 
     super.setup();
@@ -22,6 +23,7 @@ export default class Project extends Component {
   hydrate() {
     this.refs.imageRefs = this.$target.querySelectorAll(`.project__snapshot`);
     this.refs.descRefs = this.$target.querySelectorAll(`.project__description`);
+    this.refs.linksRefs = this.$target.querySelectorAll(`.project__links`);
 
     super.hydrate();
   }
@@ -35,6 +37,10 @@ export default class Project extends Component {
 
     this.refs.descRefs.forEach((descRef, index) => {
       descRef.classList.toggle('active', index === this.state.slideIndex);
+    });
+
+    this.refs.linksRefs.forEach((linkRef, index) => {
+      linkRef.classList.toggle('active', index === this.state.slideIndex);
     });
 
     super.render();

@@ -3,7 +3,7 @@ export const project = (name, snapshots) => ({
   content: `
     <div id="${name}" class="project">
       <nav id="slide-bar" class="project__slide-bar">
-        <div id="project__link-wrapper" class="project__link-wrapper">
+        <div id="project__slide-wrapper" class="project__slide-wrapper">
           <div class="project__scroll-helper"></div>
           ${snapshots
             .map(() => {
@@ -12,7 +12,7 @@ export const project = (name, snapshots) => ({
             .join('')}
           ${snapshots
             .map(({ id, title }) => {
-              return `<a id="${name}-${id}__link" class="project__link">${title}</a>`;
+              return `<a id="${name}-${id}__slide" class="project__slide">${title}</a>`;
             })
             .join('')}
           <div class="project__scroll-helper"></div>
@@ -28,9 +28,26 @@ export const project = (name, snapshots) => ({
       <section class="project__description-list">
       ${snapshots
         .map(({ id, description }) => {
-          return `<p class="project__description">
+          return `<div class="project__description">
             ${description}
-          </p>`;
+          </div>`;
+        })
+        .join('')}
+      </section>
+      <section class="project__links-list">
+      ${snapshots
+        .map(({ id, links }) => {
+          return `<div class="project__links">
+            ${
+              links
+                ? links
+                    .map(({ name, link }) => {
+                      return `<a href="${link}" class="project__link">${name}</a>`;
+                    })
+                    .join('<br>')
+                : ''
+            }
+          </div>`;
         })
         .join('')}
       </section>

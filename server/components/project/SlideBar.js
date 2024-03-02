@@ -12,9 +12,9 @@ export default class SlideBar extends Component {
   }
 
   hydrate() {
-    this.refs.itemRefs = this.$target.querySelectorAll('.project__link');
+    this.refs.itemRefs = this.$target.querySelectorAll('.project__slide');
     this.refs.containerRef = this.$target.querySelector(
-      '#project__link-wrapper',
+      '#project__slide-wrapper',
     );
 
     this.refs.itemRefs.forEach((itemRef, index) => {

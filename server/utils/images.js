@@ -6,6 +6,9 @@ export const IMAGE_URL = {
   MUSSEUK: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱레터_og.png',
   VELOG: 'https://d2pu0ruyxf50in.cloudfront.net/velog.png',
   VELOG_INTRO: 'https://d2pu0ruyxf50in.cloudfront.net/벨로그인트로.png',
+  VELOG_EDIT: 'https://d2pu0ruyxf50in.cloudfront.net/벨로그에디터.png',
+  VELOG_POST: 'https://d2pu0ruyxf50in.cloudfront.net/벨로그포스트.png',
+  VELOG_DEPLOY: 'https://d2pu0ruyxf50in.cloudfront.net/벨로그배포.png',
 };
 
 export const ICON_URL = {
@@ -39,4 +42,8 @@ export const ICON_URL = {
     'https://img.shields.io/badge/Tailwind%20CSS-%2306B6D4?style=flat-square&logo=tailwindcss&logoColor=white',
   VERCEL:
     'https://img.shields.io/badge/Vercel-%23000000?style=flat-square&logo=vercel&logoColor=white',
+  CSS_MODULES:
+    'https://img.shields.io/badge/CSS%20modules-%23000000?style=flat-square&logo=cssmodules&logoColor=white',
+  CODEMIRROR:
+    'https://img.shields.io/badge/CodeMirrror-%23D30707?style=flat-square&logo=codemirror&logoColor=white',
 };

@@ -32,7 +32,7 @@ export const ROUTE_HASHES = {
   [ROUTE.PORTFOLIO]: ['intro', 'serverless', 'webpack'],
   [ROUTE.ONE_DAY_HERO]: ['intro', 'nextjs', 'chat'],
   [ROUTE.MUSSEUK]: ['intro', 'figma', 'chakra-ui'],
-  [ROUTE.VELOG]: ['intro', 'markdown', 'aws'],
+  [ROUTE.VELOG]: ['intro', 'editor', 'post', 'aws'],
 };
 
 export const getNextRoute = (pathname) => {
