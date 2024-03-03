@@ -103,8 +103,14 @@ img.loading {
     color: rgb(83, 139, 208);
   }
 
-  &.open > a {
-    transform: translateX(-3rem);
+  &.open {
+    > a {
+      transform: translateX(-3rem);
+    }
+
+    svg {
+      transform: scale(1);
+    }
   }
 
   &:hover,
