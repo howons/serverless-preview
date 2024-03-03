@@ -83,6 +83,12 @@ img.loading {
   &__scroll-helper {
     height: calc(100% - 2.3rem);
   }
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem 0.2rem 0 0.7rem;
+  }
 }
 
 .sidebar-item {
@@ -91,6 +97,7 @@ img.loading {
   padding: 0.4rem 0 0.4rem 3.5rem;
   font-size: 2rem;
   scroll-snap-align: start;
+  color: rgba(129, 162, 202, 0.7);
 
   &.active {
     color: rgb(83, 139, 208);
@@ -100,26 +107,48 @@ img.loading {
     transform: translateX(-3rem);
   }
 
+  &:hover,
+  &.open {
+    color: rgb(83, 95, 109);
+
+    &.active {
+      color: rgb(83, 139, 208);
+    }
+  }
+
   > a {
     display: flex;
     cursor: pointer;
     user-select: none;
     transition: all 0.35s ease;
-    transform: translateX(-15.7rem) scale(0.7);
+    transform: translateX(-15.7rem);
 
     &:hover {
       transform: translateX(-3rem);
       flex-grow: 1;
+
+      > svg {
+        transform: scale(1);
+      }
+    }
+
+    > svg {
+      transition: all 0.35s ease;
+      transform: scale(0.7);
     }
   }
 
   &__0 {
     > a {
-      transform: translateX(0rem) scale(1);
+      transform: translateX(0rem);
       flex-grow: 1;
 
       &:hover {
         transform: translateX(-1rem);
+      }
+
+      > svg {
+        transform: scale(1);
       }
     }
 
@@ -133,19 +162,39 @@ img.loading {
     }
   }
   &__1 > a {
-    transform: translateX(-10rem) scale(0.9);
+    transform: translateX(-10rem);
+
+    > svg {
+      transform: scale(0.9);
+    }
   }
   &__2 > a {
-    transform: translateX(-13rem) scale(0.8);
+    transform: translateX(-12.7rem);
+
+    > svg {
+      transform: scale(0.8);
+    }
   }
   &__3 > a {
-    transform: translateX(-14.4rem) scale(0.75);
+    transform: translateX(-14.5rem);
+
+    > svg {
+      transform: scale(0.75);
+    }
   }
   &__4 > a {
-    transform: translateX(-15rem) scale(0.72);
+    transform: translateX(-15.3rem);
+
+    > svg {
+      transform: scale(0.72);
+    }
   }
   &__-1 > a {
-    transform: translateX(-10rem) scale(0.9);
+    transform: translateX(-10rem);
+
+    > svg {
+      transform: scale(0.9);
+    }
   }
 }
 
