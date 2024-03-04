@@ -16,7 +16,7 @@ const snapshots = [
   {
     id: ROUTE_HASHES[ROUTE.PORTFOLIO][0],
     title: '소개',
-    imageUrl: IMAGE_URL.FAVICON,
+    imageUrl: IMAGE_URL.PORTFOLIO_INTRO,
     links: [
       { name: '깃허브', link: 'https://github.com/howons/serverless-preview' },
     ],
@@ -40,6 +40,12 @@ const snapshots = [
     id: ROUTE_HASHES[ROUTE.PORTFOLIO][1],
     title: '서버리스',
     imageUrl: IMAGE_URL.MUSSEUK,
+    links: [
+      {
+        name: '깃헙 코드',
+        link: 'https://github.com/howons/velog-cloning/blob/main/src/pages/Write/index.tsx',
+      },
+    ],
     description: '두번째',
   },
   {
