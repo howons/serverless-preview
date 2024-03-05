@@ -1,9 +1,5 @@
 import { ROUTE, ROUTE_HASHES, getNextRoute, getPrevRoute } from './routes';
 
-export const HASH_TITLE = {
-  [ROUTE.PORTFOLIO]: ['소개', '서버리스', '웹팩'],
-};
-
 export const getNextHash = (pathname, curSlideIndex) => {
   if (curSlideIndex >= ROUTE_HASHES[pathname].length - 1)
     return getNextRoute(pathname);
