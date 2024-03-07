@@ -8,6 +8,8 @@ export const IMAGE_URL = {
   PORTFOLIO_SERVER: 'https://d2pu0ruyxf50in.cloudfront.net/ssr섬네일-서버.jpg',
   PORTFOLIO_SETTING: 'https://d2pu0ruyxf50in.cloudfront.net/ssr섬네일-세팅.jpg',
   HERO: 'https://d2pu0ruyxf50in.cloudfront.net/히어로.png',
+  HERO_NEXT: 'https://d2pu0ruyxf50in.cloudfront.net/서버클라컴포.png',
+  HERO_MSW: 'https://d2pu0ruyxf50in.cloudfront.net/NextMSW.jpg',
   MUSSEUK: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱레터_og.png',
   MUSSEUK_FIGMA: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱피그마.png',
   MUSSEUK_CHAKRA: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱장식.png',
