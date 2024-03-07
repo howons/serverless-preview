@@ -30,7 +30,7 @@ export const ROUTE_TITLE = {
 
 export const ROUTE_HASHES = {
   [ROUTE.PORTFOLIO]: ['intro', 'serverless', 'webpack'],
-  [ROUTE.ONE_DAY_HERO]: ['intro', 'nextjs', 'chat', 'fetch'],
+  [ROUTE.ONE_DAY_HERO]: ['intro', 'nextjs', 'mock', 'fetch', 'chat'],
   [ROUTE.MUSSEUK]: ['intro', 'figma', 'chakra-ui', 'tanstack'],
   [ROUTE.VELOG]: ['intro', 'editor', 'post', 'aws'],
 };

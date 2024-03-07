@@ -73,6 +73,10 @@ const snapshots = [
         name: '깃헙 코드',
         link: 'https://github.com/prgrms-web-devcourse/Team-6Heroes-OneDayHero-FE/blob/develop/one-day-hero/src/app/api/v1/mock/mission-proposals/route.ts',
       },
+      {
+        name: '관련 포스팅',
+        link: 'https://velog.io/@shinhw371/Nextjs-13-MSW-Failure-Record',
+      },
     ],
     description: [
       '백엔드 팀과의 병렬적 개발을 위해 API Mocking을 활용하기로 결정.',
@@ -84,12 +88,20 @@ const snapshots = [
   },
   {
     id: ROUTE_HASHES[ROUTE.ONE_DAY_HERO][3],
-    title: 'fetch',
-    imageUrl: IMAGE_URL.MUSSEUK_TANSTACK,
+    title: 'Fetch',
+    imageUrl: IMAGE_URL.HERO_FETCH,
     links: [
       {
         name: '깃헙 코드',
         link: 'https://github.com/prgrms-fe-devcourse/FEDC4_MUSSEUK_LETTER_Donggeun/blob/main/packages/web/src/pages/Post/index.tsx',
+      },
+      {
+        name: '깃헙 위키',
+        link: 'https://github.com/prgrms-web-devcourse/Team-6Heroes-OneDayHero-FE/wiki/fetch-API-%EC%BB%A4%EC%8A%A4%ED%85%80-%ED%9B%85-%EA%B0%80%EC%9D%B4%EB%93%9C',
+      },
+      {
+        name: '관련 포스팅',
+        link: 'https://velog.io/@shinhw371/JS-patially-applied-currying-record',
       },
     ],
     description: [
@@ -101,6 +113,22 @@ const snapshots = [
       'intersection observer를 사용해 페이지를 이어서 로딩하는 기능 구현.',
       '데이터 목록에서 찜 버튼을 누르는 경우처럼 페이지 데이터를 업데이트하며 화면 모습은 유지하는 기능이 필요, 스크롤 위치를 기억하고 업데이트 시 복구하는 기능 추가.',
       '컴포넌트 언마운트 시 스크롤 위치를 로컬스토리지에 저장하여 페이지 이동 시에도 상태를 기억하는 기능도 구현.',
+    ].join('<br>'),
+  },
+  {
+    id: ROUTE_HASHES[ROUTE.ONE_DAY_HERO][4],
+    title: '채팅',
+    imageUrl: IMAGE_URL.HERO_CHAT,
+    links: [
+      {
+        name: '깃헙 코드',
+        link: 'https://github.com/prgrms-web-devcourse/Team-6Heroes-OneDayHero-FE/blob/develop/one-day-hero/src/hooks/useChatting.ts',
+      },
+    ],
+    description: [
+      '매칭이 주요 수단인 서비스 특성상 1:1 채팅 기능이 필요.',
+      'StompJS를 사용해서 서버 웹소켓과 연결.',
+      '채팅 로직은 모두 커스텀 훅으로 정리하여 사용.',
     ].join('<br>'),
   },
 ];

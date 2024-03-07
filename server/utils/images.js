@@ -10,6 +10,8 @@ export const IMAGE_URL = {
   HERO: 'https://d2pu0ruyxf50in.cloudfront.net/히어로.png',
   HERO_NEXT: 'https://d2pu0ruyxf50in.cloudfront.net/서버클라컴포.png',
   HERO_MSW: 'https://d2pu0ruyxf50in.cloudfront.net/NextMSW.jpg',
+  HERO_FETCH: 'https://d2pu0ruyxf50in.cloudfront.net/히어로패치.png',
+  HERO_CHAT: 'https://d2pu0ruyxf50in.cloudfront.net/히어로채팅.gif',
   MUSSEUK: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱레터_og.png',
   MUSSEUK_FIGMA: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱피그마.png',
   MUSSEUK_CHAKRA: 'https://d2pu0ruyxf50in.cloudfront.net/머쓱장식.png',
