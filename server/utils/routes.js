@@ -6,6 +6,7 @@ export const ROUTE = {
   ONE_DAY_HERO: '/one-day-hero',
   MUSSEUK: '/musseuk-letter',
   VELOG: '/velog',
+  OUTRO: '/outro',
 };
 
 export const ROUTES_LIST = [
@@ -16,6 +17,7 @@ export const ROUTES_LIST = [
   ROUTE.ONE_DAY_HERO,
   ROUTE.MUSSEUK,
   ROUTE.VELOG,
+  ROUTE.OUTRO,
 ];
 
 export const ROUTE_TITLE = {
@@ -26,6 +28,7 @@ export const ROUTE_TITLE = {
   [ROUTE.ONE_DAY_HERO]: '프로젝트-원데이히어로',
   [ROUTE.MUSSEUK]: '프로젝트-머쓱레터',
   [ROUTE.VELOG]: '프로젝트-벨로그클로닝',
+  [ROUTE.OUTRO]: '더보기',
 };
 
 export const ROUTE_HASHES = {

@@ -45,6 +45,7 @@ const srcConfig = {
     profile: './server/src/profile.scss',
     'project-list': './server/src/project-list.scss',
     project: './server/src/project.scss',
+    outro: './server/src/outro.scss',
   },
   output: {
     path: path.join(__dirname, '.webpack/service/server/src'),

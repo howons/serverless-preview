@@ -33,6 +33,12 @@ export const sidebarItems = [
     icon: SVG.VELOG,
     path: '/velog',
   },
+  {
+    id: 'side-outro',
+    name: '더보기',
+    icon: SVG.OUTRO,
+    path: '/outro',
+  },
 ];
 
 export const sidebar = `

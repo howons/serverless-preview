@@ -17,4 +17,5 @@ const STYLE_SHEET_NAME = {
   [ROUTE.ONE_DAY_HERO]: 'project',
   [ROUTE.MUSSEUK]: 'project',
   [ROUTE.VELOG]: 'project',
+  [ROUTE.OUTRO]: 'outro',
 };

@@ -7,6 +7,7 @@ import portfolio from './portfolio/route';
 import oneDayHero from './one-day-hero/route';
 import musseuk from './musseuk-letter/route';
 import velog from './velog/route';
+import outro from './outro/route';
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.use('/portfolio', portfolio);
 router.use('/one-day-hero', oneDayHero);
 router.use('/musseuk-letter', musseuk);
 router.use('/velog', velog);
+router.use('/outro', outro);
 
 export default router;
