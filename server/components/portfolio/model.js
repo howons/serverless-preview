@@ -31,26 +31,40 @@ const snapshots = [
       <br>
       ${[
         '개인 포트폴리오 사이트를 만드는 1인 프로젝트입니다.',
-        '프론트엔드는 툴을 사용하지 않고 Vanilla JS로 컴포넌트 시스템을 구현했습니다.',
+        '프론트엔드는 Vanilla JS로 컴포넌트 시스템을 구현했습니다.',
         '백엔드는 Express와 Serverless를 사용해 API를 구성했습니다.',
+        '모든 코드는 웹팩을 통해 번들링했습니다.',
       ].join('<br>')}
     `,
   },
   {
     id: ROUTE_HASHES[ROUTE.PORTFOLIO][1],
-    title: '서버리스',
+    title: '컴포넌트',
     imageUrl: IMAGE_URL.MUSSEUK,
     links: [
       {
+        name: '관련 포스팅1',
+        link: 'https://velog.io/@shinhw371/js-serverless-ssr-component-basic',
+      },
+      {
+        name: '관련 포스팅2',
+        link: 'https://velog.io/@shinhw371/js-serverless-ssr-component-deepen',
+      },
+      {
         name: '깃헙 코드',
-        link: 'https://github.com/howons/velog-cloning/blob/main/src/pages/Write/index.tsx',
+        link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/server/components/core.js',
       },
     ],
-    description: '두번째',
+    description: [
+      'Vanilla JS에서의 상태 기반 렌더링 관리를 위해 컴포넌트 시스템 구현.',
+      '클래스형 컴포넌트로 구현하여 컴포넌트의 공통 기능 및 규칙을 상속으로 쉽게 강제할 수 있도록 함.',
+      '"hydrate", "render", "mounted" 등 생애 주기 메서드를 구현하고 역할에 맞게 코드를 분리.',
+      '리렌더링, 인수 전달, 언마운트, 이벤트 위임, 배칭 등의 추가 기능도 구현.',
+    ].join('<br>'),
   },
   {
     id: ROUTE_HASHES[ROUTE.PORTFOLIO][2],
-    title: '웹팩',
+    title: '서버리스',
     imageUrl: IMAGE_URL.VELOG,
     description: '세번째',
   },

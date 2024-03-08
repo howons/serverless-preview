@@ -76,6 +76,10 @@ const snapshots = [
     imageUrl: IMAGE_URL.MUSSEUK_TANSTACK,
     links: [
       {
+        name: '관련 포스팅',
+        link: 'https://velog.io/@shinhw371/React-suspense-throw',
+      },
+      {
         name: '깃헙 코드',
         link: 'https://github.com/prgrms-fe-devcourse/FEDC4_MUSSEUK_LETTER_Donggeun/blob/main/packages/web/src/pages/Post/index.tsx',
       },

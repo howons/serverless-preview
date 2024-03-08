@@ -70,12 +70,12 @@ const snapshots = [
     imageUrl: IMAGE_URL.HERO_MSW,
     links: [
       {
-        name: '깃헙 코드',
-        link: 'https://github.com/prgrms-web-devcourse/Team-6Heroes-OneDayHero-FE/blob/develop/one-day-hero/src/app/api/v1/mock/mission-proposals/route.ts',
-      },
-      {
         name: '관련 포스팅',
         link: 'https://velog.io/@shinhw371/Nextjs-13-MSW-Failure-Record',
+      },
+      {
+        name: '깃헙 코드',
+        link: 'https://github.com/prgrms-web-devcourse/Team-6Heroes-OneDayHero-FE/blob/develop/one-day-hero/src/app/api/v1/mock/mission-proposals/route.ts',
       },
     ],
     description: [
@@ -92,16 +92,16 @@ const snapshots = [
     imageUrl: IMAGE_URL.HERO_FETCH,
     links: [
       {
-        name: '깃헙 코드',
-        link: 'https://github.com/prgrms-fe-devcourse/FEDC4_MUSSEUK_LETTER_Donggeun/blob/main/packages/web/src/pages/Post/index.tsx',
+        name: '관련 포스팅',
+        link: 'https://velog.io/@shinhw371/JS-patially-applied-currying-record',
       },
       {
         name: '깃헙 위키',
         link: 'https://github.com/prgrms-web-devcourse/Team-6Heroes-OneDayHero-FE/wiki/fetch-API-%EC%BB%A4%EC%8A%A4%ED%85%80-%ED%9B%85-%EA%B0%80%EC%9D%B4%EB%93%9C',
       },
       {
-        name: '관련 포스팅',
-        link: 'https://velog.io/@shinhw371/JS-patially-applied-currying-record',
+        name: '깃헙 코드',
+        link: 'https://github.com/prgrms-fe-devcourse/FEDC4_MUSSEUK_LETTER_Donggeun/blob/main/packages/web/src/pages/Post/index.tsx',
       },
     ],
     description: [
