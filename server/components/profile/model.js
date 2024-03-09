@@ -19,8 +19,28 @@ export const profile = {
           앞으로도 원리를 깊게 배워가며 툴에 끌려다니는 개발자가 되지 않으려 합니다.
         </p>
       </section>
-      <section class="profile__text">
-        <p>소개 관련 내용</p>
+      <section class="profile__additional"> 
+        <p class="profile__personal">
+          1997년생 남성 군필
+        </p>
+      </section>
+      <section class="profile__additional">
+        <p class="profile__edu profile__edu--first">
+          프로그래머스: K-Digital Training: 4기 빅데이터 플랫폼 프론트엔드 엔지니어링
+          <br>
+          (2023년 6월 ~ 2023년 12월)
+        </p>
+        <p class="profile__edu">
+          서울대학교 웹개발 동아리 와플스튜디오
+          <br>
+          (2022년 7월 ~ 2023년 1월)
+        </p>
+        <p class="profile__edu">서울대학교 전기•정보공학부 (Electrical and Computer Engineering) 학사 졸업</p>
+      </section>
+      <section class="profile__additional"> 
+        <p class="profile__skill profile__skill--first">
+          
+        </p>
       </section>
     </div>
   `,
