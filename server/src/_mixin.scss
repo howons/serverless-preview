@@ -1,3 +1,5 @@
+@import './variables';
+
 @mixin hidden-scroll {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -10,4 +12,22 @@
 @mixin two-color-gradient($primary, $secondary, $deg, $start: 0%, $end: 100%) {
   background: $primary;
   background: linear-gradient($deg, $primary $start, $secondary $end);
+}
+
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-desktop - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
 }
