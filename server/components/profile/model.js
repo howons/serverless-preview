@@ -1,11 +1,23 @@
-import { IMAGE_URL } from '../../utils/images';
+import { ICON_URL, IMAGE_URL } from '../../utils/images';
+
+const skills = [
+  { name: 'JavaScript', icon: ICON_URL.JAVASCRIPT, score: '4' },
+  { name: 'TypeScript', icon: ICON_URL.TYPESCRIPT, score: '4' },
+  { name: 'React', icon: ICON_URL.REACT, score: '4' },
+  { name: 'Chakra UI', icon: ICON_URL.CHAKRA, score: '4' },
+  { name: 'Tanstack Query', icon: ICON_URL.TANSTACK, score: '4' },
+  { name: 'Vite', icon: ICON_URL.VITE, score: '4' },
+  { name: 'Express', icon: ICON_URL.EXPRESS, score: '4' },
+];
 
 export const profile = {
   id: '/profile',
   content: `
     <div id="profile" class="profile">
       <section class="profile__intro">
-        <img src="${IMAGE_URL.PROFILE}" alt="프로필 이미지" class="profile__image loading" />
+        <img src="${
+          IMAGE_URL.PROFILE
+        }" alt="프로필 이미지" class="profile__image loading" />
         <p class="profile__intro-text">
           원리를 배우며 성장하는 프론트엔드 개발자 지망생 신호원입니다.
         <br>
@@ -38,9 +50,20 @@ export const profile = {
         <p class="profile__edu">서울대학교 전기•정보공학부 (Electrical and Computer Engineering) 학사 졸업</p>
       </section>
       <section class="profile__additional"> 
-        <p class="profile__skill profile__skill--first">
-          
-        </p>
+        ${skills
+          .map(
+            ({ name, icon, score }, index) => `
+            <div class="profile__skill profile__skill${
+              index <= 0 ? '--first' : ''
+            }">
+              <img src="${icon}" alt="${name}" class="profile__skill-icon loading" />
+              <p class="profile__stars">${Array.from({ length: score })
+                .fill('⭐')
+                .join('')}</p>
+            </div>
+          `,
+          )
+          .join('')}
       </section>
     </div>
   `,

@@ -51,4 +51,16 @@
   &__skill--first {
     @include para-tag('기술 스택');
   }
+
+  &__skill {
+    width: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+
+  &__stars {
+    margin: 0;
+  }
 }
