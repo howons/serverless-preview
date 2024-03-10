@@ -43,23 +43,25 @@ const snapshots = [
     imageUrl: IMAGE_URL.PORTFOLIO_COMPO,
     links: [
       {
-        name: '관련 포스팅1',
+        name: '관련 포스팅: 컴포넌트 기초',
         link: 'https://velog.io/@shinhw371/js-serverless-ssr-component-basic',
       },
       {
-        name: '관련 포스팅2',
+        name: '관련 포스팅: 컴포넌트 심화',
         link: 'https://velog.io/@shinhw371/js-serverless-ssr-component-deepen',
       },
       {
-        name: '깃헙 코드',
+        name: '깃헙 코드: 공용 컴포넌트',
         link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/server/components/core.js',
       },
     ],
     description: [
-      'Vanilla JS에서의 상태 기반 렌더링 관리를 위해 컴포넌트 시스템 구현.',
-      '클래스형 컴포넌트로 구현하여 컴포넌트의 공통 기능 및 규칙을 상속으로 쉽게 강제할 수 있도록 함.',
-      '"hydrate", "render", "mounted" 등 생애 주기 메서드를 구현하고 역할에 맞게 코드를 분리.',
-      '리렌더링, 인수 전달, 언마운트, 이벤트 위임, 배칭, Skeleton UI 등의 추가 기능도 구현.',
+      'Vanilla JS에서의 상태 기반 DOM 렌더링 관리를 위해 <b>컴포넌트 시스템</b>을 구성했습니다.',
+      '컴포넌트의 공통 기능 및 규칙을 상속으로 쉽게 강제할 수 있도록 <b>클래스형 컴포넌트</b>로 구현했습니다. \
+      그리고 모든 컴포넌트가 상속하는 공통 컴포넌트 내부에 "hydrate", "render", "mounted" 등 <b>생애주기</b> 메서드를 연결하고 역할에 맞게 코드를 분리했습니다.',
+      '비대한 컴포넌트를 관심사에 따라 분리하기 위해 인수 전달 및 리렌더링 로직을 <b>싱글톤</b>을 활용하여 구현했습니다. \
+      또한, 렌더링 흐름이 상하 컴포넌트 간에 꼬이는 것을 방지하기 위해 requestAnimationFrame으로 프레임간 렌더링을 <b>디바운싱</b>하고 <b>배칭</b>으로 효율을 높였습니다. \
+      이 외에 언마운트, 이벤트 위임, Skeleton UI 등 추가 기능도 구현했습니다.',
     ].join('<br>'),
   },
   {

@@ -100,7 +100,7 @@ img.loading {
   color: rgba(129, 162, 202, 0.7);
 
   &.active {
-    color: rgb(83, 139, 208);
+    color: $color-blue-primary-darken;
   }
 
   &.open {
@@ -118,7 +118,7 @@ img.loading {
     color: rgb(83, 95, 109);
 
     &.active {
-      color: rgb(83, 139, 208);
+      color: $color-blue-primary-darken;
     }
   }
 
@@ -210,7 +210,7 @@ img.loading {
   left: 0px;
   width: 3rem;
   height: 3rem;
-  background-color: rgb(146, 185, 234);
+  background-color: $color-blue-primary;
   z-index: 11;
 
   &__slash {
@@ -494,12 +494,16 @@ img.loading {
   &__next {
     opacity: 0.5;
 
-    @include two-color-gradient(rgb(225, 246, 255), rgb(91, 174, 247), 0deg);
+    @include two-color-gradient(
+      $color-blue-primary-lighten,
+      $color-blue-primary,
+      0deg
+    );
 
     &--horizon {
       @include two-color-gradient(
-        rgb(225, 246, 255),
-        rgb(91, 174, 247),
+        $color-blue-primary-lighten,
+        $color-blue-primary,
         270deg
       );
     }
@@ -508,16 +512,24 @@ img.loading {
   &__prev {
     opacity: 0.5;
 
-    @include two-color-gradient(rgb(123, 228, 106), rgb(218, 255, 231), 0deg);
+    @include two-color-gradient(
+      $color-green-primary,
+      $color-green-primary-lighten,
+      0deg
+    );
 
     &--horizon {
       @include two-color-gradient(
-        rgb(123, 228, 106),
-        rgb(218, 255, 231),
+        $color-green-primary,
+        $color-green-primary-lighten,
         270deg
       );
     }
   }
+}
+
+b {
+  color: $color-green-primary-darken;
 }
 
 @keyframes loadingSkeleton {

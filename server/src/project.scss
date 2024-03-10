@@ -54,6 +54,7 @@
   }
 
   &__slide {
+    color: $color-blue-primary-darken;
     font-size: 1.5rem;
     word-break: keep-all;
     cursor: pointer;
@@ -93,7 +94,7 @@
     display: none;
     margin-left: 3rem;
     margin-right: 3rem;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     line-height: 1.5;
 
     &.active {
