@@ -21,6 +21,10 @@ body {
   overscroll-behavior-y: contain;
 }
 
+b {
+  color: $color-green-primary-darken;
+}
+
 img.loading {
   background-image: linear-gradient(
     90deg,
@@ -526,10 +530,6 @@ img.loading {
       );
     }
   }
-}
-
-b {
-  color: $color-green-primary-darken;
 }
 
 @keyframes loadingSkeleton {
