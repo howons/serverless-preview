@@ -35,6 +35,10 @@ export default class SlideBar extends Component {
       'center',
     );
 
+    this.refs.itemRefs.forEach((item, index) => {
+      item.classList.toggle('active', index === this.props.curSlideIndex);
+    });
+
     super.render();
   }
 }

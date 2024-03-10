@@ -97,7 +97,7 @@ img.loading {
   padding: 0.4rem 0 0.4rem 3.5rem;
   font-size: 2rem;
   scroll-snap-align: start;
-  color: rgba(129, 162, 202, 0.7);
+  color: $color-blue-primary-inactive;
 
   &.active {
     color: $color-blue-primary-darken;
@@ -115,7 +115,7 @@ img.loading {
 
   &:hover,
   &.open {
-    color: rgb(83, 95, 109);
+    color: $color-blue-primary-focus;
 
     &.active {
       color: $color-blue-primary-darken;
