@@ -53,14 +53,15 @@
   }
 
   &__skill {
-    width: 15rem;
-    display: flex;
+    width: 13.5rem;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.5rem 0 0.5rem 0;
+    margin: 0.5rem 2.5rem 0.5rem 0;
   }
 
   &__stars {
+    width: 5rem;
     margin: 0;
   }
 }

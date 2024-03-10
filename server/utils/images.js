@@ -58,6 +58,13 @@ export const ICON_URL = {
     'https://img.shields.io/badge/CSS%20modules-%23000000?style=flat-square&logo=cssmodules&logoColor=white',
   CODEMIRROR:
     'https://img.shields.io/badge/CodeMirrror-%23D30707?style=flat-square&logo=codemirror&logoColor=white',
+  MSW: 'https://img.shields.io/badge/MSW-%23FF6A33?style=flat-square&logo=mockserviceworker&logoColor=white',
+  HOOK: 'https://img.shields.io/badge/React%20Hook%20Form-%23EC5990?style=flat-square&logo=reacthookform&logoColor=white',
+  VUE: 'https://img.shields.io/badge/Vue.js-%234FC08D?style=flat-square&logo=vuedotjs&logoColor=white',
+  JEST: 'https://img.shields.io/badge/Jest-%23C21325?style=flat-square&logo=jest&logoColor=white',
+  ZOD: 'https://img.shields.io/badge/Zod-%233E67B1?style=flat-square&logo=zod&logoColor=white',
+  DJANGO:
+    'https://img.shields.io/badge/Django-%23092E20?style=flat-square&logo=django&logoColor=white',
 };
 
 export const SVG = {
