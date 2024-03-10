@@ -1,3 +1,5 @@
+@import '_mixin';
+
 .project-list {
   width: 100%;
   display: flex;
@@ -18,14 +20,14 @@
     object-fit: contain;
     cursor: pointer;
     transition: all 0.2s ease;
-    background-color: rgba(106, 145, 181, 0.15);
+    background-color: $color-blue-primary-back;
 
     &.loading {
       background-color: transparent;
     }
 
     &.active {
-      background-color: rgba(123, 228, 106, 0.15);
+      background-color: $color-green-primary-back;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     }
   }
