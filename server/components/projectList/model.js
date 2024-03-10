@@ -3,7 +3,7 @@ import { ICON_URL, IMAGE_URL } from '../../utils/images';
 export const projects = [
   {
     id: 'portfolio',
-    imageUrl: IMAGE_URL.PORTFOLIO,
+    imageUrl: IMAGE_URL.PORTFOLIO_INTRO,
     description: 'Vanilla JS와 Serverless로 만든 SSR 방식의 포트폴리오 사이트',
     skills: [
       { name: 'JavaScript', icon: ICON_URL.JAVASCRIPT },
