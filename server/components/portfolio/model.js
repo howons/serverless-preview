@@ -70,18 +70,19 @@ const snapshots = [
     imageUrl: IMAGE_URL.PORTFOLIO_SERVER,
     links: [
       {
-        name: '관련 포스팅',
+        name: '관련 포스팅: SSR',
         link: 'https://velog.io/@shinhw371/js-serverless-ssr-ssr',
       },
       {
-        name: '깃헙 코드',
-        link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/server/components/core.js',
+        name: '깃헙 코드: 메인 스위칭',
+        link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/server/components/main/Main.js',
       },
     ],
     description: [
-      '페이지 데이터가 변하지 않는 포트폴리오 사이트 특성에 맞춰 SSR로 구현.',
-      'Express로 API를 구성하고 HTML 데이터를 반환하도록 해서 JS가 로딩 중에도 레이아웃을 볼 수 있도록 함.',
-      '첫 로딩이 완료된 후 페이지 이동 때는 main tag 내부 HTML을 스위칭하도록 구현하여 JS를 다시 로딩할 필요는 없도록 구현.',
+      '빌드 이후 페이지 데이터가 거의 변하지 않는 포트폴리오 사이트 특성에 맞춰 <b>서버 사이드 렌더링(SSR)</b> 방식으로 페이지를 구현했습니다. \
+      백엔드 서버에서 Express로 API를 구성하고 HTML 데이터를 반환하도록 설정했습니다. 이로 인해 브라우저에서 JS가 로딩 중에도 레이아웃을 볼 수 있습니다.',
+      '첫 로딩이 완료된 후 페이지 이동할 때는 main tag 내부 <b>HTML을 스위칭</b>하도록 구현하여 JS를 다시 로딩할 필요는 없도록 클라이언트 렌더링 방식을 조합했습니다. \
+      스타일 시트도 페이지마다 분리하고 페이지 이동마다 스타일 태그를 document head에 추가하여 <b>분할 로딩</b>을 구현했습니다.',
     ].join('<br>'),
   },
   {
@@ -90,20 +91,20 @@ const snapshots = [
     imageUrl: IMAGE_URL.PORTFOLIO_SETTING,
     links: [
       {
-        name: '관련 포스팅',
+        name: '관련 포스팅: 프로젝트 세팅',
         link: 'https://velog.io/@shinhw371/js-serverless-ssr-setting',
       },
       {
-        name: '깃헙 코드',
+        name: '깃헙 코드: 웹팩 설정',
         link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/webpack.config.js',
       },
     ],
     description: [
-      '자주 요청이 들어오지 않을 포트폴리오 사이트 특성에 맞춰 서버리스 방식으로 배포.',
-      '"Serverless Framework"로 서버리스 함수의 배포 및 관리.',
-      '서버리스 함수는 용량이 제한적이므로 웹팩을 통해 파일을 번들링, Serverless 와의 연결을 위해 "serverless-webpack" 플러그인을 사용.',
-      '이미지 파일의 경우 Aws S3에 업로드 후 URL을 사용.',
-      '서버용 코드와 브라우저용 코드의 웹팩 설정을 달리하기 위해 분리 후 배열로 export.',
+      '자주 요청이 들어오지 않는 포트폴리오 사이트 특성에 맞춰 서버 운영 부담을 줄일 수 있는 <b>서버리스</b> 방식으로 배포했습니다. \
+      Express와 Aws Lambda의 연계를 위해 <b>Serverless Framework</b>를 활용하여 서버리스 함수를 배포하고 관리했습니다.',
+      '서버리스 함수는 용량이 제한적이므로 <b>Webpack</b>을 통해 JS 및 CSS 파일을 번들링했습니다. 그리고 웹팩과 Serverless Framework의 연결을 위해 "serverless-webpack" 플러그인을 사용했습니다. \
+      서버용 코드와 브라우저용 코드의 실행 환경이 다르므로 웹팩 설정을 달리해야 합니다. 때문에 각 설정을 따로 작성한 후 배열로 export하여 번들링 과정을 분리했습니다.',
+      '또한, 이미지 파일의 경우 서버리스 함수에 포함해서 올리면 용량 부담이 높아지므로 Aws S3에 따로 업로드 후 URL을 코드에서 사용했습니다.',
     ].join('<br>'),
   },
 ];
