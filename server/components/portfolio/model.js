@@ -107,6 +107,39 @@ const snapshots = [
       '또한, 이미지 파일의 경우 서버리스 함수에 포함해서 올리면 용량 부담이 높아지므로 Aws S3에 따로 업로드 후 URL을 코드에서 사용했습니다.',
     ].join('<br>'),
   },
+  {
+    id: ROUTE_HASHES[ROUTE.PORTFOLIO][4],
+    title: '사이드바',
+    imageUrl: IMAGE_URL.PORTFOLIO_SIDE,
+    links: [
+      {
+        name: '관련 포스팅: scroll-snap',
+        link: 'https://velog.io/@shinhw371/CSS-scroll-snap-bug',
+      },
+      {
+        name: '깃헙 코드: 사이드바',
+        link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/server/components/sidebar/Sidebar.js',
+      },
+      {
+        name: '깃헙 코드: 사이드바 스타일',
+        link: 'https://github.com/howons/serverless-preview/blob/blog-deploy/server/src/style.scss#L31',
+      },
+    ],
+    description: [
+      '현재 페이지 제목과 자연스럽게 이어지는 <b>사이드 메뉴 바</b>를 만들어 디자인 요소로 사용했습니다.',
+      '메뉴가 제목과 자연스럽게 스크롤되어 이어지게 만들면서 <b>메인 페이지의 스크롤이 막히는 문제</b>가 있었습니다. \
+      사이드바가 제목 길이만큼의 너비를 가지고 스크롤되는 방식인데 페이지보다 위에 보여야하는 특성을 가지고 있어 차지하는 공간 만큼 스크롤 이벤트를 가로채는 상황이었습니다. \
+      이는 z-index를 조정하는 것으로 해결되지 않았는데 사이드바에 지정한 <b>"position: fixed"</b> 속성이 새로운 <b>쌓임 맥락</b>을 생성했기 때문이었습니다.',
+      '때문에 사이드바의 "fixed"를 제거하고 width를 0으로 설정하여 차지하는 영역을 제거했습니다. \
+      스크롤 컨테이너는 자식 요소로 이전하고 "overflow: visible"로 viewport 안에 위치하도록 수정했습니다. \
+      이 때 사이드바의 아이템은 <b>transform</b> 속성을 가지고 있어 새로운 쌓임 맥락을 생성하므로 아이템만 앞으로 나와 스크롤을 막는 구역을 최소화할 수 있었습니다. \
+      즉, main과 sidebar는 공통 부모인 app의 쌓임 맥락 안에서 계층을 이루고 sidebar-item만 별개의 쌓임 맥락에서 나타나 사이드바 배경이 main 뒤에 올 수 있습니다.',
+      ' ',
+      '사이드 메뉴 아이템의 스크롤 위치를 맞추기 위해 CSS 속성중 <b>scroll-snap</b>을 활용했습니다. \
+      이는 기존 자바스크립트 기반 위치 정렬 대비 성능상 이점을 가지고 설정이 간편합니다. \
+      하지만 사용하면서 transform 속성의 존재 유무 및 방향과 <b>충돌</b>이 일어나는 것을 찾아내었고, 블로그에 해당 문제를 <b>공유</b>했습니다.',
+    ].join('<br>'),
+  },
 ];
 
 export const portfolio = project('portfolio', snapshots);

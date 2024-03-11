@@ -7,6 +7,7 @@ export const IMAGE_URL = {
   PORTFOLIO_COMPO2: 'https://d2pu0ruyxf50in.cloudfront.net/ssr섬네일-컴포2.jpg',
   PORTFOLIO_SERVER: 'https://d2pu0ruyxf50in.cloudfront.net/ssr섬네일-서버.jpg',
   PORTFOLIO_SETTING: 'https://d2pu0ruyxf50in.cloudfront.net/ssr섬네일-세팅.jpg',
+  PORTFOLIO_SIDE: 'https://d2pu0ruyxf50in.cloudfront.net/포폴사이드.png',
   HERO: 'https://d2pu0ruyxf50in.cloudfront.net/히어로.png',
   HERO_NEXT: 'https://d2pu0ruyxf50in.cloudfront.net/서버클라컴포.png',
   HERO_MSW: 'https://d2pu0ruyxf50in.cloudfront.net/NextMSW.jpg',
