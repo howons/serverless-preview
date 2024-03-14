@@ -19,5 +19,8 @@ router.use('/one-day-hero', oneDayHero);
 router.use('/musseuk-letter', musseuk);
 router.use('/velog', velog);
 router.use('/outro', outro);
+router.use('/', (req, res) => {
+  return res.redirect('/intro');
+});
 
 export default router;

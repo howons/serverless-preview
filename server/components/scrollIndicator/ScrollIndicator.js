@@ -97,7 +97,7 @@ export default class ScrollIndicator extends Component {
 
   getTargetPage(isNext) {
     const { curSlideIndex, curPathname } = this.props;
-    console.log(curPathname);
+
     if (this.isHorizon()) {
       return isNext
         ? getNextHash(curPathname, curSlideIndex)
