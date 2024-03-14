@@ -64,12 +64,13 @@ export const checkIsBeforeOrAfter = (curPathname, targetPathname) => {
 
 export const getUrl = (pathname, hash) => {
   const hashUrl = hash ? (hash[0] === '#' ? hash : `#${hash}`) : '';
-  return `${window.location.protocol}//${window.location.host}/dev${pathname}${hashUrl}`;
+  const devPath = isDev() ? '/dev' : '';
+  return `${window.location.protocol}//${window.location.host}${devPath}${pathname}${hashUrl}`;
 };
 
 export const getWindowPathname = () => {
   const path = window.location.pathname;
-  return path.includes('/dev') ? path.slice(4) : path;
+  return isDev() ? path.slice(4) : path;
 };
 
 export const setWindowPathname = (pathname, hash, shouldPush) => {
@@ -86,7 +87,13 @@ export const setWindowPathname = (pathname, hash, shouldPush) => {
 };
 
 export const findPathIndex = (pathname) => {
-  return ROUTES_LIST.findIndex(
-    (route) => route === pathname || route === pathname.split('/dev')?.[1],
+  return ROUTES_LIST.findIndex((route) =>
+    pathname.includes('/dev')
+      ? route === pathname.slice(4)
+      : route === pathname,
   );
+};
+
+const isDev = () => {
+  return window.location.pathname.includes('/dev');
 };
