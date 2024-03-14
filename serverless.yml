@@ -26,3 +26,6 @@ functions:
       - http:
           path: /{proxy+}
           method: any
+      - http:
+          path: /
+          method: GET
