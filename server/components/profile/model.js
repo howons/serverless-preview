@@ -26,29 +26,19 @@ export const profile = {
     <div id="profile" class="profile">
       <section class="profile__intro">
         <img src="${
-          IMAGE_URL.PROFILE
+          IMAGE_URL.HERO
         }" alt="프로필 이미지" class="profile__image loading" />
         <p class="profile__intro-text">
-          원리를 배우며 성장하는 프론트엔드 개발자 지망생 신호원입니다.
+          토끼조아
           <br>
           <br>
-          과거에는 툴의 기능만 아는 채로 사용하니 제 프로그램이라도 기능을 추가할수록 흐름을 이해하기 어려웠습니다. 
-          <br>
-          이후 궁금한 내용을 <a href="https://velog.io/@shinhw371/posts">블로그</a>에 작성해나가며 공부하였고 사용을 위한 지식 뿐 아니라 원리 및 사용 이유 등을 알 수 있었습니다.
-          그 결과로 기능 구현의 부담이 줄어들 뿐 아니라 비슷한 어려움을 겪던 팀원에게 도움을 주기도 했습니다.
-          <br>
-          <br>
-          앞으로도 원리를 깊게 배워가며 툴에 끌려다니는 개발자가 되지 않으려 합니다.
+          프로필
         </p>
       </section>
       <section class="profile__additional">
         <p class="profile__edu profile__edu--first">
-          프로그래머스: K-Digital Training: 4기 빅데이터 플랫폼 프론트엔드 엔지니어링
+          교육
         </p>
-        <p class="profile__edu">
-          서울대학교 웹개발 동아리 와플스튜디오
-        </p>
-        <p class="profile__edu">서울대학교 전기•정보공학부 (Electrical and Computer Engineering) 학사 졸업</p>
       </section>
       <section class="profile__additional"> 
         ${skills
