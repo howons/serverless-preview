@@ -25,6 +25,19 @@ b {
   color: $color-green-primary-darken;
 }
 
+a {
+  color: $color-blue-primary-darken;
+  transition: all 0.35s ease;
+
+  &:visited {
+    color: $color-blue-primary-inactive;
+  }
+
+  &:hover {
+    color: $color-blue-primary-focus;
+  }
+}
+
 img.loading {
   background-image: linear-gradient(
     90deg,

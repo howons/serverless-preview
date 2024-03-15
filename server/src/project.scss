@@ -132,17 +132,4 @@
     min-height: 1.25rem;
     min-width: 3.5rem;
   }
-
-  &__link {
-    color: $color-blue-primary-darken;
-    transition: all 0.35s ease;
-
-    &:visited {
-      color: $color-blue-primary-inactive;
-    }
-
-    &:hover {
-      color: $color-blue-primary-focus;
-    }
-  }
 }
