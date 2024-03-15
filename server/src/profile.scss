@@ -40,10 +40,6 @@
     text-align: left;
   }
 
-  &__personal {
-    @include para-tag('인적 사항');
-  }
-
   &__edu--first {
     @include para-tag('교육 내역');
   }
@@ -53,21 +49,15 @@
   }
 
   &__skill {
-    width: 13.5rem;
+    width: 7.5rem;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.5rem 2.5rem 0.5rem 0;
+    margin: 0.5rem 0.5rem 0.5rem 0;
     border-bottom: 1px solid $color-blue-primary-back;
   }
 
   &__skill-icon {
     height: 1.25rem;
-    max-width: 6rem;
-  }
-
-  &__stars {
-    width: 6.5rem;
-    margin: 0;
   }
 }
